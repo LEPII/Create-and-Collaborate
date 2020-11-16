@@ -1,9 +1,14 @@
 const router = require('express').Router(),
-  { createUser, loginUser } = require('../../controllers/users');
+  {
+    createUser,
+    loginUser,
+    requestPasswordReset,
+    passwordRedirect
+  } = require('../../controllers/users');
 
-// JUST FOR DEMO PURPOSES, PUT YOUR ACTUAL API CODE HERE
 router.post('/', createUser);
 router.post('/login', loginUser);
-// END DEMO
+router.get('/password', requestPasswordReset);
+router.get('/password/:token', passwordRedirect);
 
 module.exports = router;
