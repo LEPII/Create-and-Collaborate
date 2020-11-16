@@ -68,8 +68,22 @@ const userSchema = new mongoose.Schema(
     avatar: {
       type: String
     },
-    following: [{}],
-    followers: [{}]
+    following: [
+      {
+        user: {
+          type: mongoose.Schema.Types.ObjectId,
+          ref: 'User'
+        }
+      }
+    ],
+    followers: [
+      {
+        user: {
+          type: mongoose.Schema.Types.ObjectId,
+          ref: 'User'
+        }
+      }
+    ]
   },
   {
     timestamps: true

@@ -28,3 +28,9 @@ exports.getSpecificJob = async (req, res) => {
     res.status(400).json({ error: error.message });
   }
 };
+
+// //Update existing job
+// exports.updateJob = async (req, res) => {
+//   const updates = Object.keys(req.body);
+//   const allowedUpdates = ['']
+// };
