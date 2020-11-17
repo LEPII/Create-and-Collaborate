@@ -85,7 +85,7 @@ const userSchema = new mongoose.Schema(
         }
       }
     ],
-    categories: [
+    category: [
       {
         type: {
           type: String
@@ -100,6 +100,12 @@ const userSchema = new mongoose.Schema(
 
 userSchema.virtual('jobs', {
   ref: 'Job',
+  localField: '_id',
+  foreignField: 'hostedBy'
+});
+
+userSchema.virtual('gallery', {
+  ref: 'Gallery',
   localField: '_id',
   foreignField: 'hostedBy'
 });
