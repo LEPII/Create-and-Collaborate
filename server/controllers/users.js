@@ -15,7 +15,7 @@ exports.createUser = async (req, res) => {
       email,
       password
     });
-    // sendWelcomeEmail(user.email, user.name);
+    sendWelcomeEmail(user.email, user.name);
     const token = await user.generateAuthToken();
     res.cookie('jwt', token, {
       httpOnly: true,
@@ -49,6 +49,7 @@ exports.loginUser = async (req, res) => {
 exports.requestPasswordReset = async (req, res) => {
   try {
     const { email } = req.query;
+
     const user = await User.findOne({ email });
     if (!user) throw new Error('User not found');
     const token = jwt.sign(
@@ -56,7 +57,7 @@ exports.requestPasswordReset = async (req, res) => {
       process.env.JWT_SECRET,
       { expiresIn: '15m' }
     );
-    // forgotPasswordEmail(email, token);
+    forgotPasswordEmail(email, token, user.name);
     res.json({ message: 'reset password email sent!' });
   } catch (error) {
     res.status(400).json({ error: error.message });
@@ -84,12 +85,13 @@ exports.passwordRedirect = async (req, res) => {
 //Get a user
 exports.getCurrentUser = async (req, res) => {
   res.json(req.user);
+  console.log(req.user);
 };
 
 // Update a user
 exports.updateCurrentUser = async (req, res) => {
   const updates = Object.keys(req.body); // => ['email', 'name', 'password']
-  const allowedUpdates = ['name', 'email', 'password', 'avatar'];
+  const allowedUpdates = ['name', 'email', 'password', 'avatar', 'username'];
   const isValidOperation = updates.every((update) =>
     allowedUpdates.includes(update)
   );
@@ -137,7 +139,7 @@ exports.logoutAllDevices = async (req, res) => {
 exports.deleteUser = async (req, res) => {
   try {
     await req.user.remove();
-    // sendCancellationEmail(req.user.email, req.user.name);
+    sendCancellationEmail(req.user.email, req.user.name);
     res.clearCookie('jwt');
     res.json({ message: 'user deleted' });
   } catch (error) {
