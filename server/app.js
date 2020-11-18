@@ -4,6 +4,9 @@ const express = require('express'),
   path = require('path'),
   openRoutes = require('./routes/open'),
   userRouter = require('./routes/secure/users'),
+  jobRoutes = require('./routes/secure/jobs'),
+  galleryRoutes = require('./routes/secure/gallery'),
+  fileUpload = require('express-fileupload'),
   passport = require('./middleware/authentication/index');
 
 const app = express();
@@ -23,6 +26,15 @@ if (process.env.NODE_ENV === 'production') {
 // Any authentication middleware and related routing would be here.
 app.use('/*', passport.authenticate('jwt', { session: false }));
 app.use('/users', userRouter);
+app.use('/jobs', jobRoutes);
+app.use('/gallery', galleryRoutes);
+
+app.use(
+  fileUpload({
+    useTempFiles: true,
+    tempFileDir: '/tmp/images'
+  })
+);
 
 // Handle React routing, return all requests to React app
 if (process.env.NODE_ENV === 'production') {

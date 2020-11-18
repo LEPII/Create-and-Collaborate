@@ -21,7 +21,7 @@ exports.sendCancellationEmail = (email, name) => {
   });
 };
 
-exports.forgotPasswordEmail = (email, token) => {
+exports.forgotPasswordEmail = (email, token, name) => {
   const exampleHTMLEmail = `<a target="_blank" rel="noopener noreferrer" href="${process.env.APP_URL}/api/password/${token}">Reset Password</a>`;
 
   sgMail.send({
@@ -31,4 +31,5 @@ exports.forgotPasswordEmail = (email, token) => {
     text: `Hi ${name}! Please click the link below to reset your password!`,
     html: exampleHTMLEmail
   });
+  console.log('sent');
 };
