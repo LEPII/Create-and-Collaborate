@@ -39,6 +39,7 @@ const userSchema = new mongoose.Schema(
     number: {
       type: String
     },
+
     password: {
       type: String,
       required: true,
@@ -83,12 +84,31 @@ const userSchema = new mongoose.Schema(
           ref: 'User'
         }
       }
+    ],
+    category: [
+      {
+        type: {
+          type: String
+        }
+      }
     ]
   },
   {
     timestamps: true
   }
 );
+
+userSchema.virtual('jobs', {
+  ref: 'Job',
+  localField: '_id',
+  foreignField: 'hostedBy'
+});
+
+userSchema.virtual('gallery', {
+  ref: 'Gallery',
+  localField: '_id',
+  foreignField: 'hostedBy'
+});
 
 //password/token camo
 userSchema.methods.toJSON = function () {

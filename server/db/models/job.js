@@ -19,8 +19,24 @@ const jobSchema = new mongoose.Schema({
   },
   company: {
     type: String
+  },
+  posted: {
+    type: Date
+  },
+  hostedBy: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'User'
   }
 });
+
+jobSchema.methods.toJSON = function () {
+  const job = this;
+  const jobObject = job.toObject();
+  if (jobObject.posted) {
+    jobObject.posted = moment(jobObject.posted).startOf('day').fromNow();
+  }
+  return jobObject;
+};
 
 const Job = mongoose.model('Job', jobSchema);
 
