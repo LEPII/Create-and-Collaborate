@@ -1,7 +1,7 @@
 import React from 'react';
 import { Card, Button } from 'react-bootstrap';
 
-const CoverImg = () => {
+const CoverImage = () => {
   return (
     <Card>
       <Card.Img variant="top" src="https://via.placeholder.com/350x100" />
@@ -16,4 +16,4 @@ const CoverImg = () => {
   );
 };
 
-export default CoverImg;
+export default CoverImage;

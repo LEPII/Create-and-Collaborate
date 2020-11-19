@@ -87,9 +87,7 @@ const userSchema = new mongoose.Schema(
     ],
     category: [
       {
-        type: {
-          type: String
-        }
+        type: String
       }
     ]
   },
