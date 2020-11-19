@@ -32,7 +32,6 @@ if (process.env.NODE_ENV === 'production') {
   app.use(express.static(path.join(__dirname, '../client/build')));
 }
 
-
 // Any authentication middleware and related routing would be here.
 app.use('/*', passport.authenticate('jwt', { session: false }));
 app.use('/users', userRouter);
@@ -40,8 +39,6 @@ app.use('/portfolio', portfolioRouter);
 app.use('/events', eventRouter);
 app.use('/jobs', jobRoutes);
 app.use('/gallery', galleryRoutes);
-
-
 
 // Handle React routing, return all requests to React app
 if (process.env.NODE_ENV === 'production') {
