@@ -113,6 +113,12 @@ userSchema.virtual('gallery', {
   foreignField: 'hostedBy'
 });
 
+userSchema.virtual('image', {
+  ref: 'Image',
+  localField: '_id',
+  foreignField: 'hostedBy'
+});
+
 //password/token camo
 userSchema.methods.toJSON = function () {
   const user = this;

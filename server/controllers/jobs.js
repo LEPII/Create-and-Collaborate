@@ -74,26 +74,8 @@ exports.deleteJob = async (req, res) => {
 
 //Get all jobs
 exports.getAllJobs = async (req, res) => {
-  const match = {};
-  const sort = {};
-
-  if (req.query.completed) match.completed = req.query.completed === 'true';
-  if (req.query.sortBy) {
-    const parts = req.query.sortBy.split(':');
-    sort[parts[0]] = parts[1] === 'desc' ? -1 : 1;
-  }
   try {
-    await req.user
-      .populate({
-        path: 'jobs',
-        match,
-        options: {
-          limit: parseInt(req.query.limit),
-          skip: parseInt(req.query.skip),
-          sort
-        }
-      })
-      .execPopulate();
+    await req.user.populate('jobs').execPopulate();
     res.status(200).json(req.user.jobs);
   } catch (error) {
     res.status(400).json({ error: error.message });

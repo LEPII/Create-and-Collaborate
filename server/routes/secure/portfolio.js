@@ -9,6 +9,6 @@ const router = require('express').Router(),
 router.post('/', createPortfolio);
 router.get('/', getAllPortfolio);
 router.put('/:id', updatePortfolio);
-router.delete('/id', deletePortfolio);
+router.delete('/:id', deletePortfolio);
 
 module.exports = router;
