@@ -5,6 +5,7 @@
   "license": "MIT",
   "dependencies": {
     "@sendgrid/mail": "^7.4.0",
+    "axios": "^0.21.0",
     "bcrypt": "^5.0.0",
     "bcryptjs": "^2.4.3",
     "bootstrap": "^4.5.3",
@@ -20,6 +21,7 @@
     "mongoose": "^5.10.15",
     "passport": "^0.4.1",
     "passport-jwt": "^4.0.0",
+    "react-bootstrap": "^1.4.0",
     "react-router-dom": "^5.2.0",
     "validator": "^13.1.17"
   },

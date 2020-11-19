@@ -53,24 +53,10 @@ exports.updatePortfolio = async (req, res) => {
 };
 
 exports.getAllPortfolio = async (req, res) => {
-  const match = {};
-
-  if (req.query.company) match.company = req.query.company === 'true';
-  if (req.query.position) match.position = req.query.position === 'true';
-  if (req.query.school) match.school = req.query.school === 'true';
-  if (req.query.location) match.location = req.query.location === 'true';
   try {
-    await req.user
-      .populate({
-        path: 'portfolio',
-        match,
-        options: {
-          limit: parseInt(req.query.limit),
-          skip: parseInt(req.query.skip)
-        }
-      })
-      .execPopulate();
-    res.status(200).json(req.user.portfolio);
+    const portfolios = await Portfolio.find();
+    res.json(portfolios);
+    res.status(200).json(req.user.portfolios);
   } catch (error) {
     res.status(400).json({ error: error.message });
   }

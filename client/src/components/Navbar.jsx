@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { Navbar, Nav, NavDropdown, NavbarBrand } from 'react-bootstrap';
 
-export default function NavBar() {
+const NavBar = () => {
   return (
     <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
       <Navbar.Brand href="#home">C & C</Navbar.Brand>
@@ -33,4 +33,6 @@ export default function NavBar() {
       </Navbar.Collapse>
     </Navbar>
   );
-}
+};
+
+export default NavBar;

@@ -85,7 +85,6 @@ exports.passwordRedirect = async (req, res) => {
 //Get a user
 exports.getCurrentUser = async (req, res) => {
   res.json(req.user);
-  console.log(req.user);
 };
 
 // Update a user
@@ -168,6 +167,17 @@ exports.updatePassword = async (req, res) => {
     await req.user.save();
     res.clearCookie('jwt');
     res.status(200).json({ message: 'Password updated successfully!' });
+  } catch (error) {
+    res.status(400).json({ error: error.message });
+  }
+};
+
+//Get all users
+exports.getAllUsers = async (req, res) => {
+  try {
+    const users = await User.find();
+    res.json(users);
+    res.status(200).json(req.user.tasks);
   } catch (error) {
     res.status(400).json({ error: error.message });
   }

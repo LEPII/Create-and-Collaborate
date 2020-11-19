@@ -87,11 +87,12 @@ const userSchema = new mongoose.Schema(
     ],
     category: [
       {
-        type: {
-          type: String
-        }
+        type: String
       }
-    ]
+    ],
+    website: {
+      type: String
+    }
   },
   {
     timestamps: true
@@ -106,6 +107,12 @@ userSchema.virtual('jobs', {
 
 userSchema.virtual('gallery', {
   ref: 'Gallery',
+  localField: '_id',
+  foreignField: 'hostedBy'
+});
+
+userSchema.virtual('image', {
+  ref: 'Image',
   localField: '_id',
   foreignField: 'hostedBy'
 });

@@ -1,6 +1,6 @@
 const router = require('express').Router(),
   { uploadImage } = require('../../controllers/gallery');
 
-router.post('/', uploadImage);
+router.post('/images', uploadImage);
 
 module.exports = router;

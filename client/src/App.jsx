@@ -1,12 +1,14 @@
 import React from 'react';
 import { AppContextProvider } from './context/AppContext';
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
-import HomePage from './pages/HomePage';
-import ProfilePage from './pages/ProfilePage';
-import LoginPage from './pages/LoginPage';
-import SignUp from './pages/SignUp';
-import 'bootstrap/dist/css/bootstrap.min.css';
-
+import Events from './pages/Events';
+import Home from './pages/Home';
+import Jobs from './pages/Jobs';
+import PrivateRoute from './components/PrivateRoute';
+import Profile from './pages/Profile';
+import ResetPassword from './pages/ResetPassword';
+import UpdatePassword from './pages/UpdatePassword';
+import Welcome from './pages/Welcome';
 import './App.css';
 
 function App() {
@@ -14,10 +16,13 @@ function App() {
     <AppContextProvider>
       <BrowserRouter>
         <Switch>
-          <Route exact path="/" component={LoginPage} />
-          <Route exact path="/HomePage" component={HomePage} />
-          <Route exact path="/ProfilePage" component={ProfilePage} />
-          <Route exact path="/SignUp" component={SignUp} />
+          <PrivateRoute exact path="/Events" component={Events} />
+          <PrivateRoute exact path="/" component={Home} />
+          <PrivateRoute exact path="/Jobs" component={Jobs} />
+          <PrivateRoute exact path="/Profile" component={Profile} />
+          <Route exact path="/reset-password" component={ResetPassword} />
+          <Route exact path="/update-password" component={UpdatePassword} />
+          <Route exact path="/Welcome" component={Welcome} />
         </Switch>
       </BrowserRouter>
     </AppContextProvider>
