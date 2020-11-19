@@ -15,3 +15,10 @@ exports.uploadImage = async (req, res) => {
     res.status(400).json({ error: error.message });
   }
 };
+
+exports.deleteImage = async (req, res) => {
+  try {
+  } catch (error) {
+    res.status(400).json({ error: error.message });
+  }
+};
