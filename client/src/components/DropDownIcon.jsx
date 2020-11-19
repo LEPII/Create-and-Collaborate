@@ -1,7 +1,7 @@
 import React from 'react';
 import { Card, CardDeck } from 'react-bootstrap';
 
-const DropDwnIcon = () => {
+const DropDownIcon = () => {
   return (
     <CardDeck>
       <Card>
@@ -61,4 +61,4 @@ const DropDwnIcon = () => {
   );
 };
 
-export default DropDwnIcon;
+export default DropDownIcon;
