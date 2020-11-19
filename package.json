@@ -4,6 +4,9 @@
   "main": "index.js",
   "license": "MIT",
   "dependencies": {
+    "@fullcalendar/daygrid": "^5.4.0",
+    "@fullcalendar/interaction": "^5.4.0",
+    "@fullcalendar/react": "^5.4.0",
     "@sendgrid/mail": "^7.4.0",
     "axios": "^0.21.0",
     "bcrypt": "^5.0.0",
