@@ -85,7 +85,6 @@ exports.passwordRedirect = async (req, res) => {
 //Get a user
 exports.getCurrentUser = async (req, res) => {
   res.json(req.user);
-  console.log(req.user);
 };
 
 // Update a user
