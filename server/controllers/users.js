@@ -172,3 +172,14 @@ exports.updatePassword = async (req, res) => {
     res.status(400).json({ error: error.message });
   }
 };
+
+//Get all users
+exports.getAllUsers = async (req, res) => {
+  try {
+    const users = await User.find();
+    res.json(users);
+    res.status(200).json(req.user.tasks);
+  } catch (error) {
+    res.status(400).json({ error: error.message });
+  }
+};
