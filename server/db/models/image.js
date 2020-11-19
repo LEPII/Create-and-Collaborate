@@ -18,7 +18,11 @@ const imageSchema = new mongoose.Schema({
         ref: 'User'
       }
     }
-  ]
+  ],
+  hostedBy: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'User'
+  }
 });
 
 const Image = mongoose.model('Image', imageSchema);

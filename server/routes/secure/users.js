@@ -1,3 +1,5 @@
+const { getAllEvents } = require('../../controllers/events');
+
 const router = require('express').Router(),
   {
     getCurrentUser,
@@ -6,7 +8,8 @@ const router = require('express').Router(),
     logoutAllDevices,
     deleteUser,
     uploadAvatar,
-    updatePassword
+    updatePassword,
+    getAllUsers
   } = require('../../controllers/users');
 
 router.get('/me', getCurrentUser);
@@ -16,5 +19,6 @@ router.post('/logoutall', logoutAllDevices);
 router.delete('/', deleteUser);
 router.post('/avatar', uploadAvatar);
 router.put('/password', updatePassword);
+router.get('/all', getAllUsers);
 
 module.exports = router;
