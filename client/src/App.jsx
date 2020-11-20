@@ -10,7 +10,6 @@ import ResetPassword from './pages/ResetPassword';
 import UpdatePassword from './pages/UpdatePassword';
 import Welcome from './pages/Welcome';
 import './App.css';
-import "bootstrap/dist/css/bootstrap.min.css";
 
 function App() {
   return (
