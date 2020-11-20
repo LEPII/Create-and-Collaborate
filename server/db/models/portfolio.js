@@ -41,7 +41,7 @@ const portfolioSchema = new mongoose.Schema(
     video: {
       type: String
     },
-    employee: {
+    hostedBy: {
       type: mongoose.Schema.Types.ObjectId,
       ref: 'User'
     }

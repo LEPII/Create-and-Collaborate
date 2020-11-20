@@ -10,18 +10,19 @@ import ResetPassword from './pages/ResetPassword';
 import UpdatePassword from './pages/UpdatePassword';
 import Welcome from './pages/Welcome';
 import './App.css';
+import "bootstrap/dist/css/bootstrap.min.css";
 
 function App() {
   return (
     <AppContextProvider>
       <BrowserRouter>
         <Switch>
-          <PrivateRoute exact path="/Events" component={Events} />
-          <PrivateRoute exact path="/" component={Home} />
-          <PrivateRoute exact path="/Jobs" component={Jobs} />
-          <PrivateRoute exact path="/Profile" component={Profile} />
-          <Route exact path="/reset-password" component={ResetPassword} />
-          <Route exact path="/update-password" component={UpdatePassword} />
+          <Route exact path="/Events" component={Events} />
+          <Route exact path="/" component={Home} />
+          <Route exact path="/Jobs" component={Jobs} />
+          <Route exact path="/Profile" component={Profile} />
+          <Route exact path="/Reset-Password" component={ResetPassword} />
+          <Route exact path="/Update-Password" component={UpdatePassword} />
           <Route exact path="/Welcome" component={Welcome} />
         </Switch>
       </BrowserRouter>

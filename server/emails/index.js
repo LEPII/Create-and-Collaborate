@@ -33,3 +33,21 @@ exports.forgotPasswordEmail = (email, token, name) => {
   });
   console.log('sent');
 };
+
+exports.sendCancellationEmail = (email, name) => {
+  sgMail.send({
+    to: email,
+    from: `${process.env.FROM_EMAIL}`,
+    subject: 'Sorry to see you go.',
+    text: `Bye ${name}. Hope to see you soon.`
+  });
+};
+
+exports.createdEvent = (email, hostedBy) => {
+  sgMail.send({
+    to: email,
+    from: `${process.env.FROM_EMAIL}`,
+    subject: 'Sorry to see you go.',
+    text: `Bye ${hostedBy}. Hope to see you soon.`
+  });
+};

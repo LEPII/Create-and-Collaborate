@@ -1,16 +1,10 @@
 import React from 'react';
-import NavBar from '../components/NavBar';
-import CoverImage from '../components/CoverImage';
-import DropDownIcon from '../components/DropDownIcon';
-import Footer from '../components/Footer';
+import Navbar from '../components/Navbar';
 
 const Home = () => {
   return (
     <div>
-      <NavBar />
-      <CoverImage />
-      <DropDownIcon />
-      <Footer />
+      <Navbar />
     </div>
   );
 };
