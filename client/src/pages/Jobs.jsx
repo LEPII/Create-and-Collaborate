@@ -10,7 +10,6 @@ const Jobs = () => {
       <Navbar />
       <JobSearch />
       <JobGrid />
-      <Footer />
     </>
   );
 };
