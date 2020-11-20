@@ -1,7 +1,6 @@
 if (process.env.NODE_ENV !== 'production') require('dotenv').config();
 //Import the DB connection
 require('../config/index');
-
 const Job = require('../models/job'),
   User = require('../models/user'),
   Event = require('../models/event'),
@@ -10,9 +9,7 @@ const Job = require('../models/job'),
   Portfolio = require('../models/portfolio'),
   faker = require('faker'),
   mongoose = require('mongoose');
-
 // add Gallery function with faker
-
 const dbReset = async () => {
   const collections = Object.keys(mongoose.connection.collections);
   // Loop through each collection and delete all the documents.
@@ -20,28 +17,22 @@ const dbReset = async () => {
     const collection = mongoose.connection.collections[collectionName];
     await collection.deleteMany();
   }
-
   //Count number of users,jobs, and events documents ===> should be 0
   await User.countDocuments({}, function (err, count) {
     console.log('Number of Users: ', count);
   });
-
   await Event.countDocuments({}, function (err, count) {
     console.log('Number of Events: ', count);
   });
-
   await Job.countDocuments({}, function (err, count) {
     console.log('Number of Jobs: ', count);
   });
-
   await Portfolio.countDocuments({}, function (err, count) {
     console.log('Number of Portfolios: ', count);
   });
-
   await Image.countDocuments({}, function (err, count) {
     console.log('Number of Images: ', count);
   });
-
   await Video.countDocuments({}, function (err, count) {
     console.log('Number of Videos: ', count);
   });
@@ -65,7 +56,6 @@ const dbReset = async () => {
     await me.generateAuthToken();
     userIdArray.push(me._id);
   }
-
   //Loop 10 times and create 10 new events
   for (let i = 0; i < 10; i++) {
     const event = new Event({
@@ -82,7 +72,6 @@ const dbReset = async () => {
     });
     await event.save();
   }
-
   //Loop 10 times and create 10 new jobs
   //Add the postedBy Method after we merge
   for (let i = 0; i < 10; i++) {
@@ -120,6 +109,17 @@ const dbReset = async () => {
     });
     await image.save();
   }
+  
+  //Loop 10 times and create 10 new images
+  for (let i = 0; i < 10; i++) {
+    const video = new Video({
+      title: faker.image.avatar(),
+      likes: faker.random.number(),
+      hostedBy: userIdArray[Math.floor(Math.random() * userIdArray.length)],
+      caption: faker.lorem.sentence()
+    });
+    await video.save();
+  }
 
   //Count number of users ===> should be 10
   await User.countDocuments({}, function (err, count) {
@@ -151,5 +151,4 @@ const dbReset = async () => {
     console.log('Number of video: ', count);
   });
 };
-
 dbReset();
