@@ -4,10 +4,9 @@ import { Card } from 'react-bootstrap';
 
 const JobSearch = () => {
   return (
-    <Card>
-      <Card.Img variant="top" src="https://via.placeholder.com/400x100" />
-
-      <div class="jobsearchfix">
+    <div class="jobsearchfix">
+      <Card>
+        <Card.Img variant="top" src="https://via.placeholder.com/400x100" />
         <form>
           <div className="jobsearch">
             <h3>Find your next gig!</h3>
@@ -26,8 +25,8 @@ const JobSearch = () => {
             </div>
           </div>
         </form>
-      </div>
-    </Card>
+      </Card>
+    </div>
   );
 };
 
