@@ -17,13 +17,13 @@ function App() {
     <AppContextProvider>
       <BrowserRouter>
         <Switch>
-          <Route exact path="/Events" component={Events} />
+          <Route exact path="/events" component={Events} />
           <Route exact path="/" component={Home} />
-          <Route exact path="/Jobs" component={Jobs} />
-          <Route exact path="/Profile" component={Profile} />
+          <Route exact path="/jobs" component={Jobs} />
+          <Route exact path="/profile" component={Profile} />
           <Route exact path="/reset-password" component={ResetPassword} />
           <Route exact path="/update-password" component={UpdatePassword} />
-          <Route exact path="/Welcome" component={Welcome} />
+          <Route exact path="/welcome" component={Welcome} />
         </Switch>
       </BrowserRouter>
     </AppContextProvider>

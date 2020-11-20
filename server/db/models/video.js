@@ -17,7 +17,11 @@ const videoSchema = new mongoose.Schema({
         ref: 'User'
       }
     }
-  ]
+  ],
+  hostedBy: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'User'
+  }
 });
 
 const Video = mongoose.model('Video', videoSchema);

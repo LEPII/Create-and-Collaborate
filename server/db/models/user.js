@@ -7,6 +7,7 @@ const userSchema = new mongoose.Schema(
   {
     username: {
       type: String,
+      unique: true,
       trim: true
     },
     name: {
@@ -105,14 +106,26 @@ userSchema.virtual('jobs', {
   foreignField: 'hostedBy'
 });
 
-userSchema.virtual('gallery', {
-  ref: 'Gallery',
+userSchema.virtual('video', {
+  ref: 'Video',
   localField: '_id',
   foreignField: 'hostedBy'
 });
 
 userSchema.virtual('image', {
   ref: 'Image',
+  localField: '_id',
+  foreignField: 'hostedBy'
+});
+
+userSchema.virtual('portfolio', {
+  ref: 'Portfolio',
+  localField: '_id',
+  foreignField: 'hostedBy'
+});
+
+userSchema.virtual('event', {
+  ref: 'Event',
   localField: '_id',
   foreignField: 'hostedBy'
 });

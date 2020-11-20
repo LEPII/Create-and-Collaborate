@@ -36,6 +36,7 @@ const dbReset = async () => {
   await Video.countDocuments({}, function (err, count) {
     console.log('Number of Videos: ', count);
   });
+
   //Loop 10 times and create 10 new users
   const userIdArray = [];
   for (let i = 0; i < 10; i++) {
@@ -84,6 +85,7 @@ const dbReset = async () => {
     });
     await job.save();
   }
+
   //Loop 10 times and create 10 new portfolios
   for (let i = 0; i < 10; i++) {
     const portfolio = new Portfolio({
@@ -97,6 +99,7 @@ const dbReset = async () => {
     });
     await portfolio.save();
   }
+
   //Loop 10 times and create 10 new images
   for (let i = 0; i < 10; i++) {
     const image = new Image({
@@ -106,26 +109,43 @@ const dbReset = async () => {
     });
     await image.save();
   }
+  
+  //Loop 10 times and create 10 new images
+  for (let i = 0; i < 10; i++) {
+    const video = new Video({
+      title: faker.image.avatar(),
+      likes: faker.random.number(),
+      hostedBy: userIdArray[Math.floor(Math.random() * userIdArray.length)],
+      caption: faker.lorem.sentence()
+    });
+    await video.save();
+  }
+
   //Count number of users ===> should be 10
   await User.countDocuments({}, function (err, count) {
     console.log('Number of users: ', count);
   });
+
   //Count number of events ===> should be 10
   await Event.countDocuments({}, function (err, count) {
     console.log('Number of events: ', count);
   });
+
   //Count number of jobs ===> should be 10
   await Job.countDocuments({}, function (err, count) {
     console.log('Number of events: ', count);
   });
+
   //Count number of portfolios ===> should be 10
   await Portfolio.countDocuments({}, function (err, count) {
     console.log('Number of portfolios: ', count);
   });
+
   //Count number of images ===> should be 10
   await Image.countDocuments({}, function (err, count) {
     console.log('Number of images: ', count);
   });
+
   //Count number of videos ===> should be 10
   await Video.countDocuments({}, function (err, count) {
     console.log('Number of video: ', count);

@@ -11,7 +11,7 @@ const AppContextProvider = ({ children }) => {
   useEffect(() => {
     if (user && !currentUser) {
       axios
-        .get(`user/me`, {
+        .get(`/users/me`, {
           withCredentials: true
         })
         .then(({ data }) => {
@@ -21,7 +21,20 @@ const AppContextProvider = ({ children }) => {
     }
   }, [currentUser, user]);
 
-  return <AppContext.Provider value={{}}>{children}</AppContext.Provider>;
+  return (
+    <AppContext.Provider
+      value={{
+        currentUser,
+        setCurrentUser,
+        loading,
+        setLoading,
+        search,
+        setSearch
+      }}
+    >
+      {children}
+    </AppContext.Provider>
+  );
 };
 
 export { AppContext, AppContextProvider };
