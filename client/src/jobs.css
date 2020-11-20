@@ -1,0 +1,25 @@
+.jobsearch {
+  background-color: gray;
+  background-size: cover;
+  margin: 10px;
+  padding: 10px;
+  height: 20vh;
+  width: 80vw;
+  border-radius: 1%;
+}
+
+.jobsearch input {
+  width: 30vw;
+  margin: 15px;
+}
+
+.jobsearch button {
+  height: 3vw;
+  margin: 15px;
+  border-radius: 100%;
+}
+
+.jobsearchfix {
+  display: flex;
+  justify-content: center;
+}

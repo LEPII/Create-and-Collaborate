@@ -1,28 +1,33 @@
 import React from 'react';
-import { FormControl } from 'react-bootstrap';
+import '../jobs.css';
+import { Card } from 'react-bootstrap';
 
 const JobSearch = () => {
   return (
-    <div>
-      <form>
-        <div class="row">
-          <div class="col">
-            <input
-              type="text"
-              class="form-control"
-              placeholder="Search by Title..."
-            />
+    <Card>
+      <Card.Img variant="top" src="https://via.placeholder.com/400x100" />
+
+      <div class="jobsearchfix">
+        <form>
+          <div className="jobsearch">
+            <h3>Find your next gig!</h3>
+            <div class="row">
+              <input
+                type="text"
+                class="form-control"
+                placeholder="Search by Title..."
+              />
+              <input
+                type="text"
+                class="form-control"
+                placeholder="Search by Location..."
+              />
+              <button>Search</button>
+            </div>
           </div>
-          <div class="col">
-            <input
-              type="text"
-              class="form-control"
-              placeholder="Search by Location..."
-            />
-          </div>
-        </div>
-      </form>
-    </div>
+        </form>
+      </div>
+    </Card>
   );
 };
 
