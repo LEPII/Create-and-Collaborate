@@ -9,6 +9,7 @@ import Profile from './pages/Profile';
 import ResetPassword from './pages/ResetPassword';
 import UpdatePassword from './pages/UpdatePassword';
 import Welcome from './pages/Welcome';
+import 'bootstrap/dist/css/bootstrap.min.css';
 import './App.css';
 
 function App() {
@@ -16,10 +17,10 @@ function App() {
     <AppContextProvider>
       <BrowserRouter>
         <Switch>
-          <PrivateRoute exact path="/Events" component={Events} />
-          <PrivateRoute exact path="/" component={Home} />
-          <PrivateRoute exact path="/Jobs" component={Jobs} />
-          <PrivateRoute exact path="/Profile" component={Profile} />
+          <Route exact path="/Events" component={Events} />
+          <Route exact path="/" component={Home} />
+          <Route exact path="/Jobs" component={Jobs} />
+          <Route exact path="/Profile" component={Profile} />
           <Route exact path="/reset-password" component={ResetPassword} />
           <Route exact path="/update-password" component={UpdatePassword} />
           <Route exact path="/Welcome" component={Welcome} />

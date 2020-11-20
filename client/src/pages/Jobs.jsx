@@ -1,7 +1,14 @@
 import React from 'react';
+import JobSearch from '../components/JobSearch';
+import Navbar from '../components/Navbar';
 
 const Jobs = () => {
-  return <div></div>;
+  return (
+    <>
+      <Navbar />
+      <JobSearch />
+    </>
+  );
 };
 
 export default Jobs;

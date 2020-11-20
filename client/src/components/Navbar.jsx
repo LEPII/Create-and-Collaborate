@@ -1,18 +1,18 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { Navbar, Nav, NavDropdown, NavbarBrand } from 'react-bootstrap';
+import EventSearch from './EventSearch';
 
 const NavBar = () => {
   return (
     <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
-      <Navbar.Brand href="#home">C & C</Navbar.Brand>
+      <Navbar.Brand href="/">C & C</Navbar.Brand>
       <Navbar.Toggle aria-controls="responsive-navbar-nav" />
       <Navbar.Collapse id="responsive-navbar-nav">
         <Nav className="mr-auto">
-          <Nav.Link href="#features">Connect</Nav.Link>
-          <Nav.Link href="#pricing">Gigs</Nav.Link>
-          <Nav.Link href="#pricing">Events</Nav.Link>
-          <NavDropdown title="Dropdown" id="collasible-nav-dropdown">
+          <Nav.Link href="jobs">Gigs</Nav.Link>
+          <Nav.Link href="events">Events</Nav.Link>
+          <NavDropdown title="" id="collasible-nav-dropdown">
             <NavDropdown.Item href="#action/3.1">Action</NavDropdown.Item>
             <NavDropdown.Item href="#action/3.2">
               Another action
@@ -25,10 +25,7 @@ const NavBar = () => {
           </NavDropdown>
         </Nav>
         <Nav>
-          <Nav.Link href="#deets">More deets</Nav.Link>
-          <Nav.Link eventKey={2} href="#memes">
-            Dank memes
-          </Nav.Link>
+          <Nav.Link href="welcome">User</Nav.Link>
         </Nav>
       </Navbar.Collapse>
     </Navbar>

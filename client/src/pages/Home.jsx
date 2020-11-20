@@ -1,5 +1,5 @@
 import React from 'react';
-import NavBar from '../components/NavBar';
+import Navbar from '../components/Navbar';
 import CoverImage from '../components/CoverImage';
 import DropDownIcon from '../components/DropDownIcon';
 import Footer from '../components/Footer';
@@ -7,7 +7,7 @@ import Footer from '../components/Footer';
 const Home = () => {
   return (
     <div>
-      <NavBar />
+      <Navbar />
       <CoverImage />
       <DropDownIcon />
       <Footer />
