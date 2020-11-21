@@ -6,7 +6,7 @@ exports.createPortfolio = async (req, res) => {
   try {
     const portfolio = await new Portfolio({
       ...req.body,
-      employee: req.user._id
+      hostedBy: req.user._id
     });
     await portfolio.save();
     res.status(200).send(portfolio);
@@ -40,7 +40,7 @@ exports.updatePortfolio = async (req, res) => {
   try {
     const portfolio = await Portfolio.findOne({
       _id: req.params.id,
-      employee: req.user._id
+      hostedBy: req.user._id
     });
     if (!portfolio)
       return res.status(404).json({ message: 'Portfolio Data not found :-(' });
@@ -67,7 +67,7 @@ exports.deletePortfolio = async (req, res) => {
   try {
     const portfolio = await Portfolio.findOneAndDelete({
       _id: req.params.id,
-      employee: req.user._id
+      hostedBy: req.user._id
     });
     if (!portfolio)
       return res
