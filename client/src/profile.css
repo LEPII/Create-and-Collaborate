@@ -15,10 +15,24 @@
 .profaction {
   padding: 25px;
   position: absolute;
-  height: 300px;
+  height: 25vh;
   width: 50vw;
   right: 100px;
   top: 450px;
   border-radius: 20px;
   border: solid black 1px;
+}
+
+.profbody {
+  border: solid black 1px;
+  border-radius: 20px;
+  position: absolute;
+  height: 25vh;
+  width: 50vw;
+  right: 100px;
+  bottom: -50px;
+}
+
+.profilemain {
+  background-color: gray;
 }
