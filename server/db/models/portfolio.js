@@ -31,10 +31,10 @@ const portfolioSchema = new mongoose.Schema(
       type: Date
     },
     image: {
-      type: String
+      type: Array
     },
     video: {
-      type: String
+      type: Array
     },
     hostedBy: {
       type: mongoose.Schema.Types.ObjectId,

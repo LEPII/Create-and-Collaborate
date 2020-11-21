@@ -105,17 +105,17 @@ userSchema.virtual('jobs', {
   foreignField: 'hostedBy'
 });
 
-userSchema.virtual('video', {
-  ref: 'Video',
-  localField: '_id',
-  foreignField: 'hostedBy'
-});
+// userSchema.virtual('video', {
+//   ref: 'Video',
+//   localField: '_id',
+//   foreignField: 'hostedBy'
+// });
 
-userSchema.virtual('image', {
-  ref: 'Image',
-  localField: '_id',
-  foreignField: 'hostedBy'
-});
+// userSchema.virtual('image', {
+//   ref: 'Image',
+//   localField: '_id',
+//   foreignField: 'hostedBy'
+// });
 
 userSchema.virtual('portfolio', {
   ref: 'Portfolio',
