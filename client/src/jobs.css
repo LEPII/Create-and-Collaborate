@@ -22,6 +22,7 @@
   display: flex;
   justify-content: center;
   background-color: gray;
+  min-width: 400px;
 }
 
 .gridBG {
@@ -30,4 +31,5 @@
 
 .gridInnards {
   background-color: white;
+  min-width: 400px;
 }
