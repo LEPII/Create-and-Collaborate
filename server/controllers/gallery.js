@@ -1,4 +1,5 @@
 const Image = require('../db/models/Image'),
+  Video = require('../db/models/Video'),
   mongoose = require('mongoose'),
   cloudinary = require('cloudinary').v2;
 
@@ -19,23 +20,18 @@ exports.uploadImage = async (req, res) => {
   }
 };
 
-//Get all images
-exports.deleteImage = async (req, res) => {
+//save video
+exports.uploadVideo = async (req, res) => {
   try {
     const response = await cloudinary.uploader.upload(
-      req.files.image.tempFilePath
+      req.files.video.tempFilePath
     );
-    const image = new Image({
+    const video = new Video({
       hostedBy: req.user._id,
       image: response.secure_url
     });
-  } catch (error) {
-    res.status(400).json({ error: error.message });
-  }
-};
-
-exports.deleteImage = async (req, res) => {
-  try {
+    await video.save();
+    res.json(video);
   } catch (error) {
     res.status(400).json({ error: error.message });
   }
