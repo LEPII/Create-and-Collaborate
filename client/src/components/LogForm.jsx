@@ -1,13 +1,13 @@
 import React, { useState, useContext } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 import { Container, Form, Button } from 'react-bootstrap';
 import { AppContext } from '../context/AppContext';
 import axios from 'axios';
 
-const LogForm = ({ history }) => {
+const LogForm = () => {
   const { setCurrentUser } = useContext(AppContext);
   const [formData, setFormData] = useState(null);
-
+  const history = useHistory();
   const handleChange = (event) => {
     setFormData({ ...formData, [event.target.name]: event.target.value });
   };
@@ -15,7 +15,7 @@ const LogForm = ({ history }) => {
   const handleLogin = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.post('/login', formData);
+      const response = await axios.post('/auth/login', formData);
       setCurrentUser(response.data);
       sessionStorage.setItem('user', response.data);
       history.push('/');
@@ -27,7 +27,7 @@ const LogForm = ({ history }) => {
   const handleSignUp = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.post('/', formData);
+      const response = await axios.post('/auth/create', formData);
       sessionStorage.setItem('user', response.data);
       setCurrentUser(response.data.user);
       history.push('/');
