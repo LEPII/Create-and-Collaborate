@@ -4,24 +4,19 @@ moment = require('moment');
 const portfolioSchema = new mongoose.Schema(
   {
     company: {
-      type: String,
-      required: true
+      type: String
     },
     position: {
-      type: String,
-      required: true
+      type: String
     },
     typeOfEmployment: {
-      type: String,
-      required: true
+      type: String
     },
     dateOfEmployment: {
-      type: Date,
-      required: true
+      type: String
     },
     location: {
-      type: String,
-      required: true
+      type: String
     },
     description: {
       type: String
