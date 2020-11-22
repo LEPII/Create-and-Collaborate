@@ -7,7 +7,6 @@ const userSchema = new mongoose.Schema(
   {
     username: {
       type: String,
-      unique: true,
       trim: true
     },
     name: {
@@ -70,22 +69,8 @@ const userSchema = new mongoose.Schema(
     avatar: {
       type: String
     },
-    following: [
-      {
-        user: {
-          type: mongoose.Schema.Types.ObjectId,
-          ref: 'User'
-        }
-      }
-    ],
-    followers: [
-      {
-        user: {
-          type: mongoose.Schema.Types.ObjectId,
-          ref: 'User'
-        }
-      }
-    ],
+    following: [{ type: mongoose.Schema.Types.ObjectId, ref: 'User' }],
+    followers: [{ type: mongoose.Schema.Types.ObjectId, ref: 'User' }],
     category: [
       {
         type: String
@@ -106,17 +91,17 @@ userSchema.virtual('jobs', {
   foreignField: 'hostedBy'
 });
 
-userSchema.virtual('video', {
-  ref: 'Video',
-  localField: '_id',
-  foreignField: 'hostedBy'
-});
+// userSchema.virtual('video', {
+//   ref: 'Video',
+//   localField: '_id',
+//   foreignField: 'hostedBy'
+// });
 
-userSchema.virtual('image', {
-  ref: 'Image',
-  localField: '_id',
-  foreignField: 'hostedBy'
-});
+// userSchema.virtual('image', {
+//   ref: 'Image',
+//   localField: '_id',
+//   foreignField: 'hostedBy'
+// });
 
 userSchema.virtual('portfolio', {
   ref: 'Portfolio',

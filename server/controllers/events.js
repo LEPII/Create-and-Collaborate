@@ -6,7 +6,7 @@ exports.createEvent = async (req, res) => {
   try {
     const event = await new Event({
       ...req.body,
-      owner: req.user._id
+      hostedBy: req.user._id
     });
     await event.save();
     res.status(200).send(event);

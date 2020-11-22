@@ -8,11 +8,15 @@ const AppContextProvider = ({ children }) => {
   const [search, setSearch] = useState('');
   const [loading, setLoading] = useState(false);
   const [events, setEvents] = useState(null);
+  const [post, setPost] = useState([]);
+  const [image, setImage] = useState(null);
+  const [imageUrl, setImageUrl] = useState(null);
+
 
   useEffect(() => {
     if (user && !currentUser) {
       axios
-        .get(`/users/me`, {
+        .get(`auth/users/me`, {
           withCredentials: true
         })
         .then(({ data }) => {
@@ -32,7 +36,13 @@ const AppContextProvider = ({ children }) => {
         events,
         setEvents,
         search,
-        setSearch
+        setSearch,
+        post,
+        setPost,
+        image,
+        setImage,
+        imageUrl,
+        setImageUrl
       }}
     >
       {children}

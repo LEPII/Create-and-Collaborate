@@ -1,12 +1,12 @@
-const Portfolio = require('../db/models/portfolio');
-mongoose = require('mongoose');
+const Portfolio = require('../db/models/portfolio'),
+  mongoose = require('mongoose');
 
 //Creates Portfolio
 exports.createPortfolio = async (req, res) => {
   try {
     const portfolio = await new Portfolio({
       ...req.body,
-      employee: req.user._id
+      hostedBy: req.user._id
     });
     await portfolio.save();
     res.status(200).send(portfolio);
@@ -34,16 +34,17 @@ exports.updatePortfolio = async (req, res) => {
   const isValidOperation = updates.every((update) =>
     allowedUpdates.includes(update)
   );
-  if (!isValidOperation)
+  if (!isValidOperation) {
     return res.status(400).json({ message: 'invalid updates' });
-
+  }
   try {
     const portfolio = await Portfolio.findOne({
       _id: req.params.id,
-      employee: req.user._id
+      hostedBy: req.user._id
     });
-    if (!portfolio)
+    if (!portfolio) {
       return res.status(404).json({ message: 'Portfolio Data not found :-(' });
+    }
     updates.forEach((update) => (portfolio[update] = req.body[update]));
     await portfolio.save();
     res.status(200).json(portfolio);
@@ -67,7 +68,7 @@ exports.deletePortfolio = async (req, res) => {
   try {
     const portfolio = await Portfolio.findOneAndDelete({
       _id: req.params.id,
-      employee: req.user._id
+      hostedBy: req.user._id
     });
     if (!portfolio)
       return res
@@ -78,5 +79,25 @@ exports.deletePortfolio = async (req, res) => {
       .json({ message: 'Portfolio Information has been deleted!' });
   } catch (error) {
     res.status(400).json({ error: error.message });
+  }
+};
+
+exports.getPortfolioById = async (req, res) => {
+  try {
+    const portfolio = await Portfolio.findById({
+      _id: req.params.id
+    });
+    res.status(200).json(portfolio);
+  } catch (error) {
+    res.status(400).json({ error: error.message });
+  }
+};
+
+exports.getCurrentPortfolio = async (req, res) => {
+  try {
+    await req.user.populate('portfolios').execPopulate();
+    res.send(req.user.portfolio);
+  } catch (e) {
+    res.status(500).send(e.toString());
   }
 };

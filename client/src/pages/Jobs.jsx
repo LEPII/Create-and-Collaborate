@@ -8,7 +8,6 @@ const Jobs = () => {
   return (
     <>
       <Navbar />
-      <JobSearch />
       <JobGrid />
     </>
   );

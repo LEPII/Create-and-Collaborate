@@ -8,15 +8,20 @@ const User = require('../db/models/user'),
 
 //create a user
 exports.createUser = async (req, res) => {
-  const { name, email, password } = req.body;
+  console.log('im running');
+  const { name, email, password, username } = req.body;
   try {
     const user = new User({
       name,
       email,
-      password
+      password,
+      username
     });
+    await user.save();
+
     sendWelcomeEmail(user.email, user.name);
     const token = await user.generateAuthToken();
+    console.log(token);
     res.cookie('jwt', token, {
       httpOnly: true,
       sameSite: 'Strict',
@@ -24,7 +29,8 @@ exports.createUser = async (req, res) => {
     });
     res.status(201).json(user);
   } catch (e) {
-    res.status(400).json({ error: e.toString() });
+    res.status(500).json({ error: e.message });
+    console.log(e);
   }
 };
 
@@ -41,7 +47,7 @@ exports.loginUser = async (req, res) => {
     });
     res.json(user);
   } catch (e) {
-    res.status(400).json({ error: e.toString() });
+    res.status(500).json({ error: e.message });
   }
 };
 
@@ -181,4 +187,35 @@ exports.getAllUsers = async (req, res) => {
   } catch (error) {
     res.status(400).json({ error: error.message });
   }
+};
+
+exports.addFollowing = (req, res) => {
+  User.findByIdAndUpdate(
+    req.user._id,
+    {
+      $push: { followers: req.user._id }
+    },
+    {
+      new: true
+    },
+    (err, result) => {
+      if (err) {
+        return res.status(422).json({ error: err });
+      }
+      User.findByIdAndUpdate(
+        req.user._id,
+        {
+          $push: { following: req.body.followId }
+        },
+        { new: true }
+      )
+        .select('-password')
+        .then((result) => {
+          res.json(result);
+        })
+        .catch((err) => {
+          return res.status(422).json({ error: err });
+        });
+    }
+  );
 };

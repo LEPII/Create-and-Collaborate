@@ -18,7 +18,7 @@ app.use(express.json());
 app.use(cookieParser());
 
 // Unauthenticated routes
-app.use('/', openRoutes);
+app.use('/auth', openRoutes);
 
 app.use(
   fileUpload({
