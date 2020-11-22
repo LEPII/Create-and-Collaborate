@@ -22,3 +22,15 @@
   border-radius: 20px;
   border: solid black 1px;
 }
+
+.profbody {
+  padding: 25px;
+  position: absolute;
+  margin-bottom: 10px;
+  height: 60vh;
+  width: 50vw;
+  right: 100px;
+  bottom: -410px;
+  border-radius: 20px;
+  border: solid black 1px;
+}

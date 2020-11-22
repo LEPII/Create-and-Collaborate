@@ -188,3 +188,15 @@ exports.getAllUsers = async (req, res) => {
     res.status(400).json({ error: error.message });
   }
 };
+
+exports.addFollowing = async (req, res, next) => {
+  try {
+    console.log('i am ', req.user._id);
+    await User.findByIdAndUpdate(req.user._id, {
+      $push: { following: req.req.user._id }
+    });
+    next();
+  } catch (err) {
+    res.status(400).json({ err });
+  }
+};
