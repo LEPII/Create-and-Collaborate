@@ -75,8 +75,9 @@ exports.deleteJob = async (req, res) => {
 //Get all jobs
 exports.getAllJobs = async (req, res) => {
   try {
-    await req.user.populate('jobs').execPopulate();
-    res.status(200).json(req.user.jobs);
+    const jobs = await Job.find();
+    res.json(jobs);
+    res.status(200).json(req.user.portfolios);
   } catch (error) {
     res.status(400).json({ error: error.message });
   }
