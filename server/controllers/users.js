@@ -1,6 +1,7 @@
 const User = require('../db/models/user'),
   mongoose = require('mongoose'),
   jwt = require('jsonwebtoken'),
+  cloudinary = require('cloudinary').v2,
   {
     sendWelcomeEmail,
     sendCancellationEmail,
@@ -157,7 +158,7 @@ exports.deleteUser = async (req, res) => {
 exports.uploadAvatar = async (req, res) => {
   try {
     const response = await cloudinary.uploader.upload(
-      req.files.avatar.tempFilePath
+      req.files.image.tempFilePath
     );
     req.user.avatar = response.secure_url;
     await req.user.save();
@@ -227,7 +228,7 @@ exports.getUserById = async (req, res) => {
     return res.status(400).json({ message: 'User not found :-(' });
   try {
     const user = await User.findOne({ _id });
-    console.log('this is working', { _id, hostedBy: req.user._id });
+    console.log('this is working', { _id });
     if (!user) return res.status(400).json({ message: 'User not found :-(' });
     res.status(200).json(user);
   } catch (error) {

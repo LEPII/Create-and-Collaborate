@@ -34,3 +34,11 @@
   border-radius: 20px;
   border: solid black 1px;
 }
+
+.profPic {
+  height: 125px;
+}
+
+.fixSpace {
+  margin: 10px;
+}
