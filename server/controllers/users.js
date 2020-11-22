@@ -1,4 +1,5 @@
 const User = require('../db/models/user'),
+  mongoose = require('mongoose'),
   jwt = require('jsonwebtoken'),
   {
     sendWelcomeEmail,
@@ -189,7 +190,7 @@ exports.getAllUsers = async (req, res) => {
   }
 };
 
-exports.addFollowing = (req, res) => {
+exports.addFollowing = async (req, res) => {
   User.findByIdAndUpdate(
     req.user._id,
     {
@@ -213,9 +214,23 @@ exports.addFollowing = (req, res) => {
         .then((result) => {
           res.json(result);
         })
-        .catch((err) => {
-          return res.status(422).json({ error: err });
+        .catch((error) => {
+          res.status(400).json({ error: error.message });
         });
     }
   );
+};
+
+exports.getUserById = async (req, res) => {
+  const _id = req.params.id;
+  if (!mongoose.Types.ObjectId.isValid(_id))
+    return res.status(400).json({ message: 'User not found :-(' });
+  try {
+    const user = await User.findOne({ _id });
+    console.log('this is working', { _id, hostedBy: req.user._id });
+    if (!user) return res.status(400).json({ message: 'User not found :-(' });
+    res.status(200).json(user);
+  } catch (error) {
+    res.status(400).json({ error: error.message });
+  }
 };
