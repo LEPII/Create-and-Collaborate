@@ -12,7 +12,6 @@ const JobGrid = () => {
     axios
       .get('/jobs', { withCredentials: true })
       .then((response) => {
-        console.log(response.data);
         setJobs(response.data);
       })
       .catch((error) => {
@@ -22,7 +21,9 @@ const JobGrid = () => {
 
   const handleSearch = (searchTerm) => {
     setSearchValue(searchTerm);
+    console.log();
   };
+
   const filteredJobs =
     jobs && jobs.filter((jobs) => jobs.title.includes(searchValue));
 
@@ -31,17 +32,17 @@ const JobGrid = () => {
       <Card>
         <Card.Img variant="top" src="https://via.placeholder.com/400x100" />
       </Card>
-      <JobSearch handleSearch={handleSearch} />
-      <table class="table">
+      <div class="table ">
+        <JobSearch handleSearch={handleSearch} />
         {jobs &&
-          jobs.map((job) => {
+          filteredJobs.map((job) => {
             return (
-              <div className="gridBG">
-                <div className="container gridInnards">
+              <table className="container gridInnards">
+                <tbody>
                   <tr>
                     <th scope="row">{job.compensation}</th>
                     <td>{job.title}</td>
-                    <td colspan="2">
+                    <td colSpan="2">
                       Lorem ipsum dolor sit amet consectetur, adipisicing elit.
                       Laboriosam fuga repudiandae perferendis tempora minima
                       ullam in consequuntur rem voluptatem. Labore aperiam
@@ -49,11 +50,12 @@ const JobGrid = () => {
                       repudiandae ullam reprehenderit.
                     </td>
                   </tr>
-                </div>
-              </div>
+                </tbody>
+              </table>
             );
           })}
-      </table>
+        ;
+      </div>
     </div>
   );
 };
