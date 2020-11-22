@@ -20,7 +20,7 @@ const Post = () => {
           <input
             //  value={post}
             //  onChange={e => setPost(e.target.value)}
-            className="post__input"
+            classNzame="post__input"
             placeholder={`What do you want to share today`}
           />
           <input
