@@ -7,6 +7,7 @@ const AppContextProvider = ({ children }) => {
   const [currentUser, setCurrentUser] = useState(null);
   const [search, setSearch] = useState('');
   const [loading, setLoading] = useState(false);
+  const [events, setEvents] = useState(null);
 
   useEffect(() => {
     if (user && !currentUser) {
@@ -28,6 +29,8 @@ const AppContextProvider = ({ children }) => {
         setCurrentUser,
         loading,
         setLoading,
+        events,
+        setEvents,
         search,
         setSearch
       }}
