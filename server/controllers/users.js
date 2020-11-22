@@ -189,14 +189,33 @@ exports.getAllUsers = async (req, res) => {
   }
 };
 
-exports.addFollowing = async (req, res, next) => {
-  try {
-    console.log('i am ', req.user._id);
-    await User.findByIdAndUpdate(req.user._id, {
-      $push: { following: req.req.user._id }
-    });
-    next();
-  } catch (err) {
-    res.status(400).json({ err });
-  }
+exports.addFollowing = (req, res) => {
+  User.findByIdAndUpdate(
+    req.user._id,
+    {
+      $push: { followers: req.user._id }
+    },
+    {
+      new: true
+    },
+    (err, result) => {
+      if (err) {
+        return res.status(422).json({ error: err });
+      }
+      User.findByIdAndUpdate(
+        req.user._id,
+        {
+          $push: { following: req.body.followId }
+        },
+        { new: true }
+      )
+        .select('-password')
+        .then((result) => {
+          res.json(result);
+        })
+        .catch((err) => {
+          return res.status(422).json({ error: err });
+        });
+    }
+  );
 };
