@@ -20,6 +20,7 @@ const ProfileBody = () => {
   return (
     <>
       <div className="profaction">
+        <h4>Gallery:</h4>
         <button type="button" class="btn btn-secondary">
           <img src="https://via.placeholder.com/100px" alt="user" />
           <h4>Images</h4>

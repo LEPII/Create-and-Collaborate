@@ -1,6 +1,6 @@
 .profcard {
   padding: 25px;
-  width: 30vw;
+  width: 25vw;
   height: 70vh;
   border-radius: 20px;
   border: black 1px solid;
@@ -8,7 +8,7 @@
   align-items: center;
   flex-direction: column;
   position: absolute;
-  left: 100px;
+  left: 150px;
   top: 450px;
   background-color: white;
 }
@@ -19,8 +19,8 @@
   padding: 25px;
   position: absolute;
   height: 25vh;
-  width: 50vw;
-  right: 100px;
+  width: 30vw;
+  right: 150px;
   top: 450px;
   border-radius: 20px;
   border: solid black 1px;
@@ -33,7 +33,7 @@
   margin-bottom: 40px;
   height: 40vh;
   width: 50vw;
-  right: 100px;
+  right: 150px;
   bottom: -225px;
   border-radius: 20px;
   border: solid black 1px;
