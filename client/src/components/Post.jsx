@@ -1,5 +1,7 @@
-import React from 'react';
+import React, { useContext, useEffect } from 'react';
+import axios from 'axios';
 import { AppContext } from '../context/AppContext';
+import FileUploader from './FileUploader';
 import CameraEnhanceRoundedIcon from '@material-ui/icons/CameraEnhanceRounded';
 import DuoRoundedIcon from '@material-ui/icons/DuoRounded';
 import { Avatar } from '@material-ui/core';
@@ -7,25 +9,53 @@ import EventRoundedIcon from '@material-ui/icons/EventRounded';
 import '../Post.css';
 
 const Post = () => {
-  //   const { post, setPost, image, setImage, imageUrl, setImageUrl, loading, setLoading } = useContext(AppContext);
+  const {
+    post,
+    setPost,
+    image,
+    setImage,
+    imageUrl,
+    setImageUrl,
+    loading,
+    setLoading
+  } = useContext(AppContext);
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
+  const handleChange = (e) => {
+    setPost({ ...post, [e.target.name]: e.target.value });
   };
+
+  const handleSubmit = async (e) => {
+    const form = e.target;
+    setLoading(true);
+    e.preventDefault();
+    try {
+      await axios({
+        method: 'POST',
+        url: '/gallery/images',
+        withCredentials: true,
+        data: setPost
+      });
+      setLoading(false);
+      form.reset();
+    } catch (error) {
+      console.log('Login Error: ' + error);
+    }
+  };
+
   return (
     <div className="post">
       <div className="post__top">
         <Avatar />
         <form>
           <input
-            //  value={post}
-            //  onChange={e => setPost(e.target.value)}
-            classNzame="post__input"
+            // value={post}
+            onChange={handleChange}
+            className="post__input"
             placeholder={`What do you want to share today`}
           />
           <input
-            //  value={imageURL}
-            //  onChange={e => setImageUrl (e.target.value)}
+            // value={imageURL}
+            onChange={handleChange}
             className="post__input"
             placeholder={`Image or Video URL (Optional)`}
           />
@@ -41,7 +71,7 @@ const Post = () => {
         </div>
         <div className="post__option">
           <DuoRoundedIcon style={{ color: 'green' }} />
-          <h3> Upload Video </h3>
+          <FileUploader />
         </div>
         <div className="post__option">
           <EventRoundedIcon style={{ color: 'red' }} />

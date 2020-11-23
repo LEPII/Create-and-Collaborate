@@ -12,13 +12,13 @@ const Logout = () => {
     try {
       const response = await axios({
         method: 'POST',
-        url: 'users/logout',
+        url: '/users/logout',
         withCredentials: true
       });
       sessionStorage.removeItem('user');
       setCurrentUser(null);
       swal(response.data.message, 'You have signed out!', 'success').then(() =>
-        history.push('/Welcome')
+        history.push('/welcome')
       );
     } catch (error) {
       console.log(error);
