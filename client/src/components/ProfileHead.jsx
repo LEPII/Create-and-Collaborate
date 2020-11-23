@@ -21,6 +21,7 @@ const ProfileHead = () => {
   }, [setUser]);
 
   return (
+
     <>
       <Card>
         <img className="profheader" src={user.header} />
@@ -46,6 +47,7 @@ const ProfileHead = () => {
         <div>
           <p>FOLLOWERS:</p>
         </div>
+
       </div>
     </>
   );
