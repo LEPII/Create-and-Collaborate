@@ -64,11 +64,8 @@ const LogForm = (props) => {
           <Button type="submit">Login</Button>
         </Form.Group>
       </Form>
-      <Link className="mt-4" to="/signup">
-        Need an Account? Sign up.
-      </Link>
 
-      <h1 className="mb-4">Sign Up</h1>
+      <h3 className="mb-4">Sign Up</h3>
       <Form style={{ width: 300 }} onSubmit={handleSignUp}>
         <Form.Group>
           <Form.Label htmlFor="fullName">Full Name</Form.Label>
@@ -129,9 +126,6 @@ const LogForm = (props) => {
           <Button type="submit">Sign Up</Button>
         </Form.Group>
       </Form>
-      <Link className="mt-4" to="/login">
-        Already have an account? Login.
-      </Link>
     </div>
   );
 };
