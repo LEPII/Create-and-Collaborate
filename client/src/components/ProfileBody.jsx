@@ -1,10 +1,10 @@
 import React from 'react';
-import VideoUploader from '../components/VideoUploader';
+import FileUploader from '../components/FileUploader';
 
 const ProfileBody = () => {
   return (
     <div className="profaction">
-      <VideoUploader />
+      <FileUploader />
       <button type="button" class="btn btn-secondary">
         <img src="https://via.placeholder.com/100px" alt="user" />
       </button>

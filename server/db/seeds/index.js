@@ -96,7 +96,7 @@ const dbReset = async () => {
       dateOfEmployment: faker.date.between(),
       typeOfEmployment: faker.name.jobTitle(),
       image: faker.image.business(),
-      employee: userIdArray[Math.floor(Math.random() * userIdArray.length)]
+      hostedBy: userIdArray[Math.floor(Math.random() * userIdArray.length)]
     });
     await portfolio.save();
   }
@@ -105,7 +105,8 @@ const dbReset = async () => {
   for (let i = 0; i < 10; i++) {
     const image = new Image({
       image: faker.image.avatar(),
-      likes: faker.random.number(),
+      caption: faker.lorem.words(),
+      // likes: faker.random.number(),
       user: userIdArray[Math.floor(Math.random() * userIdArray.length)]
     });
     await image.save();
@@ -114,8 +115,8 @@ const dbReset = async () => {
   //Loop 10 times and create 10 new images
   for (let i = 0; i < 10; i++) {
     const video = new Video({
-      title: faker.image.avatar(),
-      likes: faker.random.number(),
+      // title: faker.image.avatar(),
+      // likes: faker.random.number(),
       hostedBy: userIdArray[Math.floor(Math.random() * userIdArray.length)],
       caption: faker.lorem.sentence()
     });
