@@ -66,6 +66,9 @@ const userSchema = new mongoose.Schema(
         }
       }
     ],
+    header: {
+      type: String
+    },
     avatar: {
       type: String
     },

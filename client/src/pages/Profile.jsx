@@ -1,5 +1,4 @@
 import React from 'react';
-import { Card } from 'react-bootstrap';
 import Navbar from '../components/Navbar';
 import ProfileBody from '../components/ProfileBody';
 import ProfileHead from '../components/ProfileHead';
@@ -10,9 +9,6 @@ const Profile = () => {
     <>
       <div className="profBG">
         <Navbar />
-        <Card>
-          <img className="" src="https://via.placeholder.com/350" />
-        </Card>
         <ProfileBody />
         <ProfileHead />
       </div>
