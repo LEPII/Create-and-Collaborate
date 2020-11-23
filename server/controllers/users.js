@@ -1,5 +1,7 @@
 const User = require('../db/models/user'),
+  mongoose = require('mongoose'),
   jwt = require('jsonwebtoken'),
+  cloudinary = require('cloudinary').v2,
   {
     sendWelcomeEmail,
     sendCancellationEmail,
@@ -19,7 +21,7 @@ exports.createUser = async (req, res) => {
     });
     await user.save();
 
-    sendWelcomeEmail(user.email, user.name);
+    sendWelcomeEmail(email, name);
     const token = await user.generateAuthToken();
     console.log(token);
     res.cookie('jwt', token, {
@@ -96,7 +98,7 @@ exports.getCurrentUser = async (req, res) => {
 // Update a user
 exports.updateCurrentUser = async (req, res) => {
   const updates = Object.keys(req.body); // => ['email', 'name', 'password']
-  const allowedUpdates = ['name', 'email', 'password', 'avatar', 'username'];
+  const allowedUpdates = ['name', 'email', 'password', 'avatar', 'header'];
   const isValidOperation = updates.every((update) =>
     allowedUpdates.includes(update)
   );
@@ -156,7 +158,7 @@ exports.deleteUser = async (req, res) => {
 exports.uploadAvatar = async (req, res) => {
   try {
     const response = await cloudinary.uploader.upload(
-      req.files.avatar.tempFilePath
+      req.files.image.tempFilePath
     );
     req.user.avatar = response.secure_url;
     await req.user.save();
@@ -184,6 +186,51 @@ exports.getAllUsers = async (req, res) => {
     const users = await User.find();
     res.json(users);
     res.status(200).json(req.user.tasks);
+  } catch (error) {
+    res.status(400).json({ error: error.message });
+  }
+};
+
+exports.addFollowing = async (req, res) => {
+  User.findByIdAndUpdate(
+    req.user._id,
+    {
+      $push: { followers: req.user._id }
+    },
+    {
+      new: true
+    },
+    (err, result) => {
+      if (err) {
+        return res.status(422).json({ error: err });
+      }
+      User.findByIdAndUpdate(
+        req.user._id,
+        {
+          $push: { following: req.body.followId }
+        },
+        { new: true }
+      )
+        .select('-password')
+        .then((result) => {
+          res.json(result);
+        })
+        .catch((error) => {
+          res.status(400).json({ error: error.message });
+        });
+    }
+  );
+};
+
+exports.getUserById = async (req, res) => {
+  const _id = req.params.id;
+  if (!mongoose.Types.ObjectId.isValid(_id))
+    return res.status(400).json({ message: 'User not found :-(' });
+  try {
+    const user = await User.findOne({ _id });
+    console.log('this is working', { _id });
+    if (!user) return res.status(400).json({ message: 'User not found :-(' });
+    res.status(200).json(user);
   } catch (error) {
     res.status(400).json({ error: error.message });
   }

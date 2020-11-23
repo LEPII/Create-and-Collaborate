@@ -29,7 +29,8 @@ exports.updatePortfolio = async (req, res) => {
     'schoolDegree',
     'schoolDate',
     'image',
-    'video'
+    'video',
+    'hostedBy'
   ];
   const isValidOperation = updates.every((update) =>
     allowedUpdates.includes(update)
@@ -39,8 +40,7 @@ exports.updatePortfolio = async (req, res) => {
   }
   try {
     const portfolio = await Portfolio.findOne({
-      _id: req.params.id,
-      hostedBy: req.user._id
+      hostedBy: req.params.id
     });
     if (!portfolio) {
       return res.status(404).json({ message: 'Portfolio Data not found :-(' });
@@ -84,8 +84,8 @@ exports.deletePortfolio = async (req, res) => {
 
 exports.getPortfolioById = async (req, res) => {
   try {
-    const portfolio = await Portfolio.findById({
-      _id: req.params.id
+    const portfolio = await Portfolio.find({
+      hostedBy: req.params.id
     });
     res.status(200).json(portfolio);
   } catch (error) {

@@ -35,7 +35,7 @@ if (process.env.NODE_ENV === 'production') {
 // Any authentication middleware and related routing would be here.
 app.use('/*', passport.authenticate('jwt', { session: false }));
 app.use('/users', userRouter);
-app.use('/portfolio', portfolioRouter);
+app.use('/portfolios', portfolioRouter);
 app.use('/events', eventRouter);
 app.use('/jobs', jobRoutes);
 app.use('/gallery', galleryRoutes);
