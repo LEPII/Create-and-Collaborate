@@ -103,13 +103,13 @@ userSchema.virtual('jobs', {
 //   foreignField: 'hostedBy'
 // });
 
-userSchema.virtual('portfolio', {
+userSchema.virtual('portfolios', {
   ref: 'Portfolio',
   localField: '_id',
   foreignField: 'hostedBy'
 });
 
-userSchema.virtual('event', {
+userSchema.virtual('events', {
   ref: 'Event',
   localField: '_id',
   foreignField: 'hostedBy'
