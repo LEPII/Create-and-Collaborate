@@ -1,7 +1,6 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { useParams } from 'react-router-dom';
-
 
 const ProfileBody = () => {
   const [portfolio, setPortfolio] = useState('');
@@ -34,19 +33,19 @@ const ProfileBody = () => {
       <div className="profbody">
         <div>
           <h6>Works at:</h6>
-          <p>{portfolio.company}</p>
+          <p>{portfolio?.company}</p>
         </div>
         <div>
           <h6>Position:</h6>
-          <p>{portfolio.position}</p>
+          <p>{portfolio?.position}</p>
         </div>
         <div>
           <h6>Studied at:</h6>
-          <p>{portfolio.school}</p>
+          <p>{portfolio?.school}</p>
         </div>
         <div className="profdescription">
           <h3>About me:</h3>
-          <p>{portfolio.description}</p>
+          <p>{portfolio?.description}</p>
         </div>
       </div>
     </>
