@@ -18,9 +18,9 @@ function App() {
       <BrowserRouter>
         <Switch>
           <Route exact path="/events" component={Events} />
-          <Route exact path="/" component={Home} />
-          <Route exact path="/jobs" component={Jobs} />
-          <Route exact path="/profile/:id" component={Profile} />
+          <PrivateRoute exact path="/" component={Home} />
+          <PrivateRoute exact path="/jobs" component={Jobs} />
+          <PrivateRoute exact path="/profile/:id" component={Profile} />
           <Route exact path="/reset-password" component={ResetPassword} />
           <Route exact path="/update-password" component={UpdatePassword} />
           <Route exact path="/welcome" component={Welcome} />
