@@ -8,12 +8,14 @@ import '../profile.css';
 const Profile = () => {
   return (
     <>
-      <Navbar />
-      <Card>
-        <img className="" src="https://via.placeholder.com/350" />
-      </Card>
-      <ProfileBody />
-      <ProfileHead />
+      <div className="profBG">
+        <Navbar />
+        <Card>
+          <img className="" src="https://via.placeholder.com/350" />
+        </Card>
+        <ProfileBody />
+        <ProfileHead />
+      </div>
     </>
   );
 };

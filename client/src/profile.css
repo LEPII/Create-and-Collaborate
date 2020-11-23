@@ -1,7 +1,7 @@
 .profcard {
   padding: 25px;
   width: 30vw;
-  height: 60vh;
+  height: 70vh;
   border-radius: 20px;
   border: black 1px solid;
   display: flex;
@@ -10,6 +10,7 @@
   position: absolute;
   left: 100px;
   top: 450px;
+  background-color: white;
 }
 
 .profaction {
@@ -21,6 +22,7 @@
   top: 450px;
   border-radius: 20px;
   border: solid black 1px;
+  background-color: white;
 }
 
 .profbody {
@@ -33,6 +35,7 @@
   bottom: -480px;
   border-radius: 20px;
   border: solid black 1px;
+  background-color: white;
 }
 
 .profPic {
@@ -40,5 +43,25 @@
 }
 
 .fixSpace {
-  margin: 10px;
+  margin: 20px;
+}
+
+.profBG {
+  background-image: linear-gradient(
+    to right top,
+    #a93ccf,
+    #9538ca,
+    #8034c4,
+    #6a31be,
+    #512eb8,
+    #403fc2,
+    #2b4dca,
+    #005ad0,
+    #0079e1,
+    #0094eb,
+    #00aeee,
+    #0dc6ee
+  );
+  height: 155vh;
+  background-size: ;
 }

@@ -48,7 +48,7 @@ const ProfileHead = () => {
         </button>
       </div>
       <div className="fixSpace">
-        <h3>{user.category}</h3>
+        <h6>{user.category}</h6>
       </div>
       <div>
         <p>FOLLOWERS:</p>
