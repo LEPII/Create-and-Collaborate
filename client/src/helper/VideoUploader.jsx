@@ -13,6 +13,7 @@ const VideoUploader = () => {
   };
   const handleSaveVideo = () => {
     axios.post('/gallery/videos', { video });
+    console.log('hey', video);
   };
 
   return (

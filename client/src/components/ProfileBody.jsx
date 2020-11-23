@@ -3,10 +3,9 @@ import VideoUploader from '../helper/VideoUploader';
 
 const ProfileBody = () => {
   return (
-    <div>
+    <>
       <div className="profaction">
         <VideoUploader />
-        <h4>Media Goes here</h4>
         <button type="button" class="btn btn-secondary">
           <img src="https://via.placeholder.com/100px" alt="user" />
         </button>
@@ -17,8 +16,10 @@ const ProfileBody = () => {
           <img src="https://via.placeholder.com/100px" alt="user" />
         </button>
       </div>
-      <div className="profbody"></div>
-    </div>
+      <div className="profbody">
+        <p>placeholder</p>
+      </div>
+    </>
   );
 };
 

@@ -10,7 +10,6 @@ const Welcome = () => {
       <CoverImage />
       <DropDownIcon />
       <LogForm />
-
       <Footer />
     </>
   );

@@ -4,7 +4,7 @@ const videoSchema = new mongoose.Schema({
   title: {
     type: String
   },
-  image: {
+  video: {
     type: String
   },
   caption: {

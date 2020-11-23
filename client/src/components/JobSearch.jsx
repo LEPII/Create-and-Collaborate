@@ -2,24 +2,23 @@ import React from 'react';
 import '../jobs.css';
 import { Card } from 'react-bootstrap';
 
-const JobSearch = () => {
+const JobSearch = ({ handleSearch }) => {
   return (
     <div class="jobsearchfix">
       <Card>
-        <Card.Img variant="top" src="https://via.placeholder.com/400x100" />
         <form>
           <div className="jobsearch">
             <h3>Find your next gig!</h3>
             <div class="row">
               <input
                 type="text"
-                class="form-control"
                 placeholder="Search by Title..."
+                onChange={(e) => handleSearch(e.target.value)}
               />
               <input
                 type="text"
-                class="form-control"
                 placeholder="Search by Location..."
+                onChange={(e) => handleSearch(e.target.value)}
               />
               <button>Search</button>
             </div>
