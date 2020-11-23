@@ -8,7 +8,8 @@ const router = require('express').Router(),
     uploadAvatar,
     updatePassword,
     getAllUsers,
-    addFollowing
+    addFollowing,
+    getUserById
   } = require('../../controllers/users');
 
 router.get('/me', getCurrentUser);
@@ -20,5 +21,6 @@ router.post('/avatar', uploadAvatar);
 router.put('/password', updatePassword);
 router.get('/all', getAllUsers);
 router.put('/:id', addFollowing);
+router.get('/:id', getUserById);
 
 module.exports = router;

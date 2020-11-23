@@ -84,8 +84,8 @@ exports.deletePortfolio = async (req, res) => {
 
 exports.getPortfolioById = async (req, res) => {
   try {
-    const portfolio = await Portfolio.findById({
-      _id: req.params.id
+    const portfolio = await Portfolio.find({
+      hostedBy: req.params.id
     });
     res.status(200).json(portfolio);
   } catch (error) {
