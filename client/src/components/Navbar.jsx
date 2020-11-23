@@ -1,9 +1,26 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
-import { Navbar, Nav, NavDropdown, NavbarBrand } from 'react-bootstrap';
-import EventSearch from './EventSearch';
+import React, { useContext } from 'react';
+import { Navbar, Nav, NavDropdown } from 'react-bootstrap';
+import { AppContext } from '../context/AppContext';
+import { useHistory } from 'react-router-dom';
+import axios from 'axios';
 
 const NavBar = () => {
+  const { setCurrentUser, user } = useContext(AppContext);
+  const history = useHistory();
+  const logout = async () => {
+    try {
+      const response = await axios({
+        method: 'POST',
+        url: '/users/logout',
+        withCredentials: true
+      });
+      sessionStorage.removeItem('user');
+      setCurrentUser(null).then(() => history.push('/welcome'));
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   return (
     <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
       <Navbar.Brand href="/">C & C</Navbar.Brand>
@@ -23,7 +40,14 @@ const NavBar = () => {
           </NavDropdown>
         </Nav>
         <Nav>
-          <Nav.Link href="welcome">User</Nav.Link>
+          <NavDropdown
+            title=""
+            className="dropleft"
+            id="collasible-nav-dropdown"
+          >
+            <NavDropdown.Item onClick={logout}>Log Out</NavDropdown.Item>
+          </NavDropdown>
+          <Nav.Link href="/">User</Nav.Link>
         </Nav>
       </Navbar.Collapse>
     </Navbar>

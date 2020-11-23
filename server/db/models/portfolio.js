@@ -36,6 +36,9 @@ const portfolioSchema = new mongoose.Schema(
     video: {
       type: Array
     },
+    header: {
+      type: String
+    },
     hostedBy: {
       type: mongoose.Schema.Types.ObjectId,
       ref: 'User'

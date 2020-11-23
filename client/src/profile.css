@@ -1,6 +1,6 @@
 .profcard {
   padding: 25px;
-  width: 30vw;
+  width: 25vw;
   height: 70vh;
   border-radius: 20px;
   border: black 1px solid;
@@ -18,6 +18,8 @@
 }
 
 .profaction {
+  display: flex;
+  justify-content: space-between;
   padding: 25px;
   position: absolute;
   height: 25vh;
@@ -60,13 +62,16 @@
   padding: 25px;
   position: absolute;
   margin-bottom: 40px;
-  height: 60vh;
+  height: 40vh;
   width: 50vw;
-  right: 100px;
-  bottom: -480px;
+  right: 150px;
+  bottom: -225px;
   border-radius: 20px;
   border: solid black 1px;
   background-color: white;
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
 }
 
 .profPic {
@@ -93,6 +98,9 @@
     #00aeee,
     #0dc6ee
   );
-  height: 155vh;
-  background-size: ;
+  height: 125vh;
+}
+
+.profheader {
+  height: 360px;
 }
