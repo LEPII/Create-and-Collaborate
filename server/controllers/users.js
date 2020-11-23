@@ -99,6 +99,7 @@ exports.getCurrentUser = async (req, res) => {
   await req.user.populate({ path: 'events', model: 'Event' }).execPopulate();
   await req.user.populate({ path: 'images', model: 'Image' }).execPopulate();
   await req.user.populate({ path: 'videos', model: 'Video' }).execPopulate();
+  await req.user.populate({ path: 'followers' });
   res.json({
     user: req.user,
     jobs: req.user.jobs,

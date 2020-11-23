@@ -23,7 +23,7 @@
   padding: 25px;
   position: absolute;
   height: 25vh;
-  width: 50vw;
+  width: 25vw;
   right: 125px;
   top: 450px;
   border-radius: 20px;
@@ -32,14 +32,19 @@
 }
 
 .profbody {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
   margin-bottom: 40px;
   border: solid black 1px;
   border-radius: 20px;
   position: absolute;
-  height: 100vh;
+  height: 40vh;
   width: 50vw;
   right: 125px;
-  top: 700px;
+  top: 723px;
+  background-color: white;
+  padding: 10px;
 }
 
 .profilemain {
