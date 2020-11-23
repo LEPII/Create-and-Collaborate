@@ -92,7 +92,21 @@ exports.passwordRedirect = async (req, res) => {
 //AUTHENTICATED ROUTES
 //Get a user
 exports.getCurrentUser = async (req, res) => {
-  res.json(req.user);
+  await req.user.populate({ path: 'jobs', model: 'Job' }).execPopulate();
+  await req.user
+    .populate({ path: 'portfolios', model: 'Portfolio' })
+    .execPopulate();
+  await req.user.populate({ path: 'events', model: 'Event' }).execPopulate();
+  await req.user.populate({ path: 'images', model: 'Image' }).execPopulate();
+  await req.user.populate({ path: 'videos', model: 'Video' }).execPopulate();
+  res.json({
+    user: req.user,
+    jobs: req.user.jobs,
+    portfolios: req.user.portfolios,
+    events: req.user.events,
+    images: req.user.images,
+    videos: req.user.videos
+  });
 };
 
 // Update a user

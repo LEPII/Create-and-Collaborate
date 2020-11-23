@@ -24,11 +24,14 @@ exports.uploadImage = async (req, res) => {
 exports.uploadVideo = async (req, res) => {
   try {
     const response = await cloudinary.uploader.upload(
-      req.files.video.tempFilePath
+      req.files.video.tempFilePath,
+      {
+        resource_type: 'video'
+      }
     );
     const video = new Video({
       hostedBy: req.user._id,
-      image: response.secure_url
+      video: response.secure_url
     });
     await video.save();
     res.json(video);
