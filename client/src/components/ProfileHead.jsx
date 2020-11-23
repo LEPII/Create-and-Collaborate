@@ -5,26 +5,15 @@ import { useParams } from 'react-router-dom';
 import Jobs from '../pages/Jobs';
 
 const ProfileHead = () => {
-  const [portfolio, setPortfolio] = useState(null);
   const [user, setUser] = useState('');
   let { id } = useParams();
-
-  useEffect(() => {
-    axios
-      .get(`/portfolios/${id}`, { withCredentials: true })
-      .then((response) => {
-        setPortfolio(response.data);
-      })
-      .catch((error) => {
-        console.log(error);
-      });
-  }, [setPortfolio]);
 
   useEffect(() => {
     axios
       .get(`/users/${id}`, { withCredentials: true })
       .then((response) => {
         setUser(response.data);
+        console.log(response.data);
       })
       .catch((error) => {
         console.log(error);
