@@ -99,6 +99,7 @@ exports.getCurrentUser = async (req, res) => {
   await req.user.populate({ path: 'events', model: 'Event' }).execPopulate();
   await req.user.populate({ path: 'images', model: 'Image' }).execPopulate();
   await req.user.populate({ path: 'videos', model: 'Video' }).execPopulate();
+  await req.user.populate({ path: 'followers' });
   res.json({
     user: req.user,
     jobs: req.user.jobs,
@@ -206,34 +207,19 @@ exports.getAllUsers = async (req, res) => {
 };
 
 exports.addFollowing = async (req, res) => {
-  User.findByIdAndUpdate(
-    req.user._id,
-    {
-      $push: { followers: req.user._id }
-    },
-    {
-      new: true
-    },
-    (err, result) => {
-      if (err) {
-        return res.status(422).json({ error: err });
-      }
-      User.findByIdAndUpdate(
-        req.user._id,
-        {
-          $push: { following: req.body.followId }
-        },
-        { new: true }
-      )
-        .select('-password')
-        .then((result) => {
-          res.json(result);
-        })
-        .catch((error) => {
-          res.status(400).json({ error: error.message });
-        });
-    }
-  );
+  try {
+    const userToFollow = await User.findOne({ _id: req.params.id });
+    userToFollow.followers.push(req.user._id);
+    await userToFollow.save();
+    req.user.following.push(req.params.id);
+    await req.user.save();
+    res.status(200).json({
+      user: userToFollow,
+      message: `You have followed ${userToFollow.username}`
+    });
+  } catch (error) {
+    console.log(error.message);
+  }
 };
 
 exports.getUserById = async (req, res) => {
