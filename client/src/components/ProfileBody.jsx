@@ -1,5 +1,5 @@
 import React from 'react';
-import VideoUploader from '../components/VideoUploader';
+import VideoUploader from '../helper/VideoUploader';
 
 const ProfileBody = () => {
   return (

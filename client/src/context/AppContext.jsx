@@ -12,7 +12,6 @@ const AppContextProvider = ({ children }) => {
   const [image, setImage] = useState(null);
   const [imageUrl, setImageUrl] = useState(null);
 
-
   useEffect(() => {
     if (user && !currentUser) {
       axios

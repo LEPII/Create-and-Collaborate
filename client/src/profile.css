@@ -8,22 +8,53 @@
   align-items: center;
   flex-direction: column;
   position: absolute;
-  left: 100px;
+  left: 125px;
   top: 450px;
+}
+
+.profcard button {
+  margin: 10px;
 }
 
 .profaction {
   padding: 25px;
   position: absolute;
-  height: 300px;
+  height: 25vh;
   width: 50vw;
-  right: 100px;
+  right: 125px;
   top: 450px;
   border-radius: 20px;
   border: solid black 1px;
 }
 
 .profbody {
+  margin-bottom: 40px;
+  border: solid black 1px;
+  border-radius: 20px;
+  position: absolute;
+  height: 100vh;
+  width: 50vw;
+  right: 125px;
+  top: 700px;
+}
+
+.profilemain {
+  background-color: gray;
+}
+
+.circle {
+  border: black solid 1px;
+  border-radius: 100%;
+  height: 100px;
+  width: 100px;
+  margin: 10px;
+}
+
+.followers {
+  display: flex;
+}
+
+.followers img {
   padding: 25px;
   position: absolute;
   margin-bottom: 10px;
