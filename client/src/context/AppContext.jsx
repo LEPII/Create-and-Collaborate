@@ -7,6 +7,7 @@ const AppContextProvider = ({ children }) => {
   const [currentUser, setCurrentUser] = useState(null);
   const [search, setSearch] = useState('');
   const [loading, setLoading] = useState(false);
+  const [events, setEvents] = useState(null);
   const [post, setPost] = useState([]);
   const [image, setImage] = useState(null);
   const [imageUrl, setImageUrl] = useState(null);
@@ -31,6 +32,8 @@ const AppContextProvider = ({ children }) => {
         setCurrentUser,
         loading,
         setLoading,
+        events,
+        setEvents,
         search,
         setSearch,
         post,

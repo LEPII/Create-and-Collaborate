@@ -47,11 +47,35 @@ const ProfileHead = () => {
           Message
         </button>
       </div>
+
       <div className="fixSpace">
         <h6>{user.category}</h6>
       </div>
       <div>
         <p>FOLLOWERS:</p>
+      <h6>Followers:</h6>
+      <div className="followers">
+        <img
+          className="circle"
+          src="https://via.placeholder.com/100px"
+          alt="user"
+        />
+        <img
+          className="circle"
+          src="https://via.placeholder.com/100px"
+          alt="user"
+        />
+        <img
+          className="circle"
+          src="https://via.placeholder.com/100px"
+          alt="user"
+        />
+        <img
+          className="circle"
+          src="https://via.placeholder.com/100px"
+          alt="user"
+        />
+
       </div>
     </div>
   );

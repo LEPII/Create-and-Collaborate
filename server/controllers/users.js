@@ -21,7 +21,7 @@ exports.createUser = async (req, res) => {
     });
     await user.save();
 
-    sendWelcomeEmail(user.email, user.name);
+    sendWelcomeEmail(email, name);
     const token = await user.generateAuthToken();
     console.log(token);
     res.cookie('jwt', token, {
