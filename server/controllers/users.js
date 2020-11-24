@@ -197,7 +197,9 @@ exports.updatePassword = async (req, res) => {
 //Get all users
 exports.getAllUsers = async (req, res) => {
   try {
-    const users = await User.find();
+    const users = await User.find()
+      .populate({ path: 'jobs', model: 'Job' })
+      .execPopulate();
     res.json(users);
     res.status(200).json(req.user.tasks);
   } catch (error) {

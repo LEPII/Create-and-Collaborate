@@ -105,7 +105,7 @@ const dbReset = async () => {
   for (let i = 0; i < 10; i++) {
     const image = new Image({
       image: faker.image.avatar(),
-      caption: faker.lorem.words(),
+      caption: faker.lorem.word(),
       // likes: faker.random.number(),
       user: userIdArray[Math.floor(Math.random() * userIdArray.length)]
     });
