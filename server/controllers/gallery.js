@@ -107,7 +107,7 @@ exports.getUserVideos = async (req, res) => {
   if (!mongoose.Types.ObjectId.isValid(_id))
     return res.status(400).json({ message: 'Videos not found :-(' });
   try {
-    const video = await Video.findOne({ hostedBy: _id });
+    const video = await Video.find({ hostedBy: _id });
     if (!video)
       return res.status(400).json({ message: 'Videos not found :-(' });
     res.status(200).json(video);

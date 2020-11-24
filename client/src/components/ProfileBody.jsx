@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { useParams } from 'react-router-dom';
-import { Link } from 'react-router-dom';
 import ImageModal from '../helper/ImageModal';
+import VideoModal from '../helper/VideoModal';
 
 const ProfileBody = () => {
   const [portfolio, setPortfolio] = useState('');
@@ -35,7 +35,7 @@ const ProfileBody = () => {
             src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRdQoTtapY7Cof1aGJJRT2BTYfq3TtMY5NPZw&usqp=CAU"
             alt="user"
           />
-          <h4>Videos</h4>
+          <VideoModal />
         </button>
       </div>
       <div className="profbody">
