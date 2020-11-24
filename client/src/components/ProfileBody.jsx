@@ -10,7 +10,8 @@ const ProfileBody = () => {
     axios
       .get(`/portfolios/${id}`, { withCredentials: true })
       .then((response) => {
-        setPortfolio(response.data.user);
+        setPortfolio(response.data[0]);
+        console.log(response);
       })
       .catch((error) => {
         console.log(error);
@@ -21,11 +22,17 @@ const ProfileBody = () => {
     <>
       <div className="profaction">
         <button type="button" class="btn btn-secondary">
-          <img src="https://via.placeholder.com/100px" alt="user" />
+          <img
+            src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR0WAyaJrUiyNzGF79cfqxPHybAqK9UIMkREQ&usqp=CAU"
+            alt="user"
+          />
           <h4>Images</h4>
         </button>
         <button type="button" class="btn btn-secondary">
-          <img src="https://via.placeholder.com/100px" alt="user" />
+          <img
+            src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRdQoTtapY7Cof1aGJJRT2BTYfq3TtMY5NPZw&usqp=CAU"
+            alt="user"
+          />
           <h4>Videos</h4>
         </button>
       </div>

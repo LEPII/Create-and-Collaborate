@@ -3,10 +3,10 @@ import axios from 'axios';
 import '../profile.css';
 import { useParams } from 'react-router-dom';
 import { Card } from 'react-bootstrap';
+import Footer from '../components/Footer';
 
 const ProfileHead = () => {
   const [user, setUser] = useState('');
-  const [userData, setUserData] = useState('');
   let { id } = useParams();
 
   useEffect(() => {
@@ -19,19 +19,6 @@ const ProfileHead = () => {
         console.log(error);
       });
   }, [setUser]);
-
-  useEffect(() => {
-    axios
-      .get(`/users/all`, { withCredentials: true })
-      .then((response) => {
-        setUserData(response.data);
-      })
-      .catch((error) => {
-        console.log(error);
-      });
-  }, [setUserData]);
-
-  console.log(user);
 
   return (
     <>
@@ -60,6 +47,7 @@ const ProfileHead = () => {
           <p>FOLLOWERS:</p>
         </div>
       </div>
+      <Footer className="foot" />
     </>
   );
 };

@@ -21,7 +21,7 @@ function App() {
           <Route exact path="/events" component={Events} />
           <PrivateRoute exact path="/" component={Home} />
           <PrivateRoute exact path="/jobs" component={Jobs} />
-          <PrivateRoute exact path="/profile/:id" component={Profile} />
+          <PrivateRoute exact path="/profiles/:id" component={Profile} />
           <Route exact path="/reset-password" component={ResetPassword} />
           <Route exact path="/update-password" component={UpdatePassword} />
           <Route exact path="/welcome" component={Welcome} />
