@@ -18,7 +18,6 @@ const ProfileBody = () => {
         console.log(error);
       });
   }, [setPortfolio]);
-  console.log(portfolio)
 
   return (
     <>

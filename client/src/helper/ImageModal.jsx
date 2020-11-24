@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Modal from '@material-ui/core/Modal';
+import { Carousel } from 'react-bootstrap';
 import Backdrop from '@material-ui/core/Backdrop';
 import Fade from '@material-ui/core/Fade';
 import { useParams } from 'react-router-dom';
@@ -25,7 +26,7 @@ export default function ImageModal() {
   const classes = useStyles();
   let { id } = useParams();
   const [open, setOpen] = React.useState(false);
-  const [image, setImage] = useState('');
+  const [images, setImages] = useState([]);
 
   const handleOpen = () => {
     setOpen(true);
@@ -39,14 +40,14 @@ export default function ImageModal() {
     axios
       .get(`/gallery/images/${id}`, { withCredentials: true })
       .then((response) => {
-        setImage(response.data);
+        setImages(response.data);
       })
       .catch((error) => {
         console.log(error);
       });
-  }, [setImage]);
+  }, [setImages]);
 
-  console.log(image);
+  console.log(images);
 
   return (
     <div>
@@ -64,10 +65,17 @@ export default function ImageModal() {
         }}
       >
         <div className={classes.paper}>
-          {/* {image??image.map((image)=>{return(
-              <img src={image.image} />
-          )})} */}
-          <img src={image.image} />
+          <Carousel fade>
+            {images?.map((image) => {
+              return (
+                <Carousel.Item>
+                  <img src={image.image} />
+                </Carousel.Item>
+              );
+            })}
+          </Carousel>
+
+          {/* <img src={images.image} /> */}
         </div>
       </Modal>
     </div>
