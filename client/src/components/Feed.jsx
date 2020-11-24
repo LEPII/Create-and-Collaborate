@@ -7,7 +7,7 @@ import AssistantRoundedIcon from '@material-ui/icons/AssistantRounded';
 import ShareRoundedIcon from '@material-ui/icons/ShareRounded';
 import '../Feed.css';
 
-const Feed = ({ id, time, caption, image, avatar, username }) => {
+const Feed = ({ feed }) => {
   const [userData, setUserData] = useState('');
   const [myUserData, setMyUserData] = useState('');
 
@@ -23,7 +23,6 @@ const Feed = ({ id, time, caption, image, avatar, username }) => {
         console.log(error);
       });
   }, [setUserData]);
-  console.log(userData);
 
   useEffect(() => {
     axios
@@ -37,22 +36,26 @@ const Feed = ({ id, time, caption, image, avatar, username }) => {
         console.log(error);
       });
   }, [setMyUserData]);
-  console.log(myUserData);
-
   return (
     <div className="feed">
       <div className="feed__top">
-        <Avatar src={avatar} className="feed__avatar" />
+        <Avatar src={feed?.user.avatar} className="feed__avatar" />
         <div className="feed__topInfo">
-          <h3>{username}</h3>
-          <p>{time}</p>
+          <h3>{feed?.user.username}</h3>
+          {feed?.images.map((image, i) => (
+            <p key={i}>{image.createdAt}</p>
+          ))}
         </div>
       </div>
       <div className="feed__bottom">
-        <p>{caption}</p>
+        {feed?.images.map((image, i) => (
+          <p key={i}>{image.caption}</p>
+        ))}
       </div>
       <div className="feed__image">
-        <img src={image} alt="" />
+        {feed?.images.map((image, i) => (
+          <img key={i} src={image.image} alt={image.caption} />
+        ))}
       </div>
       <div className="feed__options">
         <div className="feed__option">
