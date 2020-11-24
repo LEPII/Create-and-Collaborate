@@ -1,4 +1,4 @@
-const Image = require('../db/models/Image'),
+const Image = require('../db/models/image'),
   Video = require('../db/models/Video'),
   mongoose = require('mongoose'),
   cloudinary = require('cloudinary').v2;
