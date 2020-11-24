@@ -36,7 +36,6 @@ const dbReset = async () => {
   await Video.countDocuments({}, function (err, count) {
     console.log('Number of Videos: ', count);
   });
-
   //Loop 10 times and create 10 new users
   const userIdArray = [];
   for (let i = 0; i < 10; i++) {
@@ -46,12 +45,11 @@ const dbReset = async () => {
       admin: Boolean(Math.round(Math.random())),
       email: faker.internet.email(),
       password: faker.internet.password(),
-      avatar: faker.image.avatar(),
-      bio: faker.lorem.sentence(),
+      avatar: faker.image.people(),
+      header: faker.image.nightlife(),
+      bio: faker.lorem.paragraph(),
       location: faker.address.stateAbbr(),
-      //following: faker.random.number(),
-      //followers: faker.random.number(),
-      category: faker.random.words()
+      category: faker.name.jobTitle()
     });
     await me.generateAuthToken();
     userIdArray.push(me._id);
@@ -59,7 +57,7 @@ const dbReset = async () => {
   //Loop 10 times and create 10 new events
   for (let i = 0; i < 10; i++) {
     const event = new Event({
-      description: faker.lorem.paragraph(),
+      description: faker.lorem.sentence(),
       datePassedCompleted: Boolean(Math.round(Math.random())),
       dateOfEvent: faker.date.future(),
       hostedBy: userIdArray[Math.floor(Math.random() * userIdArray.length)],
@@ -68,7 +66,8 @@ const dbReset = async () => {
       title: faker.lorem.words(),
       eighteen: faker.random.boolean(),
       twentyOne: faker.random.boolean(),
-      categories: faker.random.words()
+      typeOfEvent: faker.random.words(),
+      prices: faker.commerce.price()
     });
     await event.save();
   }
@@ -82,11 +81,10 @@ const dbReset = async () => {
       company: faker.company.companyName(),
       title: faker.name.jobTitle(),
       location: faker.address.cityPrefix(),
-      compensation: faker.random.number()
+      compensation: faker.commerce.price()
     });
     await job.save();
   }
-
   //Loop 10 times and create 10 new portfolios
   for (let i = 0; i < 10; i++) {
     const portfolio = new Portfolio({
@@ -96,58 +94,48 @@ const dbReset = async () => {
       dateOfEmployment: faker.date.between(),
       typeOfEmployment: faker.name.jobTitle(),
       image: faker.image.business(),
-      hostedBy: userIdArray[Math.floor(Math.random() * userIdArray.length)]
+      hostedBy: userIdArray[Math.floor(Math.random() * userIdArray.length)],
+      school: faker.lorem.words()
     });
     await portfolio.save();
   }
-
   //Loop 10 times and create 10 new images
   for (let i = 0; i < 10; i++) {
     const image = new Image({
-      image: faker.image.avatar(),
+      image: faker.image.nightlife(),
       caption: faker.lorem.words(),
-      // likes: faker.random.number(),
-      user: userIdArray[Math.floor(Math.random() * userIdArray.length)]
+      hostedBy: userIdArray[Math.floor(Math.random() * userIdArray.length)]
     });
     await image.save();
   }
-
   //Loop 10 times and create 10 new images
   for (let i = 0; i < 10; i++) {
     const video = new Video({
-      // title: faker.image.avatar(),
-      // likes: faker.random.number(),
       hostedBy: userIdArray[Math.floor(Math.random() * userIdArray.length)],
       caption: faker.lorem.sentence()
     });
     await video.save();
   }
-
   //Count number of users ===> should be 10
   await User.countDocuments({}, function (err, count) {
     console.log('Number of users: ', count);
   });
-
   //Count number of events ===> should be 10
   await Event.countDocuments({}, function (err, count) {
     console.log('Number of events: ', count);
   });
-
   //Count number of jobs ===> should be 10
   await Job.countDocuments({}, function (err, count) {
     console.log('Number of events: ', count);
   });
-
   //Count number of portfolios ===> should be 10
   await Portfolio.countDocuments({}, function (err, count) {
     console.log('Number of portfolios: ', count);
   });
-
   //Count number of images ===> should be 10
   await Image.countDocuments({}, function (err, count) {
     console.log('Number of images: ', count);
   });
-
   //Count number of videos ===> should be 10
   await Video.countDocuments({}, function (err, count) {
     console.log('Number of video: ', count);

@@ -10,7 +10,7 @@ const ProfileBody = () => {
     axios
       .get(`/portfolios/${id}`, { withCredentials: true })
       .then((response) => {
-        setPortfolio(response.data[0]);
+        setPortfolio(response.data);
       })
       .catch((error) => {
         console.log(error);

@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import axios from 'axios';
+import Post from './Post';
 
 const FileUploader = () => {
   const [video, setVideo] = useState('');
@@ -24,8 +25,7 @@ const FileUploader = () => {
 
   return (
     <div>
-      <input type="file" onChange={handleFile} />
-      <button onClick={handleSaveFile}>Upload File</button>
+      <Post handle={handleFile} save={handleSaveFile} />
     </div>
   );
 };

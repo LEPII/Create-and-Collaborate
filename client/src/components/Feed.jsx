@@ -7,60 +7,53 @@ import AssistantRoundedIcon from '@material-ui/icons/AssistantRounded';
 import ShareRoundedIcon from '@material-ui/icons/ShareRounded';
 import '../Feed.css';
 
-const Feed = () => {
-  const [userData, setUserData] = useState(null);
-  const [postData, setPostData] = useState(null);
-  // const { post, setPost } = useContext(AppContext);
-  // console.log(currentUser)
-  const fetchData = () => {
-    const postData = axios.get('/gallery/images', { withCredentials: true });
-    const userData = axios.get('/users/all', { withCredentials: true });
+const Feed = ({ id, time, caption, image, avatar, username }) => {
+  const [userData, setUserData] = useState('');
+  const [myUserData, setMyUserData] = useState('');
+
+  useEffect(() => {
     axios
-      .all([postData, userData])
-      .then(
-        axios.spread((...allData) => {
-          const postInfo = allData[0];
-          const userInfo = allData[1];
-          setPostData(postInfo);
-          setUserData(userInfo);
-        })
-      )
+      .get('/users/all', {
+        withCredentials: true
+      })
+      .then((response) => {
+        setUserData(response.data);
+      })
       .catch((error) => {
         console.log(error);
       });
-  };
-  // /
-  // useEffect(() => {
-  //   axios
-  //     .get('/gallery/allposts', {
-  //       withCredentials: true
-  //     })
-  //     .then((response) => {
-  //       setPostData(response.data);
-  //       console.log(response.data)
-  //     })
-  // .catch((error) => {
-  //   console.log(error)
-  // });
-  // }, [setPostData]);
-  // console.log(setPostData)
+  }, [setUserData]);
+  console.log(userData);
 
-  // useEffect(() => {
-  //   fetchData ()
-  // }, []);
+  useEffect(() => {
+    axios
+      .get('/users/me', {
+        withCredentials: true
+      })
+      .then((response) => {
+        setMyUserData(response.data.user);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  }, [setMyUserData]);
+  console.log(myUserData);
 
   return (
     <div className="feed">
       <div className="feed__top">
-        <Avatar src={null} className="feed__avatar" />
+        <Avatar src={avatar} className="feed__avatar" />
         <div className="feed__topInfo">
-          {/* <h3>{currentUser.username}</h3> */}
-          <p>Timestamp...</p>
+          <h3>{username}</h3>
+          <p>{time}</p>
         </div>
       </div>
-      <div className="feed__bottom">{/* <p>{post.caption}</p> */}</div>
-
-      <div className="feed__image">{/* <img src={post.image} alt="" /> */}</div>
+      <div className="feed__bottom">
+        <p>{caption}</p>
+      </div>
+      <div className="feed__image">
+        <img src={image} alt="" />
+      </div>
       <div className="feed__options">
         <div className="feed__option">
           <FavoriteBorderOutlinedIcon />

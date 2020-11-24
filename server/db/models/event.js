@@ -39,11 +39,9 @@ const eventSchema = new mongoose.Schema(
       type: mongoose.Schema.Types.ObjectId,
       ref: 'User'
     },
-    TypeOfEvent: [
+    typeOfEvent: [
       {
-        categories: {
-          type: String
-        }
+        type: String
       }
     ]
   },
