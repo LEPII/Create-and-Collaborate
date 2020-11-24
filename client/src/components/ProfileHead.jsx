@@ -6,6 +6,7 @@ import { Card } from 'react-bootstrap';
 
 const ProfileHead = () => {
   const [user, setUser] = useState('');
+  const [userData, setUserData] = useState('');
   let { id } = useParams();
 
   useEffect(() => {
@@ -13,15 +14,26 @@ const ProfileHead = () => {
       .get(`/users/${id}`, { withCredentials: true })
       .then((response) => {
         setUser(response.data);
-        console.log(user.header);
       })
       .catch((error) => {
         console.log(error);
       });
   }, [setUser]);
 
-  return (
+  useEffect(() => {
+    axios
+      .get(`/users/all`, { withCredentials: true })
+      .then((response) => {
+        setUserData(response.data);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  }, [setUserData]);
 
+  console.log(user);
+
+  return (
     <>
       <Card>
         <img className="profheader" src={user.header} />
@@ -47,7 +59,6 @@ const ProfileHead = () => {
         <div>
           <p>FOLLOWERS:</p>
         </div>
-
       </div>
     </>
   );

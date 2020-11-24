@@ -20,7 +20,6 @@ const ProfileBody = () => {
   return (
     <>
       <div className="profaction">
-        <h4>Gallery:</h4>
         <button type="button" class="btn btn-secondary">
           <img src="https://via.placeholder.com/100px" alt="user" />
           <h4>Images</h4>
@@ -33,19 +32,19 @@ const ProfileBody = () => {
       <div className="profbody">
         <div>
           <h6>Works at:</h6>
-          <p>{portfolio.company}</p>
+          <p>{portfolio?.company}</p>
         </div>
         <div>
           <h6>Position:</h6>
-          <p>{portfolio.position}</p>
+          <p>{portfolio?.position}</p>
         </div>
         <div>
           <h6>Studied at:</h6>
-          <p>{portfolio.school}</p>
+          <p>{portfolio?.school}</p>
         </div>
         <div className="profdescription">
           <h3>About me:</h3>
-          <p>{portfolio.description}</p>
+          <p>{portfolio?.description}</p>
         </div>
       </div>
     </>
