@@ -1,5 +1,6 @@
 import React from 'react';
-import { Card, Button } from 'react-bootstrap';
+import { Card } from 'react-bootstrap';
+import LoginModal from '../components/LoginModal';
 
 const CoverImage = () => {
   return (
@@ -9,7 +10,7 @@ const CoverImage = () => {
         <Card.Body>
           <Card.Text>CREATE & COLLABORATE</Card.Text>
           <Card.Text>Connecting with Artist & the world around you!</Card.Text>
-          <Button variant="secondary">Go somewhere</Button>
+          <LoginModal />
         </Card.Body>
       </Card.ImgOverlay>
     </Card>

@@ -1,10 +1,10 @@
 import React, { useState, useContext } from 'react';
 import { Link, useHistory } from 'react-router-dom';
-import { Container, Form, Button } from 'react-bootstrap';
+import { Container, Form, Button, Modal } from 'react-bootstrap';
 import { AppContext } from '../context/AppContext';
 import axios from 'axios';
 
-const LogForm = () => {
+const LogForm = (props) => {
   const { setCurrentUser } = useContext(AppContext);
   const [formData, setFormData] = useState(null);
   const history = useHistory();
@@ -37,7 +37,7 @@ const LogForm = () => {
   };
 
   return (
-    <Container className="container d-flex flex-column align-items-center justify-content-center fullscreen">
+    <div>
       <h1 className="mb-4">Log In</h1>
       <Form style={{ width: 300 }} onSubmit={handleLogin}>
         <Form.Group>
@@ -64,11 +64,8 @@ const LogForm = () => {
           <Button type="submit">Login</Button>
         </Form.Group>
       </Form>
-      <Link className="mt-4" to="/signup">
-        Need an Account? Sign up.
-      </Link>
 
-      <h1 className="mb-4">Sign Up</h1>
+      <h3 className="mb-4">Sign Up</h3>
       <Form style={{ width: 300 }} onSubmit={handleSignUp}>
         <Form.Group>
           <Form.Label htmlFor="fullName">Full Name</Form.Label>
@@ -129,10 +126,7 @@ const LogForm = () => {
           <Button type="submit">Sign Up</Button>
         </Form.Group>
       </Form>
-      <Link className="mt-4" to="/login">
-        Already have an account? Login.
-      </Link>
-    </Container>
+    </div>
   );
 };
 

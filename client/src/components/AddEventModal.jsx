@@ -58,8 +58,6 @@ const AddEventModal = (props) => {
           </Form.Group>
           <Form.Group controlId="formBasicEmail">
             <Button type="submit">Add Event</Button>
-            {/* <DeleteButton id={event._id} />
-            <CompleteButton event={event} /> */}
             <Button type="submit">Add Event</Button>
           </Form.Group>
         </Form.Group>
