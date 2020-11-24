@@ -31,12 +31,6 @@ const portfolioSchema = new mongoose.Schema(
       type: Date
     },
     image: {
-      type: Array
-    },
-    video: {
-      type: Array
-    },
-    header: {
       type: String
     },
     hostedBy: {

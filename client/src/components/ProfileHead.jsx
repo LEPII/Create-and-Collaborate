@@ -13,7 +13,7 @@ const ProfileHead = () => {
     axios
       .get(`/users/${id}`, { withCredentials: true })
       .then((response) => {
-        setUser(response.data);
+        setUser(response.data.user);
       })
       .catch((error) => {
         console.log(error);
