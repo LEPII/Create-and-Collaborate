@@ -2,13 +2,17 @@ const router = require('express').Router(),
   {
     uploadImage,
     uploadVideo,
-    createPost,
-    getAllPosts
+    getAllVideos,
+    getAllImages,
+    getUserImages,
+    getUserVideos
   } = require('../../controllers/gallery');
 
 router.post('/images', uploadImage);
+router.get('/images', getAllImages);
+router.get('/images/:id', getUserImages);
 router.post('/videos', uploadVideo);
-router.post('/posts', createPost);
-router.get('/allposts', getAllPosts);
+router.get('/videos', getAllVideos);
+router.get('/videos/:id', getUserVideos);
 
 module.exports = router;

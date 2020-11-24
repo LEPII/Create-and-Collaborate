@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { useParams } from 'react-router-dom';
+import ImageModal from '../helper/ImageModal';
 
 const ProfileBody = () => {
   const [portfolio, setPortfolio] = useState('');
@@ -11,7 +12,6 @@ const ProfileBody = () => {
       .get(`/portfolios/${id}`, { withCredentials: true })
       .then((response) => {
         setPortfolio(response.data[0]);
-        console.log(response);
       })
       .catch((error) => {
         console.log(error);
@@ -26,7 +26,7 @@ const ProfileBody = () => {
             src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR0WAyaJrUiyNzGF79cfqxPHybAqK9UIMkREQ&usqp=CAU"
             alt="user"
           />
-          <h4>Images</h4>
+          <ImageModal />
         </button>
         <button type="button" class="btn btn-secondary">
           <img
