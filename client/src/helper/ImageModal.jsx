@@ -45,7 +45,8 @@ export default function ImageModal() {
         console.log(error);
       });
   }, [setImage]);
-  console.log(image.image);
+
+  console.log(image);
 
   return (
     <div>
@@ -53,8 +54,6 @@ export default function ImageModal() {
         Images
       </button>
       <Modal
-        aria-labelledby="transition-modal-title"
-        aria-describedby="transition-modal-description"
         className={classes.modal}
         open={open}
         onClose={handleClose}
@@ -64,14 +63,12 @@ export default function ImageModal() {
           timeout: 500
         }}
       >
-        <Fade in={open}>
-          <div className={classes.paper}>
-            {image ??
-              image.map((img) => {
-                return <img src={image.image} alt="user-gallery" />;
-              })}
-          </div>
-        </Fade>
+        <div className={classes.paper}>
+          {/* {image??image.map((image)=>{return(
+              <img src={image.image} />
+          )})} */}
+          <img src={image.image} />
+        </div>
       </Modal>
     </div>
   );

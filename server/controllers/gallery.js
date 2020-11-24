@@ -50,7 +50,7 @@ exports.getUserImages = async (req, res) => {
   if (!mongoose.Types.ObjectId.isValid(_id))
     return res.status(400).json({ message: 'Images not found :-(' });
   try {
-    const image = await Image.findOne({ hostedBy: _id });
+    const image = await Image.find({ hostedBy: _id });
     if (!image)
       return res.status(400).json({ message: 'Images not found :-(' });
     res.status(200).json(image);
