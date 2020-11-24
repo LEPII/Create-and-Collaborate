@@ -9,7 +9,7 @@
   flex-direction: column;
   position: absolute;
   left: 125px;
-  top: 450px;
+  top: 500px;
   background-color: white;
 }
 
@@ -25,10 +25,14 @@
   height: 25vh;
   width: 25vw;
   right: 125px;
-  top: 450px;
+  top: 500px;
   border-radius: 20px;
   border: solid black 1px;
   background-color: white;
+}
+
+.profaction img {
+  height: 95px;
 }
 
 .profbody {
@@ -42,9 +46,9 @@
   height: 40vh;
   width: 50vw;
   right: 125px;
-  top: 723px;
+  top: 772px;
   background-color: white;
-  padding: 10px;
+  padding: 30px;
 }
 
 .profilemain {
@@ -103,9 +107,16 @@
     #00aeee,
     #0dc6ee
   );
-  height: 125vh;
+  height: 140vh;
 }
 
 .profheader {
   height: 360px;
+}
+
+.foot {
+  position: absolute;
+  bottom: -350px;
+  width: 100%;
+  height: 2.5rem;
 }

@@ -20,6 +20,45 @@ exports.uploadImage = async (req, res) => {
   }
 };
 
+//Create a post
+exports.createImage = async (req, res) => {
+  try {
+    const post = await new Image({
+      ...req.body,
+      hostedBy: req.user._id
+    });
+    await post.save();
+    res.status(200).send(post);
+  } catch (error) {
+    res.status(400).json({ error: error.message });
+  }
+};
+
+//Get all jobs
+exports.getAllImages = async (req, res) => {
+  try {
+    const posts = await Image.find();
+    res.json(posts);
+    res.status(200).json(req.user.posts);
+  } catch (error) {
+    res.status(400).json({ error: error.message });
+  }
+};
+
+exports.getUserImages = async (req, res) => {
+  const _id = req.params.id;
+  if (!mongoose.Types.ObjectId.isValid(_id))
+    return res.status(400).json({ message: 'Images not found :-(' });
+  try {
+    const image = await Image.find({ hostedBy: _id });
+    if (!image)
+      return res.status(400).json({ message: 'Images not found :-(' });
+    res.status(200).json(image);
+  } catch (error) {
+    res.status(400).json({ error: error.message });
+  }
+};
+
 //save video
 exports.uploadVideo = async (req, res) => {
   try {
@@ -40,10 +79,9 @@ exports.uploadVideo = async (req, res) => {
   }
 };
 
-//Create a post
-exports.createPost = async (req, res) => {
+exports.createVideo = async (req, res) => {
   try {
-    const post = await new Image({
+    const post = await new Video({
       ...req.body,
       hostedBy: req.user._id
     });
@@ -54,12 +92,25 @@ exports.createPost = async (req, res) => {
   }
 };
 
-//Get all jobs
-exports.getAllPosts = async (req, res) => {
+exports.getAllVideos = async (req, res) => {
   try {
-    const users = await Image.find();
-    res.json(users);
+    const posts = await Video.find();
+    res.json(posts);
     res.status(200).json(req.user.posts);
+  } catch (error) {
+    res.status(400).json({ error: error.message });
+  }
+};
+
+exports.getUserVideos = async (req, res) => {
+  const _id = req.params.id;
+  if (!mongoose.Types.ObjectId.isValid(_id))
+    return res.status(400).json({ message: 'Videos not found :-(' });
+  try {
+    const video = await Video.findOne({ hostedBy: _id });
+    if (!video)
+      return res.status(400).json({ message: 'Videos not found :-(' });
+    res.status(200).json(video);
   } catch (error) {
     res.status(400).json({ error: error.message });
   }

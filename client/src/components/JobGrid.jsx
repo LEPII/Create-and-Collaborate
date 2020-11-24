@@ -21,7 +21,6 @@ const JobGrid = () => {
 
   const handleSearch = (searchTerm) => {
     setSearchValue(searchTerm);
-    console.log();
   };
 
   const filteredJobs =

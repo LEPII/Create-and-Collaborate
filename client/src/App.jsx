@@ -6,11 +6,13 @@ import Home from './pages/Home';
 import Jobs from './pages/Jobs';
 import PrivateRoute from './components/PrivateRoute';
 import Profile from './pages/Profile';
+import Footer from './components/Footer';
 import ResetPassword from './pages/ResetPassword';
 import UpdatePassword from './pages/UpdatePassword';
 import Welcome from './pages/Welcome';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './App.css';
+import Images from './pages/Images';
 
 function App() {
   return (
@@ -20,7 +22,8 @@ function App() {
           <Route exact path="/events" component={Events} />
           <PrivateRoute exact path="/" component={Home} />
           <PrivateRoute exact path="/jobs" component={Jobs} />
-          <PrivateRoute exact path="/profile/:id" component={Profile} />
+          <PrivateRoute exact path="/profiles/:id" component={Profile} />
+          <PrivateRoute exact path="/gallery/images/:id" component={Images} />
           <Route exact path="/reset-password" component={ResetPassword} />
           <Route exact path="/update-password" component={UpdatePassword} />
           <Route exact path="/welcome" component={Welcome} />

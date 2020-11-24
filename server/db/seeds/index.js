@@ -45,7 +45,9 @@ const dbReset = async () => {
       admin: Boolean(Math.round(Math.random())),
       email: faker.internet.email(),
       password: faker.internet.password(),
-      avatar: faker.image.people(),
+
+      avatar: faker.image.cats(),
+
       header: faker.image.nightlife(),
       bio: faker.lorem.paragraph(),
       location: faker.address.stateAbbr(),
