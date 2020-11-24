@@ -12,6 +12,7 @@ import UpdatePassword from './pages/UpdatePassword';
 import Welcome from './pages/Welcome';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './App.css';
+import Images from './pages/Images';
 
 function App() {
   return (
@@ -22,6 +23,7 @@ function App() {
           <PrivateRoute exact path="/" component={Home} />
           <PrivateRoute exact path="/jobs" component={Jobs} />
           <PrivateRoute exact path="/profiles/:id" component={Profile} />
+          <PrivateRoute exact path="/gallery/images/:id" component={Images} />
           <Route exact path="/reset-password" component={ResetPassword} />
           <Route exact path="/update-password" component={UpdatePassword} />
           <Route exact path="/welcome" component={Welcome} />

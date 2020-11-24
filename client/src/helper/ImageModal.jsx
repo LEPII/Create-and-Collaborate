@@ -1,8 +1,10 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Modal from '@material-ui/core/Modal';
 import Backdrop from '@material-ui/core/Backdrop';
 import Fade from '@material-ui/core/Fade';
+import { useParams } from 'react-router-dom';
+import axios from 'axios';
 import '../App.css';
 
 const useStyles = makeStyles((theme) => ({
@@ -21,7 +23,9 @@ const useStyles = makeStyles((theme) => ({
 
 export default function ImageModal() {
   const classes = useStyles();
+  let { id } = useParams();
   const [open, setOpen] = React.useState(false);
+  const [image, setImage] = useState('');
 
   const handleOpen = () => {
     setOpen(true);
@@ -30,6 +34,18 @@ export default function ImageModal() {
   const handleClose = () => {
     setOpen(false);
   };
+
+  useEffect(() => {
+    axios
+      .get(`/gallery/images/${id}`, { withCredentials: true })
+      .then((response) => {
+        setImage(response.data);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  }, [setImage]);
+  console.log(image.image);
 
   return (
     <div>
@@ -50,7 +66,10 @@ export default function ImageModal() {
       >
         <Fade in={open}>
           <div className={classes.paper}>
-            <p id="transition-modal-description"></p>
+            {image ??
+              image.map((img) => {
+                return <img src={image.image} alt="user-gallery" />;
+              })}
           </div>
         </Fade>
       </Modal>

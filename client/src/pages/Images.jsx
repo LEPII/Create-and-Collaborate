@@ -15,7 +15,7 @@ const Images = () => {
       .catch((error) => {
         console.log(error);
       });
-  }, [setPortfolio]);
+  }, [setImage]);
   console.log(image);
 
   return (

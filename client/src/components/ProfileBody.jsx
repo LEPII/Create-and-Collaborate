@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { useParams } from 'react-router-dom';
-import ImageModal from '../helper/ImageModal';
+import { Link } from 'react-router-dom';
 
 const ProfileBody = () => {
   const [portfolio, setPortfolio] = useState('');
@@ -21,13 +21,15 @@ const ProfileBody = () => {
   return (
     <>
       <div className="profaction">
-        <button type="button" class="btn btn-secondary">
-          <img
-            src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR0WAyaJrUiyNzGF79cfqxPHybAqK9UIMkREQ&usqp=CAU"
-            alt="user"
-          />
-          <ImageModal />
-        </button>
+        <Link to="/gallery/images/">
+          <button type="button" class="btn btn-secondary">
+            <img
+              src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR0WAyaJrUiyNzGF79cfqxPHybAqK9UIMkREQ&usqp=CAU"
+              alt="user"
+            />
+            {/* <ImageModal /> */}
+          </button>
+        </Link>
         <button type="button" class="btn btn-secondary">
           <img
             src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRdQoTtapY7Cof1aGJJRT2BTYfq3TtMY5NPZw&usqp=CAU"

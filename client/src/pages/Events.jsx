@@ -13,7 +13,6 @@ function Events() {
       <EventSearch />
       {/* <Calendar /> */}
       <Footer />
-      {/* for testing purposes only below  */}
       <video width={320} height={320} controls>
         <source
           src="https://res.cloudinary.com/dgipapqks/video/upload/v1606157767/vtxesocaib9uvihh0bhe.mov"
