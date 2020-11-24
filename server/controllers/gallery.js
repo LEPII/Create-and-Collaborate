@@ -1,5 +1,5 @@
 const Image = require('../db/models/image'),
-  Video = require('../db/models/Video'),
+  Video = require('../db/models/video'),
   mongoose = require('mongoose'),
   cloudinary = require('cloudinary').v2;
 
