@@ -92,21 +92,21 @@ exports.passwordRedirect = async (req, res) => {
 //AUTHENTICATED ROUTES
 //Get a user
 exports.getCurrentUser = async (req, res) => {
-  await req.user.populate({ path: 'jobs', model: 'Job' }).execPopulate();
-  await req.user
-    .populate({ path: 'portfolios', model: 'Portfolio' })
-    .execPopulate();
-  await req.user.populate({ path: 'events', model: 'Event' }).execPopulate();
-  await req.user.populate({ path: 'images', model: 'Image' }).execPopulate();
-  await req.user.populate({ path: 'videos', model: 'Video' }).execPopulate();
-  await req.user.populate({ path: 'followers' });
+  const user = await User.findByIdAndUpdate(req.user._id)
+    .populate('jobs')
+    .populate('portfolios')
+    .populate('events')
+    .populate('images')
+    .populate('videos')
+    .populate('followers');
+
   res.json({
-    user: req.user,
-    jobs: req.user.jobs,
-    portfolios: req.user.portfolios,
-    events: req.user.events,
-    images: req.user.images,
-    videos: req.user.videos
+    user: user,
+    jobs: user.jobs,
+    portfolios: user.portfolios,
+    events: user.events,
+    images: user.images,
+    videos: user.videos
   });
 };
 
@@ -198,8 +198,24 @@ exports.updatePassword = async (req, res) => {
 //Get all users
 exports.getAllUsers = async (req, res) => {
   try {
-    const users = await User.find();
-    res.json(users);
+    const users = await User.find()
+      .populate('jobs')
+      .populate('portfolios')
+      .populate('events')
+      .populate('images')
+      .populate('videos')
+      .populate('followers');
+
+    const parsedUsers = users.map((user) => ({
+      user: user,
+      jobs: user.jobs,
+      portfolios: user.portfolios,
+      events: user.events,
+      images: user.images,
+      videos: user.videos
+    }));
+
+    res.json(parsedUsers);
     res.status(200).json(req.user.tasks);
   } catch (error) {
     res.status(400).json({ error: error.message });
@@ -242,10 +258,24 @@ exports.getUserById = async (req, res) => {
   if (!mongoose.Types.ObjectId.isValid(_id))
     return res.status(400).json({ message: 'User not found :-(' });
   try {
-    const user = await User.findOne({ _id });
-    console.log('this is working', { _id });
+    const user = await User.findById(_id)
+      .populate('jobs')
+      .populate('portfolios')
+      .populate('events')
+      .populate('images')
+      .populate('videos')
+      .populate('followers');
+
     if (!user) return res.status(400).json({ message: 'User not found :-(' });
-    res.status(200).json(user);
+
+    res.status(200).json({
+      user: user,
+      jobs: user.jobs,
+      portfolios: user.portfolios,
+      events: user.events,
+      images: user.images,
+      videos: user.videos
+    });
   } catch (error) {
     res.status(400).json({ error: error.message });
   }
