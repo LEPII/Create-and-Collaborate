@@ -12,12 +12,13 @@ const ProfileBody = () => {
     axios
       .get(`/portfolios/${id}`, { withCredentials: true })
       .then((response) => {
-        setPortfolio(response.data);
+        setPortfolio(response.data[0]);
       })
       .catch((error) => {
         console.log(error);
       });
   }, [setPortfolio]);
+  console.log(portfolio)
 
   return (
     <>
