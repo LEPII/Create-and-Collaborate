@@ -6,6 +6,7 @@ import Home from './pages/Home';
 import Jobs from './pages/Jobs';
 import PrivateRoute from './components/PrivateRoute';
 import Profile from './pages/Profile';
+import Footer from './components/Footer';
 import ResetPassword from './pages/ResetPassword';
 import UpdatePassword from './pages/UpdatePassword';
 import Welcome from './pages/Welcome';
