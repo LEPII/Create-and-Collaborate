@@ -10,6 +10,8 @@ import Footer from './components/Footer';
 import ResetPassword from './pages/ResetPassword';
 import UpdatePassword from './pages/UpdatePassword';
 import Welcome from './pages/Welcome';
+import UserEditPage from './pages/EditUser';
+import PortfolioEditPage from './pages/EditPortfolio';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './App.css';
 import Images from './pages/Images';
@@ -27,6 +29,8 @@ function App() {
           <Route exact path="/reset-password" component={ResetPassword} />
           <Route exact path="/update-password" component={UpdatePassword} />
           <Route exact path="/welcome" component={Welcome} />
+          <Route exact path="/user-edit-page" component={UserEditPage} />
+          <Route exact path="/portfolio-edit" component={PortfolioEditPage} />
         </Switch>
       </BrowserRouter>
     </AppContextProvider>
