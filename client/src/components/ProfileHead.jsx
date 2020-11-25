@@ -23,7 +23,7 @@ const ProfileHead = () => {
   }, [setUser]);
 
   const follow = () => {
-    axios.post(`/users/${id}`, { withCredentials: true });
+    axios.put(`/users/${id}`, { withCredentials: true });
   };
 
   return (

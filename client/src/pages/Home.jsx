@@ -1,4 +1,5 @@
 import React, { useContext } from 'react';
+import { AppContext } from '../context/AppContext';
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
 import Post from '../components/Post';
