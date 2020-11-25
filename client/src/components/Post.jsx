@@ -54,7 +54,7 @@ const Post = ({ handle, save }) => {
     <div className="post">
       <div className="post__top">
         <Avatar
-          onClick={() => history.push(`/profile/${currentUser.user._id}`)}
+          onClick={() => history.push(`/profiles/${currentUser.user._id}`)}
         />
         <form>
           <input
@@ -67,9 +67,7 @@ const Post = ({ handle, save }) => {
             className="post__input"
             placeholder={`Image or Video URL (Optional)`}
           />
-          <button onClick={handleSubmit} type="submit">
-            Hidden Submit
-          </button>
+          <button onClick={handleSubmit} type="submit"></button>
         </form>
       </div>
       <div className="post__bottom">
@@ -90,7 +88,7 @@ const Post = ({ handle, save }) => {
         </div>
       </div>
       {userData &&
-        userData.map((user) => {
+        userData?.map((user) => {
           return <Feed key={user.user._id} feed={user} />;
         })}
     </div>
