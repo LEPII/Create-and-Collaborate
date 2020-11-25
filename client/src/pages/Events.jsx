@@ -11,14 +11,8 @@ function Events() {
       <Navbar />
       <EventsHead />
       <EventSearch />
-      {/* <Calendar /> */}
+      <Calendar />
       <Footer />
-      <video width={320} height={320} controls>
-        <source
-          src="https://res.cloudinary.com/dgipapqks/video/upload/v1606157767/vtxesocaib9uvihh0bhe.mov"
-          type="video/mp4"
-        />
-      </video>
     </>
   );
 }
