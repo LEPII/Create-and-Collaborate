@@ -7,14 +7,15 @@ import Container from '@material-ui/core/Container';
 
 const Home = ({ history }) => {
   return (
-
-    <Container maxWidth="md">
-      <div className="home__body">
-        <Post />
-        <Feed />
-      </div>
-    </Container>
-
+    <>
+      <Navbar />
+      <Container maxWidth="md">
+        <div className="home__body">
+          <Post />
+          <Feed />
+        </div>
+      </Container>
+    </>
   );
 };
 

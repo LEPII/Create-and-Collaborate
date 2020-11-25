@@ -8,7 +8,7 @@
   align-items: center;
   flex-direction: column;
   position: absolute;
-  left: 125px;
+  left: 140px;
   top: 500px;
   background-color: white;
 }
@@ -23,8 +23,8 @@
   padding: 25px;
   position: absolute;
   height: 25vh;
-  width: 20vw;
-  right: 125px;
+  width: 20.5vw;
+  right: 135px;
   top: 500px;
   border-radius: 20px;
   border: solid black 1px;
@@ -32,7 +32,7 @@
 }
 
 .profaction img {
-  height: 95px;
+  height: 80px;
 }
 
 .profbody {
@@ -45,10 +45,10 @@
   position: absolute;
   height: 40vh;
   width: 50vw;
-  right: 125px;
+  right: 135px;
   top: 772px;
   background-color: white;
-  padding: 30px;
+  padding: 50px;
 }
 
 .profilemain {
@@ -119,4 +119,38 @@
   bottom: -350px;
   width: 100%;
   height: 2.5rem;
+}
+
+.mentor {
+  border: black solid 1px;
+  background-color: white;
+  position: absolute;
+  border-radius: 20px;
+  height: 25vh;
+  min-height: 25vh;
+  min-width: 22vw;
+  width: 22vw;
+  right: 635px;
+  top: 500px;
+}
+
+.info {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  right: 30px;
+  bottom: 70px;
+  margin: 5px;
+}
+
+.student {
+  border: black solid 1px;
+  background-color: white;
+  position: absolute;
+  border-radius: 20px;
+  height: 25vh;
+  width: 25vw;
+  right: 576px;
+  top: 500px;
 }

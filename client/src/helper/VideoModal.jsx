@@ -3,7 +3,6 @@ import { makeStyles } from '@material-ui/core/styles';
 import Modal from '@material-ui/core/Modal';
 import { Carousel } from 'react-bootstrap';
 import Backdrop from '@material-ui/core/Backdrop';
-import Fade from '@material-ui/core/Fade';
 import { useParams } from 'react-router-dom';
 import axios from 'axios';
 import '../App.css';
@@ -65,19 +64,25 @@ export default function ImageModal() {
         }}
       >
         <div className={classes.paper}>
-          <Carousel fade>
+          <Carousel fade id="carouselInterval">
             {videos?.map((video) => {
               return (
-                <Carousel.Item>
-                  <video height="450px" width="650px">
+                <Carousel.Item data-interval="5000">
+                  <video
+                    autoPlay
+                    loop
+                    style={{
+                      width: '40vw',
+                      height: '50vh',
+                      objectFit: 'fill'
+                    }}
+                  >
                     <source src={video.video} type="video/mp4" />
                   </video>
                 </Carousel.Item>
               );
             })}
           </Carousel>
-
-          {/* <img src={images.image} /> */}
         </div>
       </Modal>
     </div>
