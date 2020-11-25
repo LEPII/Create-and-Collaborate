@@ -3,12 +3,12 @@ moment = require('moment');
 
 const eventSchema = new mongoose.Schema(
   {
-    dateOfEvent: {
+    startDate: {
       type: Date,
       required: true
     },
-    datePassedCompleted: {
-      type: Boolean,
+    endDate: {
+      type: Date,
       default: false
     },
     location: {
@@ -45,7 +45,6 @@ const eventSchema = new mongoose.Schema(
         type: String
       }
     ]
-
   },
   {
     timestamps: true

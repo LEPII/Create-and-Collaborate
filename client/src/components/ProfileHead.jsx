@@ -4,6 +4,8 @@ import '../profile.css';
 import { useParams } from 'react-router-dom';
 import { Card } from 'react-bootstrap';
 import Footer from '../components/Footer';
+import Mentor from '../helper/Mentor';
+import Student from '../helper/Student';
 
 const ProfileHead = () => {
   const [user, setUser] = useState('');
@@ -20,18 +22,26 @@ const ProfileHead = () => {
       });
   }, [setUser]);
 
+  const follow = () => {
+    axios.put(`/users/${id}`, { withCredentials: true });
+  };
+
   return (
     <>
       <Card>
         <img className="profheader" src={user.header} />
       </Card>
       <div class="profcard">
-        <h5>{user.name}</h5>
+        <h3>{user?.username}</h3>
         <div>
           <img className="profPic fixSpace" src={user.avatar} alt="user" />
         </div>
         <div>
-          <button type="button" class="btn btn-primary fixSpace">
+          <button
+            type="button"
+            onClick={follow}
+            class="btn btn-primary fixSpace"
+          >
             Connect
           </button>
         </div>
@@ -45,6 +55,13 @@ const ProfileHead = () => {
         </div>
         <div>
           <p>FOLLOWERS:</p>
+        </div>
+      </div>
+      <div className="mentor">
+        <div>{user.mentor ? <Mentor /> : <Student />}</div>
+        <div className="info">
+          <h3>{user?.name}</h3>
+          <h5>{user?.location}</h5>
         </div>
       </div>
       <Footer className="foot" />
