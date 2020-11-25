@@ -13,6 +13,7 @@ const Post = ({ handle, save }) => {
   const [userData, setUserData] = useState([]);
   const { setLoading, post, setPost, currentUser } = useContext(AppContext);
   const history = useHistory();
+
   useEffect(() => {
     axios
       .get('/users/all', {
@@ -65,9 +66,7 @@ const Post = ({ handle, save }) => {
             className="post__input"
             placeholder={`Image or Video URL (Optional)`}
           />
-          <button onClick={handleSubmit} type="submit">
-            Hidden Submit
-          </button>
+          <button onClick={handleSubmit} type="submit"></button>
         </form>
       </div>
       <div className="post__bottom">
@@ -88,7 +87,9 @@ const Post = ({ handle, save }) => {
         </div>
       </div>
       {userData &&
-        userData.map((user) => {
+
+        userData?.map((user) => {
+
           return <Feed key={user.user._id} feed={user} />;
         })}
     </div>

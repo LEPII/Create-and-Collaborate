@@ -66,7 +66,7 @@ export default function ImageModal() {
             {images?.map((image) => {
               return (
                 <Carousel.Item>
-                  <img src={image.image} />
+                  <img src={image.image} alt={image.caption} />
                 </Carousel.Item>
               );
             })}

@@ -1,6 +1,6 @@
 import React, { useState, useContext } from 'react';
-import { Link, useHistory } from 'react-router-dom';
-import { Container, Form, Button, Modal } from 'react-bootstrap';
+import { useHistory } from 'react-router-dom';
+import { Form, Button } from 'react-bootstrap';
 import { AppContext } from '../context/AppContext';
 import axios from 'axios';
 

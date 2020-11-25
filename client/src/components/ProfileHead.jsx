@@ -29,7 +29,7 @@ const ProfileHead = () => {
   return (
     <>
       <Card>
-        <img className="profheader" src={user.header} />
+        <img className="profheader" src={user.header} alt={'userheader'} />
       </Card>
       <div class="profcard">
         <h3>{user?.username}</h3>

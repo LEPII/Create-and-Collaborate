@@ -1,61 +1,61 @@
-import React, { useContext, useEffect, useState } from 'react';
-import axios from 'axios';
-import { AppContext } from '../context/AppContext';
+import React from 'react';
 import { Avatar } from '@material-ui/core';
 import FavoriteBorderOutlinedIcon from '@material-ui/icons/FavoriteBorderOutlined';
 import AssistantRoundedIcon from '@material-ui/icons/AssistantRounded';
 import ShareRoundedIcon from '@material-ui/icons/ShareRounded';
 import '../Feed.css';
+import { useHistory } from 'react-router-dom';
 
 const Feed = ({ feed }) => {
-  const [userData, setUserData] = useState('');
-  const [myUserData, setMyUserData] = useState('');
+  const history = useHistory();
 
-  useEffect(() => {
-    axios
-      .get('/users/all', {
-        withCredentials: true
-      })
-      .then((response) => {
-        setUserData(response.data);
-      })
-      .catch((error) => {
-        console.log(error);
-      });
-  }, [setUserData]);
+  // let imagess = feed?.images;
+  // console.log(imagess)
+  // let filteredFeed = imagess.filter(function (el) {
+  //   if imagess != null;
+  // });
+  // console.log(filteredFeed)
+  // function bouncer(arr) {
+  //     for (i = 0; i < arr.length; i++){
+  //         for (j=0; j<feed.length;j++) {
+  //            arr = arr.filter(x => x) {
+  //                  return val !== notAllowed[j];
+  //                 });
+  //    }
+  //   return arr;
+  //   }
+  ////////
 
-  useEffect(() => {
-    axios
-      .get('/users/me', {
-        withCredentials: true
-      })
-      .then((response) => {
-        setMyUserData(response.data.user);
-      })
-      .catch((error) => {
-        console.log(error);
-      });
-  }, [setMyUserData]);
+  // let realColors = imagess.filter(function (e) {return e != null;});
+
+  ////////
+
+  // const evens = imagess.filter(item => item != null);
+
+  ////////
+  // var result =  array.filter(function(e) {
+  //   return e.length;
+  // });
+
+  console.log(feed);
   return (
     <div className="feed">
       <div className="feed__top">
-        <Avatar src={feed?.user.avatar} className="feed__avatar" />
+        <Avatar
+          src={feed?.user.avatar}
+          onClick={() => history.push(`/profiles/${feed.user._id}`)}
+          className="feed__avatar"
+        />
         <div className="feed__topInfo">
           <h3>{feed?.user.username}</h3>
-          {feed?.images.map((image, i) => (
-            <p key={i}>{image.createdAt}</p>
-          ))}
+          <p>{feed?.images[0]?.createdAt}</p>
         </div>
       </div>
       <div className="feed__bottom">
-        {feed?.images.map((image, i) => (
-          <p key={i}>{image.caption}</p>
-        ))}
+        <p>{feed?.images[0]?.caption}</p>
       </div>
       <div className="feed__image">
-        {feed?.images.map((image, i) => (
-          <img key={i} src={image.image} alt={image.caption} />
-        ))}
+        <img src={feed?.images[0]?.image} alt={feed?.images.caption} />
       </div>
       <div className="feed__options">
         <div className="feed__option">

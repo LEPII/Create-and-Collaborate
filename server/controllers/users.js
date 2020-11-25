@@ -215,8 +215,8 @@ exports.getAllUsers = async (req, res) => {
       videos: user.videos
     }));
 
-    res.json(parsedUsers);
-    res.status(200).json(req.user.tasks);
+    res.status(200).json(parsedUsers);
+    // res.status(200).json(req.user)
   } catch (error) {
     res.status(400).json({ error: error.message });
   }

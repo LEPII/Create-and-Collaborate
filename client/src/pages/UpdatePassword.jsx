@@ -16,7 +16,7 @@ const UpdatePassword = ({ history }) => {
       return;
     }
     await axios.put(
-      '/api/users/password',
+      '/users/password',
       { password: password.password },
       { withCredentials: true }
     );

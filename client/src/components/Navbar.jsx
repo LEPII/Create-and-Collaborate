@@ -5,7 +5,7 @@ import { useHistory } from 'react-router-dom';
 import axios from 'axios';
 
 const NavBar = () => {
-  const { setCurrentUser, user } = useContext(AppContext);
+  const { setCurrentUser } = useContext(AppContext);
   const history = useHistory();
   const logout = async () => {
     try {
