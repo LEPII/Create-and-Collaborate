@@ -5,11 +5,11 @@ import Footer from '../components/Footer';
 
 const Welcome = () => {
   return (
-    <>
+    <div className="jobContainer">
       <CoverImage />
       <DropDownIcon />
       <Footer />
-    </>
+    </div>
   );
 };
 

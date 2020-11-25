@@ -8,6 +8,7 @@ const LogForm = (props) => {
   const { setCurrentUser } = useContext(AppContext);
   const [formData, setFormData] = useState(null);
   const history = useHistory();
+
   const handleChange = (event) => {
     setFormData({ ...formData, [event.target.name]: event.target.value });
   };
@@ -30,12 +31,11 @@ const LogForm = (props) => {
       const response = await axios.post('/auth/create', formData);
       sessionStorage.setItem('user', response.data);
       setCurrentUser(response.data.user);
-      history.push('/');
+      history.push('/user-edit-page');
     } catch (error) {
       console.log('Login Error: ' + error);
     }
   };
-
   return (
     <div>
       <h1 className="mb-4">Log In</h1>

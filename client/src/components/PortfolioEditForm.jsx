@@ -1,188 +1,189 @@
-import React from 'react';
+import React, { useState, useContext } from 'react';
 import { Form, Button } from 'react-bootstrap';
+import { useHistory } from 'react-router-dom';
+import { AppContext } from '../context/AppContext';
+import axios from 'axios';
+import swal from 'sweetalert';
 
 const PortfolioEditForm = () => {
+  const history = useHistory();
+  const [formData, setFormData] = useState(null);
+  const { setCurrentUser, currentUser } = useContext(AppContext);
+
+  const handleChange = (event) => {
+    setFormData({ ...formData, [event.target.name]: event.target.value });
+    console.log(formData);
+  };
+
+  const handleLogin = async (e) => {
+    e.preventDefault();
+    try {
+      const response = await axios.post(`/portfolios`, formData, {
+        withCredentials: true
+      });
+      setCurrentUser(response.data);
+      sessionStorage.setItem('user', response.data);
+      history.push(`/profile/${currentUser.user._id}`);
+    } catch (error) {
+      swal(`Oops!`, 'Something went wrong.');
+    }
+  };
+
   return (
-    <div class="card-body">
-      <form>
-        <h3 className="Create" class="heading-small text-muted mb-4">
-          User Portfolio
-        </h3>
-        <div class="pl-lg-4">
-          <div class="row">
-            <div class="col-lg-6">
-              <div class="form-group focused">
-                <label
-                  className="Create"
-                  class="form-control-label"
-                  for="input-username"
-                >
+    <div className="card-body">
+      <form onSubmit={handleLogin}>
+        <h3 className="Create">User Portfolio</h3>
+        <div className="pl-lg-4">
+          <div className="row">
+            <div className="col-lg-6">
+              <div className="form-group focused">
+                <label className="Create" htmlFor="input-username">
                   Company
                 </label>
                 <input
                   type="text"
                   id="input-username"
-                  class="form-control form-control-alternative"
-                  placeholder="Username"
-                  value="Enter Company"
+                  name="company"
+                  className="form-control form-control-alternative"
+                  placeholder="Company"
+                  onChange={handleChange}
                 />
               </div>
             </div>
-            <div class="col-lg-6">
-              <div class="form-group">
-                <label
-                  className="Create"
-                  class="form-control-label"
-                  for="input-email"
-                >
+            <div className="col-lg-6">
+              <div className="form-group">
+                <label className="Create" htmlFor="input-email">
                   Position
                 </label>
                 <input
                   type="text"
                   id="input-email"
-                  class="form-control form-control-alternative"
+                  name="position"
+                  className="form-control form-control-alternative"
                   placeholder="Enter Job Position"
+                  onChange={handleChange}
                 />
               </div>
             </div>
           </div>
-          <div class="row">
-            <div class="col-lg-6">
-              <div class="form-group focused">
-                <label
-                  className="Create"
-                  class="form-control-label"
-                  for="input-first-name"
-                >
+          <div className="row">
+            <div className="col-lg-6">
+              <div className="form-group focused">
+                <label className="Create" htmlFor="input-first-name">
                   Type Of Employment
                 </label>
                 <input
                   type="text"
                   id="input-first-name"
-                  class="form-control form-control-alternative"
+                  name="typeOfEmployment"
+                  className="form-control form-control-alternative"
                   placeholder="Enter Type Of Employment"
-                  value=""
+                  onChange={handleChange}
                 />
               </div>
             </div>
-            <div class="col-lg-6">
-              <div class="form-group focused">
-                <label
-                  className="Create"
-                  class="form-control-label"
-                  for="input-last-name"
-                >
+            <div className="col-lg-6">
+              <div className="form-group focused">
+                <label className="Create" htmlFor="input-last-name">
                   Date Of Employment
                 </label>
                 <input
                   type="date"
                   id="input-last-name"
-                  class="form-control form-control-alternative"
+                  name="dateOfEmployment"
+                  className="form-control form-control-alternative"
                   placeholder="Date Of Employment"
-                  value=""
+                  onChange={handleChange}
                 />
               </div>
             </div>
           </div>
         </div>
-        <hr class="my-4" />
-        <div class="pl-lg-4">
-          <div class="row">
-            <div class="col-md-12">
-              <div class="form-group focused">
-                <label
-                  className="Create"
-                  class="form-control-label"
-                  for="input-address"
-                >
+        <hr className="my-4" />
+        <div className="pl-lg-4">
+          <div className="row">
+            <div className="col-md-12">
+              <div className="form-group focused">
+                <label className="Create" htmlFor="input-address">
                   Location
                 </label>
                 <input
                   id="input-address"
-                  class="form-control form-control-alternative"
+                  className="form-control form-control-alternative"
                   placeholder="Enter Location"
-                  value=""
+                  name="location"
+                  onChange={handleChange}
                   type="text"
                 />
               </div>
             </div>
           </div>
-          <div class="row">
-            <div class="col-lg-4">
-              <div class="form-group focused">
-                <label
-                  className="Create"
-                  class="form-control-label"
-                  for="input-city"
-                >
+          <div className="row">
+            <div className="col-lg-4">
+              <div className="form-group focused">
+                <label className="Create" htmlFor="input-city">
                   Description
                 </label>
                 <input
                   type="text"
                   id="input-city"
-                  class="form-control form-control-alternative"
+                  className="form-control form-control-alternative"
                   placeholder="Description"
-                  value=""
+                  name="description"
+                  onChange={handleChange}
                 />
               </div>
             </div>
-            <div class="col-lg-4">
-              <div class="form-group focused">
-                <label
-                  className="Create"
-                  class="form-control-label"
-                  for="input-country"
-                >
+            <div className="col-lg-4">
+              <div className="form-group focused">
+                <label className="Create" htmlFor="input-country">
                   School
                 </label>
                 <input
                   type="text"
                   id="input-country"
-                  class="form-control form-control-alternative"
+                  className="form-control form-control-alternative"
                   placeholder="School"
-                  value=""
+                  name="school"
+                  onChange={handleChange}
                 />
               </div>
             </div>
-            <div class="col-lg-4">
-              <div class="form-group">
-                <label
-                  className="Create"
-                  class="form-control-label"
-                  for="input-country"
-                >
+            <div className="col-lg-4">
+              <div className="form-group">
+                <label className="Create" htmlFor="input-country">
                   School Date
                 </label>
                 <input
                   type="Date"
                   id="input-postal-code"
-                  class="form-control form-control-alternative"
+                  name="schoolDate"
+                  className="form-control form-control-alternative"
                   placeholder="School Date"
+                  onChange={handleChange}
                 />
               </div>
             </div>
           </div>
         </div>
-        <hr class="my-4" />
-        <h6 className="Create" class="heading-small text-muted mb-4">
-          Media
-        </h6>
-        <div class="pl-lg-4">
-          <div class="form-group focused">
+        <hr className="my-4" />
+        <h6 className="Create">Media</h6>
+        <div className="pl-lg-4">
+          <div className="form-group focused">
             <label className="Create">Video or Image</label>
-            <form>
-              <div className="mb-3">
-                <Form.File id="formcheck-api-custom" custom>
-                  <Form.File.Input isValid />
-                  <Form.File.Label className="Button" data-browse="Add File">
-                    Add your file
-                  </Form.File.Label>
-                  <Form.Control.Feedback type="valid">
-                    You did it!
-                  </Form.Control.Feedback>
-                </Form.File>
-              </div>
-            </form>
+
+            <div className="mb-3">
+              <Form.File id="formcheck-api-custom" custom>
+                <Form.File.Input isValid onChange={handleChange} name="image" />
+                <Form.File.Label className="Button" data-browse="Add File">
+                  Add your file
+                </Form.File.Label>
+                <Form.Control.Feedback type="valid">
+                  You did it!
+                </Form.Control.Feedback>
+              </Form.File>
+            </div>
+
             <Button className="Create" variant="primary" type="submit">
               Submit
             </Button>
