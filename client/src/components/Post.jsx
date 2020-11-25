@@ -54,7 +54,7 @@ const Post = ({ handle, save }) => {
     <div className="post">
       <div className="post__top">
         <Avatar
-          onClick={() => history.push(`/profiles/${currentUser.user._id}`)}
+          onClick={() => history.push(`/profile/${currentUser.user._id}`)}
         />
         <form>
           <input
