@@ -13,13 +13,14 @@ const Post = ({ handle, save }) => {
   const [userData, setUserData] = useState('');
   const { setLoading, post, setPost, currentUser } = useContext(AppContext);
   const history = useHistory();
+
   useEffect(() => {
     axios
       .get('/users/all', {
         withCredentials: true
       })
       .then((response) => {
-        setUserData(response.data.images);
+        setUserData(response.data);
       })
       .catch((error) => {
         console.log(error);
@@ -89,17 +90,9 @@ const Post = ({ handle, save }) => {
         </div>
       </div>
       {userData &&
-        userData.map((user, index) => (
-          <Feed
-            key={index}
-            id={user._id}
-            avatar={user.avatar}
-            username={user.username}
-            caption={user.images.caption}
-            image={user.images.image}
-            time={user.images.createdAt}
-          />
-        ))}
+        userData.map((user) => {
+          return <Feed key={user.user._id} feed={user} />;
+        })}
     </div>
   );
 };
