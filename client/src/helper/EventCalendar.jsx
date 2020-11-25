@@ -5,7 +5,10 @@ import { ViewState } from '@devexpress/dx-react-scheduler';
 import {
   Scheduler,
   MonthView,
-  Appointments
+  Toolbar,
+  DateNavigator,
+  Appointments,
+  TodayButton
 } from '@devexpress/dx-react-scheduler-material-ui';
 import axios from 'axios';
 
@@ -42,7 +45,11 @@ const EventCalendar = () => {
     <div>
       <Paper>
         <Scheduler data={events}>
+          <ViewState />
           <MonthView />
+          <Toolbar />
+          <DateNavigator />
+          <TodayButton />
           <Appointments />
         </Scheduler>
       </Paper>
