@@ -1,4 +1,5 @@
-import React from 'react';
+import React, { useContext } from 'react';
+import { AppContext } from '../context/AppContext';
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
 import Post from '../components/Post';
@@ -7,12 +8,15 @@ import Container from '@material-ui/core/Container';
 
 const Home = ({ history }) => {
   return (
-    <Container maxWidth="md">
-      <div className="home__body">
-        <Post />
-        <Feed />
-      </div>
-    </Container>
+    <>
+      <Navbar />
+      <Container maxWidth="md">
+        <div className="home__body">
+          <Post />
+          <Feed />
+        </div>
+      </Container>
+    </>
   );
 };
 

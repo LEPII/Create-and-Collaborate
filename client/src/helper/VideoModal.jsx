@@ -25,7 +25,7 @@ export default function ImageModal() {
   const classes = useStyles();
   let { id } = useParams();
   const [open, setOpen] = React.useState(false);
-  const [images, setImages] = useState([]);
+  const [videos, setVideos] = useState([]);
 
   const handleOpen = () => {
     setOpen(true);
@@ -37,19 +37,21 @@ export default function ImageModal() {
 
   useEffect(() => {
     axios
-      .get(`/gallery/images/${id}`, { withCredentials: true })
+      .get(`/gallery/videos/${id}`, { withCredentials: true })
       .then((response) => {
-        setImages(response.data);
+        setVideos(response.data);
       })
       .catch((error) => {
         console.log(error);
       });
-  }, [setImages]);
+  }, [setVideos]);
+
+  console.log(videos);
 
   return (
     <div>
       <button className="signup" type="button" onClick={handleOpen}>
-        Images
+        Videos
       </button>
       <Modal
         className={classes.modal}
@@ -62,17 +64,25 @@ export default function ImageModal() {
         }}
       >
         <div className={classes.paper}>
-          <Carousel fade>
-            {images?.map((image) => {
+          <Carousel fade id="carouselInterval">
+            {videos?.map((video) => {
               return (
-                <Carousel.Item>
-                  <img src={image.image} alt={image.caption} />
+                <Carousel.Item data-interval="5000">
+                  <video
+                    autoPlay
+                    loop
+                    style={{
+                      width: '40vw',
+                      height: '50vh',
+                      objectFit: 'fill'
+                    }}
+                  >
+                    <source src={video.video} type="video/mp4" />
+                  </video>
                 </Carousel.Item>
               );
             })}
           </Carousel>
-
-          {/* <img src={images.image} /> */}
         </div>
       </Modal>
     </div>

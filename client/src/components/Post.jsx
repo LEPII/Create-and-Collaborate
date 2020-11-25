@@ -10,7 +10,7 @@ import '../Post.css';
 import { useHistory } from 'react-router-dom';
 
 const Post = ({ handle, save }) => {
-  const [userData, setUserData] = useState('');
+  const [userData, setUserData] = useState([]);
   const { setLoading, post, setPost, currentUser } = useContext(AppContext);
   const history = useHistory();
 
@@ -26,7 +26,6 @@ const Post = ({ handle, save }) => {
         console.log(error);
       });
   }, [setUserData]);
-  console.log(userData);
 
   const handleChange = (e) => {
     setPost({ ...post, [e.target.name]: e.target.value });
@@ -88,7 +87,9 @@ const Post = ({ handle, save }) => {
         </div>
       </div>
       {userData &&
+
         userData?.map((user) => {
+
           return <Feed key={user.user._id} feed={user} />;
         })}
     </div>
