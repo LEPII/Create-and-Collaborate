@@ -8,18 +8,18 @@ import swal from 'sweetalert';
 const UserEditForm = () => {
   const history = useHistory();
   const [formData, setFormData] = useState(null);
+  const [mentor, setMentor] = useState(false);
   const { setCurrentUser, currentUser } = useContext(AppContext);
 
   const handleChange = (event) => {
     setFormData({ ...formData, [event.target.name]: event.target.value });
-    console.log(formData);
-    console.log(event);
   };
-
+  console.log(formData);
+  console.log(mentor);
   const handleLogin = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.patch('/users/me', formData);
+      const response = await axios.patch('/users/me', { ...formData, mentor });
       setCurrentUser(response.data);
       sessionStorage.setItem('user', response.data);
       history.push(`/profile/${currentUser.user._id}`);
@@ -27,16 +27,16 @@ const UserEditForm = () => {
       swal(`Oops!`, 'Something went wrong.');
     }
   };
-  console.log(currentUser);
+
   return (
     <div class="card-body">
-      <form>
+      <form onSubmit={handleLogin}>
         <h6 className="Create">User information</h6>
         <div class="pl-lg-4">
           <div class="row">
             <div class="col-lg-6">
               <div class="form-group focused">
-                <label className="Create" for="input-username">
+                <label className="Create" htmlFor="input-username">
                   Username
                 </label>
                 <input
@@ -52,7 +52,7 @@ const UserEditForm = () => {
             </div>
             <div class="col-lg-6">
               <div class="form-group">
-                <label className="Create" for="input-email">
+                <label className="Create" htmlFor="input-email">
                   Email address
                 </label>
                 <input
@@ -118,7 +118,7 @@ const UserEditForm = () => {
         <div class="pl-lg-4">
           <div class="row">
             <div class="col-md-12">
-              <div class="form-group focused">
+              {/* <div class="form-group focused">
                 <label className="Create" for="input-address">
                   Address
                 </label>
@@ -130,7 +130,7 @@ const UserEditForm = () => {
                   name="location"
                   onChange={handleChange}
                 />
-              </div>
+              </div> */}
             </div>
           </div>
           <div class="row">
@@ -150,7 +150,7 @@ const UserEditForm = () => {
               </div>
             </div>
             <div class="col-lg-4">
-              <div class="form-group focused">
+              {/* <div class="form-group focused">
                 <label className="Create" for="input-country">
                   Country
                 </label>
@@ -162,10 +162,10 @@ const UserEditForm = () => {
                   name="location"
                   onChange={handleChange}
                 />
-              </div>
+              </div> */}
             </div>
             <div class="col-lg-4">
-              <div class="form-group">
+              {/* <div class="form-group">
                 <label className="Create" for="input-country">
                   Postal code
                 </label>
@@ -177,14 +177,15 @@ const UserEditForm = () => {
                   name="location"
                   onChange={handleChange}
                 />
-              </div>
+              </div> */}
               <Form.Group controlId="formBasicCheckbox">
                 <Form.Check
                   className="Create"
                   type="checkbox"
                   label="Mentor"
                   name="mentor"
-                  onChange={handleChange}
+                  // defaultValue={mentor}
+                  onChange={() => setMentor(!mentor)}
                 />
               </Form.Group>
             </div>
@@ -201,12 +202,7 @@ const UserEditForm = () => {
               name="bio"
               onChange={handleChange}
             ></textarea>
-            <Button
-              className="Create"
-              variant="primary"
-              type="submit"
-              onClick={handleLogin}
-            >
+            <Button className="Create" variant="primary" type="submit">
               Submit
             </Button>
           </div>
