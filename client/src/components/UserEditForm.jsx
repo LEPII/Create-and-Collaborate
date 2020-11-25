@@ -1,47 +1,68 @@
-import React from 'react';
+import React, { useState, useContext } from 'react';
 import { Form, Button } from 'react-bootstrap';
+import { useHistory } from 'react-router-dom';
+import { AppContext } from '../context/AppContext';
+import axios from 'axios';
+import swal from 'sweetalert';
 
 const UserEditForm = () => {
+  const history = useHistory();
+  const [formData, setFormData] = useState(null);
+  const { setCurrentUser, currentUser } = useContext(AppContext);
+
+  const handleChange = (event) => {
+    setFormData({ ...formData, [event.target.name]: event.target.value });
+    console.log(formData);
+    console.log(event);
+  };
+
+  const handleLogin = async (e) => {
+    e.preventDefault();
+    try {
+      const response = await axios.patch('/users/me', formData);
+      setCurrentUser(response.data);
+      sessionStorage.setItem('user', response.data);
+      history.push(`/profile/${currentUser.user._id}`);
+    } catch (error) {
+      swal(`Oops!`, 'Something went wrong.');
+    }
+  };
+  console.log(currentUser);
   return (
     <div class="card-body">
       <form>
-        <h6 className="Create" class="heading-small text-muted mb-4">
-          User information
-        </h6>
+        <h6 className="Create">User information</h6>
         <div class="pl-lg-4">
           <div class="row">
             <div class="col-lg-6">
               <div class="form-group focused">
-                <label
-                  className="Create"
-                  class="form-control-label"
-                  for="input-username"
-                >
+                <label className="Create" for="input-username">
                   Username
                 </label>
                 <input
+                  defaultValue={currentUser?.user?.username}
                   type="text"
                   id="input-username"
+                  name="username"
                   class="form-control form-control-alternative"
                   placeholder="Username"
-                  value="lucky.jesse"
+                  onChange={handleChange}
                 />
               </div>
             </div>
             <div class="col-lg-6">
               <div class="form-group">
-                <label
-                  className="Create"
-                  class="form-control-label"
-                  for="input-email"
-                >
+                <label className="Create" for="input-email">
                   Email address
                 </label>
                 <input
+                  defaultValue={currentUser?.user?.email}
                   type="email"
                   id="input-email"
+                  name="email"
                   class="form-control form-control-alternative"
-                  placeholder="jesse@example.com"
+                  placeholder="Enter Email"
+                  onChange={handleChange}
                 />
               </div>
             </div>
@@ -49,38 +70,22 @@ const UserEditForm = () => {
           <div class="row">
             <div class="col-lg-6">
               <div class="form-group focused">
-                <label
-                  className="Create"
-                  class="form-control-label"
-                  for="input-first-name"
-                >
-                  First name
+                <label className="Create" for="input-first-name">
+                  Name
                 </label>
                 <input
+                  defaultValue={currentUser?.user?.name}
                   type="text"
                   id="input-first-name"
+                  name="name"
                   class="form-control form-control-alternative"
-                  placeholder="First name"
-                  value="Lucky"
+                  placeholder="Name"
+                  onChange={handleChange}
                 />
               </div>
             </div>
             <div class="col-lg-6">
               <div class="form-group focused">
-                <label
-                  className="Create"
-                  class="form-control-label"
-                  for="input-last-name"
-                >
-                  Last name
-                </label>
-                <input
-                  type="text"
-                  id="input-last-name"
-                  class="form-control form-control-alternative"
-                  placeholder="Last name"
-                  value="Jesse"
-                />
                 <div>
                   <Form.Group controlId="exampleForm.ControlSelect2">
                     <Form.Label className="Create">Art Category</Form.Label>
@@ -109,26 +114,21 @@ const UserEditForm = () => {
           </div>
         </div>
         <hr class="my-4" />
-        <h6 className="Create" class="heading-small text-muted mb-4">
-          Contact information
-        </h6>
+        <h6 className="Create">Contact information</h6>
         <div class="pl-lg-4">
           <div class="row">
             <div class="col-md-12">
               <div class="form-group focused">
-                <label
-                  className="Create"
-                  class="form-control-label"
-                  for="input-address"
-                >
+                <label className="Create" for="input-address">
                   Address
                 </label>
                 <input
                   id="input-address"
                   class="form-control form-control-alternative"
                   placeholder="Home Address"
-                  value="Bld Mihail Kogalniceanu, nr. 8 Bl 1, Sc 1, Ap 09"
                   type="text"
+                  name="location"
+                  onChange={handleChange}
                 />
               </div>
             </div>
@@ -136,11 +136,7 @@ const UserEditForm = () => {
           <div class="row">
             <div class="col-lg-4">
               <div class="form-group focused">
-                <label
-                  className="Create"
-                  class="form-control-label"
-                  for="input-city"
-                >
+                <label className="Create" for="input-city">
                   City
                 </label>
                 <input
@@ -148,17 +144,14 @@ const UserEditForm = () => {
                   id="input-city"
                   class="form-control form-control-alternative"
                   placeholder="City"
-                  value="New York"
+                  name="location"
+                  onChange={handleChange}
                 />
               </div>
             </div>
             <div class="col-lg-4">
               <div class="form-group focused">
-                <label
-                  className="Create"
-                  class="form-control-label"
-                  for="input-country"
-                >
+                <label className="Create" for="input-country">
                   Country
                 </label>
                 <input
@@ -166,17 +159,14 @@ const UserEditForm = () => {
                   id="input-country"
                   class="form-control form-control-alternative"
                   placeholder="Country"
-                  value="United States"
+                  name="location"
+                  onChange={handleChange}
                 />
               </div>
             </div>
             <div class="col-lg-4">
               <div class="form-group">
-                <label
-                  className="Create"
-                  class="form-control-label"
-                  for="input-country"
-                >
+                <label className="Create" for="input-country">
                   Postal code
                 </label>
                 <input
@@ -184,25 +174,39 @@ const UserEditForm = () => {
                   id="input-postal-code"
                   class="form-control form-control-alternative"
                   placeholder="Postal code"
+                  name="location"
+                  onChange={handleChange}
                 />
               </div>
+              <Form.Group controlId="formBasicCheckbox">
+                <Form.Check
+                  className="Create"
+                  type="checkbox"
+                  label="Mentor"
+                  name="mentor"
+                  onChange={handleChange}
+                />
+              </Form.Group>
             </div>
           </div>
         </div>
         <hr class="my-4" />
-        <h6 className="Create" class="heading-small text-muted mb-4">
-          About me
-        </h6>
+        <h6 className="Create">About me</h6>
         <div class="pl-lg-4">
           <div class="form-group focused">
             <textarea
               rows="4"
               class="form-control form-control-alternative"
               placeholder="A few words about you ..."
+              name="bio"
+              onChange={handleChange}
+            ></textarea>
+            <Button
+              className="Create"
+              variant="primary"
+              type="submit"
+              onClick={handleLogin}
             >
-              A beautiful Dashboard for Bootstrap 4. It is Free and Open Source.
-            </textarea>
-            <Button className="Create" variant="primary" type="submit">
               Submit
             </Button>
           </div>

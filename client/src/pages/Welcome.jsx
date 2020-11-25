@@ -7,11 +7,11 @@ import axios from 'axios';
 
 const Welcome = () => {
   return (
-    <>
+    <div className="jobContainer">
       <CoverImage />
       <DropDownIcon />
       <Footer />
-    </>
+    </div>
   );
 };
 

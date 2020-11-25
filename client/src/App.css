@@ -12,3 +12,47 @@
   border-radius: 20px;
   width: 100px;
 }
+
+/* WELCOME PAGE */
+.jobContainer {
+  background-image: linear-gradient(
+    to right top,
+    #a93ccf,
+    #9538ca,
+    #8034c4,
+    #6a31be,
+    #512eb8,
+    #403fc2,
+    #2b4dca,
+    #005ad0,
+    #0079e1,
+    #0094eb,
+    #00aeee,
+    #0dc6ee
+  );
+}
+
+.Create {
+  color: #f4ac33;
+}
+/* END */
+
+/* USER EDIT FORM */
+.UserEditForm {
+  background-image: linear-gradient(
+    to right top,
+    #a93ccf,
+    #9538ca,
+    #8034c4,
+    #6a31be,
+    #512eb8,
+    #403fc2,
+    #2b4dca,
+    #005ad0,
+    #0079e1,
+    #0094eb,
+    #00aeee,
+    #0dc6ee
+  );
+}
+/* END */
