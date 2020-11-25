@@ -45,9 +45,7 @@ const dbReset = async () => {
       admin: Boolean(Math.round(Math.random())),
       email: faker.internet.email(),
       password: faker.internet.password(),
-
       avatar: faker.image.cats(),
-
       header: faker.image.nightlife(),
       bio: faker.lorem.paragraph(),
       location: faker.address.stateAbbr(),
@@ -60,8 +58,8 @@ const dbReset = async () => {
   for (let i = 0; i < 10; i++) {
     const event = new Event({
       description: faker.lorem.sentence(),
-      datePassedCompleted: Boolean(Math.round(Math.random())),
-      dateOfEvent: faker.date.future(),
+      endDate: faker.date.future(),
+      startDate: faker.date.future(),
       hostedBy: userIdArray[Math.floor(Math.random() * userIdArray.length)],
       location: faker.address.streetAddress(),
       image: faker.image.nightlife(),
