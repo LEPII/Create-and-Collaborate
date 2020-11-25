@@ -84,7 +84,7 @@
 }
 
 .profPic {
-  height: 125px;
+  height: 200px;
 }
 
 .fixSpace {
@@ -129,8 +129,8 @@
   height: 25vh;
   min-height: 25vh;
   min-width: 22vw;
-  width: 22vw;
-  right: 635px;
+  width: 26vw;
+  right: 560px;
   top: 500px;
 }
 
@@ -153,4 +153,38 @@
   width: 25vw;
   right: 576px;
   top: 500px;
+}
+
+.mentor-emblem {
+  height: 150px;
+  width: 150px;
+  position: absolute;
+  left: 40px;
+  top: 20px;
+}
+
+.student-emblem {
+  height: 150px;
+  width: 150px;
+  position: absolute;
+  left: 40px;
+  top: 20px;
+}
+
+.mentor-emblem h6 {
+  position: absolute;
+  bottom: -40px;
+  left: 48px;
+}
+
+.student-emblem h6 {
+  position: absolute;
+  bottom: -40px;
+  left: 42px;
+}
+
+.mentor img {
+  height: 150px;
+  position: absolute;
+  top: 0.55px;
 }

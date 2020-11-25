@@ -22,7 +22,9 @@ const ProfileHead = () => {
       });
   }, [setUser]);
 
-  console.log(user);
+  const follow = () => {
+    axios.post(`/users/${id}`, { withCredentials: true });
+  };
 
   return (
     <>
@@ -35,7 +37,11 @@ const ProfileHead = () => {
           <img className="profPic fixSpace" src={user.avatar} alt="user" />
         </div>
         <div>
-          <button type="button" class="btn btn-primary fixSpace">
+          <button
+            type="button"
+            onClick={follow}
+            class="btn btn-primary fixSpace"
+          >
             Connect
           </button>
         </div>
@@ -52,12 +58,7 @@ const ProfileHead = () => {
         </div>
       </div>
       <div className="mentor">
-        <div>
-          {/* {user.mentor = true
-          ? <Mentor />
-          : <Student/>
-          } */}
-        </div>
+        <div>{user.mentor ? <Mentor /> : <Student />}</div>
         <div className="info">
           <h3>{user?.name}</h3>
           <h5>{user?.location}</h5>
