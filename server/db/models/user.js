@@ -107,7 +107,7 @@ userSchema.virtual('images', {
   foreignField: 'hostedBy'
 });
 
-userSchema.virtual('portfolios', {
+userSchema.virtual('portfolio', {
   ref: 'Portfolio',
   localField: '_id',
   foreignField: 'hostedBy'

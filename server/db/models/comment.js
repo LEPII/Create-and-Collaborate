@@ -5,8 +5,10 @@ const commentSchema = new mongoose.Schema(
     body: {
       type: String,
       required: true
-    }
+    },
+    hostedBy: { type: mongoose.Schema.Types.ObjectId, ref: 'User' }
   },
+
   {
     timestamps: true
   }

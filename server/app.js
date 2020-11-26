@@ -40,8 +40,7 @@ app.use('/portfolios', portfolioRouter);
 app.use('/events', eventRouter);
 app.use('/jobs', jobRoutes);
 app.use('/gallery', galleryRoutes);
-app.use('/gallery/images/:id', commentRoutes);
-app.use('/gallery/videos/:id', commentRoutes);
+app.use('/gallery/comment', commentRoutes);
 
 // Handle React routing, return all requests to React app
 if (process.env.NODE_ENV === 'production') {

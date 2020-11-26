@@ -114,12 +114,10 @@ const dbReset = async () => {
   }
   //Loop 10 times and create 10 new images
   for (let i = 0; i < 10; i++) {
-    const image = new Image({
-      image: faker.image.nightlife(),
-      caption: faker.lorem.words(),
-      hostedBy: userIdArray[Math.floor(Math.random() * userIdArray.length)]
+    const comment = new Comment({
+      body: faker.lorem.words()
     });
-    await image.save();
+    await comment.save();
   }
   //Loop 10 times and create 10 new videos
   for (let i = 0; i < 10; i++) {
