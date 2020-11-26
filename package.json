@@ -29,6 +29,7 @@
     "react-bootstrap": "^1.4.0",
     "react-router-dom": "^5.2.0",
     "sweetalert": "^2.1.2",
+    "twilio": "^3.52.0",
     "validator": "^13.1.17"
   },
   "engines": {
