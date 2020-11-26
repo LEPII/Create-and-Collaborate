@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import '../jobs.css';
 import axios from 'axios';
 import { Card } from 'react-bootstrap';
+import { Link } from 'react-router-dom';
 import JobSearch from './JobSearch';
 
 const JobGrid = () => {
@@ -18,31 +19,39 @@ const JobGrid = () => {
         console.log(error);
       });
   }, [setJobs]);
+  console.log(jobs);
 
   const handleSearch = (searchTerm) => {
     setSearchValue(searchTerm);
   };
 
-  const filteredJobs =
-    jobs && jobs.filter((jobs) => jobs.title.includes(searchValue));
+  const filteredJobs = jobs?.filter((job) => {
+    return job.title.toLowerCase().includes(searchValue.toLowerCase());
+  });
 
   return (
     <div className="jobContainer">
       <Card>
         <Card.Img
           variant="top"
-          src="https://s3-alpha-sig.figma.com/img/446f/a110/d306f50e0cd7130e7e25a7c39684e75c?Expires=1607299200&Signature=LFB8H44WlYI4-IG3OAbPKuuxatl17N9CnPORojaLOUECTJvK5X5ND12FKgwWf6XlVyfSHOrVxKpZuOuOO9NoQpQIbHN0kHOiOGktKGHDL1Wbcj9tVinAC~wiZ~tWAWtl1-UAHVJZR-MhWmGVybcNF~uA10X7J~jeWKu1UIWvSjengUd9nnREAy95~unalPyowfX4aBAl7QGeoMNx00yWrqCJ3AqoGx7L1gk0IWj7G5GhA9qCq-cGAZk6KyyhOy4gFsZ4dthgSZ38R3Tptbrs9UQd0quvcFDP5yXxoJKIVfFQRUDLHwhNb0d0S4~lSa6lOuUpFF-ABgDQKDvWYbK8Ig__&Key-Pair-Id=APKAINTVSUGEWH5XD5UA"
+          src="https://s3-alpha-sig.figma.com/img/214d/30e1/f96fbe50eb065fa3d577174f8df52c02?Expires=1607299200&Signature=Qp-mhTP9sUzg5hm6VmaUQEmnZK-JBKXLiTce3GPxVGfcIPotk4xj6nS~eyI7Bfz~ZbXLkGdNhUUDXI4XrqDc2WOqAHLjaFp4AWdh1L9nVJiHGlajo4S6dBrVxLAYIwXBpjfqK5x77jjAKUPcwdLX6E0z65dyH10dxbICcWQ1bh8yg-tMi07C8sSBjY2lfaH9L8GihVLp5ITiy8kdqm0-GzFmobrfA1ydHLUDf4bdwS9CtN36PN~KzuUYVBti0RYT7bgHiXN2VzRS05jR00M934TU9UL6WpSapmROSY8Tv2il7jsLaw2X7dKszdHr~5lvukUdhES3tdVT~TpT1YpPLQ__&Key-Pair-Id=APKAINTVSUGEWH5XD5UA"
+          style={{ width: '100%', height: 400 }}
         />
       </Card>
-      <div class="table ">
+      <div class="container ">
         <JobSearch handleSearch={handleSearch} />
         {jobs &&
           filteredJobs.map((job) => {
             return (
-              <table className="container gridInnards">
+              <table className="table gridInnards">
                 <tbody>
                   <tr>
-                    <th scope="row">{job.compensation}</th>
+                    <th scope="row">
+                      {job.compensation}
+                      <a href={`/profiles/${job.hostedBy}`}>
+                        <button>Host</button>
+                      </a>
+                    </th>
                     <td>{job.title}</td>
                     <td colSpan="2">
                       Lorem ipsum dolor sit amet consectetur, adipisicing elit.
