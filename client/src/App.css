@@ -56,3 +56,12 @@
   );
 }
 /* END */
+
+@media only screen and (max-width: 600px) {
+  .card {
+    display: flex;
+  }
+  .card-body {
+    width: 50%;
+  }
+}

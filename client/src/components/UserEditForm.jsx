@@ -84,6 +84,17 @@ const UserEditForm = () => {
                 />
               </div>
             </div>
+            <div class="col-lg-4">
+              <Form.Group controlId="formBasicCheckbox">
+                <Form.Check
+                  className="Create"
+                  type="checkbox"
+                  label="Mentor"
+                  name="mentor"
+                  onChange={() => setMentor(!mentor)}
+                />
+              </Form.Group>
+            </div>
             <div class="col-lg-6">
               <div class="form-group focused">
                 <div>
@@ -113,25 +124,9 @@ const UserEditForm = () => {
             </div>
           </div>
         </div>
-        <hr class="my-4" />
-        <h6 className="Create">Contact information</h6>
         <div class="pl-lg-4">
           <div class="row">
-            <div class="col-md-12">
-              {/* <div class="form-group focused">
-                <label className="Create" for="input-address">
-                  Address
-                </label>
-                <input
-                  id="input-address"
-                  class="form-control form-control-alternative"
-                  placeholder="Home Address"
-                  type="text"
-                  name="location"
-                  onChange={handleChange}
-                />
-              </div> */}
-            </div>
+            <div class="col-md-12"></div>
           </div>
           <div class="row">
             <div class="col-lg-4">
@@ -149,46 +144,7 @@ const UserEditForm = () => {
                 />
               </div>
             </div>
-            <div class="col-lg-4">
-              {/* <div class="form-group focused">
-                <label className="Create" for="input-country">
-                  Country
-                </label>
-                <input
-                  type="text"
-                  id="input-country"
-                  class="form-control form-control-alternative"
-                  placeholder="Country"
-                  name="location"
-                  onChange={handleChange}
-                />
-              </div> */}
-            </div>
-            <div class="col-lg-4">
-              {/* <div class="form-group">
-                <label className="Create" for="input-country">
-                  Postal code
-                </label>
-                <input
-                  type="number"
-                  id="input-postal-code"
-                  class="form-control form-control-alternative"
-                  placeholder="Postal code"
-                  name="location"
-                  onChange={handleChange}
-                />
-              </div> */}
-              <Form.Group controlId="formBasicCheckbox">
-                <Form.Check
-                  className="Create"
-                  type="checkbox"
-                  label="Mentor"
-                  name="mentor"
-                  // defaultValue={mentor}
-                  onChange={() => setMentor(!mentor)}
-                />
-              </Form.Group>
-            </div>
+            <div class="col-lg-4"></div>
           </div>
         </div>
         <hr class="my-4" />
