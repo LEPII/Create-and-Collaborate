@@ -33,8 +33,8 @@ const NavBar = () => {
       <Navbar.Toggle aria-controls="responsive-navbar-nav" />
       <Navbar.Collapse id="responsive-navbar-nav">
         <Nav className="mr-auto">
-          <Nav.Link href="jobs">Gigs</Nav.Link>
-          <Nav.Link href="events">Events</Nav.Link>
+          <Nav.Link href="/jobs">Gigs</Nav.Link>
+          <Nav.Link href="/events">Events</Nav.Link>
         </Nav>
         <Nav>
           <NavDropdown

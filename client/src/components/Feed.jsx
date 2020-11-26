@@ -8,7 +8,7 @@ import { useHistory } from 'react-router-dom';
 
 const Feed = ({ feed }) => {
   const history = useHistory();
-
+  console.log(feed);
   // let imagess = feed?.images;
   // console.log(imagess)
   // let filteredFeed = imagess.filter(function (el) {
@@ -37,25 +37,30 @@ const Feed = ({ feed }) => {
   //   return e.length;
   // });
 
-  console.log(feed);
+  console.log(feed?.user[0].avatar);
   return (
     <div className="feed">
       <div className="feed__top">
         <Avatar
-          src={feed?.user.avatar}
-          onClick={() => history.push(`/profiles/${feed.user._id}`)}
+          src={feed?.user[0].avatar}
+          onClick={() => history.push(`/profile/${feed.user[0]._id}`)}
           className="feed__avatar"
         />
         <div className="feed__topInfo">
-          <h3>{feed?.user.username}</h3>
-          <p>{feed?.images[0]?.createdAt}</p>
+          <h3
+            onClick={() => history.push(`/profile/${feed.user[0]._id}`)}
+            className="feed__username"
+          >
+            {feed?.user[0]?.username}{' '}
+          </h3>
+          <p>{feed?.images?.createdAt}</p>
         </div>
       </div>
       <div className="feed__bottom">
-        <p>{feed?.images[0]?.caption}</p>
+        <p>{feed?.images?.caption}</p>
       </div>
       <div className="feed__image">
-        <img src={feed?.images[0]?.image} alt={feed?.images.caption} />
+        <img src={feed?.images.image} alt={feed?.images.caption} />
       </div>
       <div className="feed__options">
         <div className="feed__option">

@@ -15,6 +15,11 @@
 
 .feed__avatar {
   margin-right: 10px;
+  cursor: pointer;
+}
+
+.feed__username {
+  cursor: pointer;
 }
 
 .feed__topInfo > h3 {
