@@ -3,7 +3,6 @@ import axios from 'axios';
 import '../profile.css';
 import { useParams } from 'react-router-dom';
 import { Card } from 'react-bootstrap';
-import Footer from '../components/Footer';
 import Mentor from '../helper/Mentor';
 import Student from '../helper/Student';
 
@@ -64,7 +63,6 @@ const ProfileHead = () => {
           <h5>{user?.location}</h5>
         </div>
       </div>
-      <Footer className="foot" />
     </>
   );
 };
