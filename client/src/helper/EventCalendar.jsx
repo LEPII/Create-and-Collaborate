@@ -8,7 +8,8 @@ import {
   Toolbar,
   DateNavigator,
   Appointments,
-  TodayButton
+  TodayButton,
+  AppointmentTooltip
 } from '@devexpress/dx-react-scheduler-material-ui';
 import axios from 'axios';
 
@@ -25,21 +26,7 @@ const EventCalendar = () => {
         console.log(error);
       });
   }, [setEvents]);
-
   console.log(events);
-
-  const schedulerData = [
-    {
-      startDate: '2018-11-01T09:45',
-      endDate: '2018-11-01T11:00',
-      title: 'Meeting'
-    },
-    {
-      startDate: '2018-11-01T12:00',
-      endDate: '2018-11-01T13:30',
-      title: 'Go to a gym'
-    }
-  ];
 
   return (
     <div>
@@ -51,6 +38,7 @@ const EventCalendar = () => {
           <DateNavigator />
           <TodayButton />
           <Appointments />
+          <AppointmentTooltip showCloseButton />
         </Scheduler>
       </Paper>
     </div>

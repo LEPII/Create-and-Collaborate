@@ -10,7 +10,7 @@ function Events() {
     <>
       <Navbar />
       <EventsHead />
-      <EventSearch />
+      {/* <EventSearch /> */}
       <EventCalendar />
       {/* <Footer /> */}
     </>
