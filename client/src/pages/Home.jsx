@@ -8,7 +8,7 @@ import Container from '@material-ui/core/Container';
 
 const Home = ({ history }) => {
   return (
-    <>
+    <div className="jobContainer">
       <Navbar />
       <Container maxWidth="md">
         <div className="home__body">
@@ -16,7 +16,7 @@ const Home = ({ history }) => {
           <Feed />
         </div>
       </Container>
-    </>
+    </div>
   );
 };
 

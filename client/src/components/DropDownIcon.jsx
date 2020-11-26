@@ -24,6 +24,7 @@ const DropDownIcon = () => {
         <Card.Img
           variant="top"
           src="https://s3-alpha-sig.figma.com/img/49c1/f942/36a4e7a5e47ab9ebbe058d3ea5fabe62?Expires=1607299200&Signature=EUw9ZdOppz8U-3bDIdh5O0WMwvAQukUKeEYB8x6O~VfPr7SOXEX9LG2vZ7et5qHz~RFFBUo7lpRoNXMUzsyoreakkjwaJFg6-kxmy9fG8l17Iae1affSXvlGbmVFQYS5YphXkkgAkjhAKN5m0fw81fCZLY8PxzdxyF6dPFHehK7Ze6t5kfzjSdupJ0CW0WA9QJLsSkuojWTdnW7-qKE8DELpNwfQ5Pnt1iVqGPSes3aMZjmeQwvyLeRD4XNEBwz-o~ry4CQ9VVpKD3vt-yA49XNkYyQ4hLDdnih2SxZvRB6a4s7RZ4kG5l~QmybQTi-utJEkgo5ODFKD78vSg2Zr3A__&Key-Pair-Id=APKAINTVSUGEWH5XD5UA"
+          style={{ width: 350, height: 335 }}
         />
         <Card.Body>
           <Card.Title className="Create">@Gloriadraws</Card.Title>
@@ -41,13 +42,13 @@ const DropDownIcon = () => {
         <Card.Img
           variant="top"
           src="https://s3-alpha-sig.figma.com/img/429b/9f44/d67b2e3828a2a8d63b4c44af2ff6a8f9?Expires=1607299200&Signature=VWPH8GiAkYidszoOzBiCKaKVPsBabBfaa9pXpXlDpCgNz8k86-9xQIp58v9e-ed8QqvpzWgBqyT4Y4MPxB3PRQFfquvGMAjOhFTNslQE2nwww7I69Sg5-v9symRw1WtETcJAkYx3eN2cAnNKFdv2j7qjvsy84fkJmF~gkmt0dkrVDJywFUPVI1yEMlx~APFROhJgcoe5Rse4mYdNzgZ5CnBrZrshC9OfuozUUY7mTZNyHqxuTPytRNHQpNYuZhFlTDiRi6zXYyxip1xx4oYIta18JlHKTaAmAMLUdO3jmBeYI4XhcLDVfUAJomURIPieZPIYYJGjXHoAxaC5AauFLQ__&Key-Pair-Id=APKAINTVSUGEWH5XD5UA"
+          style={{ width: 350, height: 335 }}
         />
         <Card.Body>
           <Card.Title className="Create">@Artareus</Card.Title>
           <Card.Text>
-            “Its like Linkedin for artist BUT better. C&C has allowed me to show
-            of my work as well as look for gigs & events in my area. This is
-            genius a must have for creatives”
+            “Create & Collaborate helped me find my next gig!! The process was
+            so simple and i can show off my work, this is awesome”
           </Card.Text>
         </Card.Body>
         <Card.Footer>
@@ -58,6 +59,7 @@ const DropDownIcon = () => {
         <Card.Img
           variant="top"
           src="https://s3-alpha-sig.figma.com/img/3dd0/3329/5b76e73e0f88b08e7f92b1bbffaba74d?Expires=1607299200&Signature=MyheMKB3GQep2HN-h18rKiwZVeGcb~e8r-7-vRRYITlxYs83Ty69C6ExYvR9MH2s3Y3X2pXmqBD2ByCoJnYPhjC5D-b9Erzwlab8T9ffjHCXw0NPL7Mli1Q0UPu9oU7Ym5NeZf9~Pvmy2MEsmdu-I~IA8TEoNN7EHQUDVcehcwHYuQhz2fzBQCBR9gyeLl8ZTEWs-gKt5642JwA3wlorMiekRvb1HqIO9wz1JJGLpFhovGfDiQuhxmERgiaOyC10enPOj4J6J00fdC2xk93H4Zw643v7ZDJDA~AMNXgvfLg5HGRChOdGxA3ZA~EBVCLwnTeGZ31eOmrvAJNvHPMCHw__&Key-Pair-Id=APKAINTVSUGEWH5XD5UA"
+          style={{ width: 350, height: 335 }}
         />
         <Card.Body>
           <Card.Title className="Create">@tashawazhere</Card.Title>
