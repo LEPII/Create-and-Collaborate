@@ -51,3 +51,12 @@
   background-position: center;
   background-size: auto;
 }
+
+.jobAvatar {
+  height: 55px;
+  width: 55px;
+  border-radius: 100%;
+  margin-top: 25px;
+  position: absolute;
+  left: 355px;
+}

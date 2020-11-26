@@ -6,7 +6,8 @@ import { Link } from 'react-router-dom';
 import JobSearch from './JobSearch';
 
 const JobGrid = () => {
-  const [jobs, setJobs] = useState(null);
+  const [jobs, setJobs] = useState([]);
+  const [users, setUsers] = useState([]);
   const [searchValue, setSearchValue] = useState('');
 
   useEffect(() => {
@@ -14,19 +15,20 @@ const JobGrid = () => {
       .get('/jobs', { withCredentials: true })
       .then((response) => {
         setJobs(response.data);
+        setUsers(response.data);
+        console.log(response.data[0].user[0].avatar);
       })
       .catch((error) => {
         console.log(error);
       });
   }, [setJobs]);
-  console.log(jobs);
 
   const handleSearch = (searchTerm) => {
     setSearchValue(searchTerm);
   };
 
   const filteredJobs = jobs?.filter((job) => {
-    return job.title.toLowerCase().includes(searchValue.toLowerCase());
+    return job.job.title.toLowerCase().includes(searchValue.toLowerCase());
   });
 
   return (
@@ -47,12 +49,12 @@ const JobGrid = () => {
                 <tbody>
                   <tr>
                     <th scope="row">
-                      {job.compensation}
-                      <a href={`/profiles/${job.hostedBy}`}>
-                        <button>Host</button>
+                      ${job.job.compensation}
+                      <a href={`/profile/${job.job.hostedBy}`}>
+                        <img className="jobAvatar" src={job.user[0].avatar} />
                       </a>
                     </th>
-                    <td>{job.title}</td>
+                    <td>{job.job.title}</td>
                     <td colSpan="2">
                       Lorem ipsum dolor sit amet consectetur, adipisicing elit.
                       Laboriosam fuga repudiandae perferendis tempora minima
