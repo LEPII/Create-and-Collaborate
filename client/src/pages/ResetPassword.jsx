@@ -37,7 +37,7 @@ const ResetPassword = () => {
           </Button>
         </Form.Group>
       </Form>
-      <Link to="/login">Go back</Link>
+      <Link to="/">Go back</Link>
     </Container>
   );
 };
