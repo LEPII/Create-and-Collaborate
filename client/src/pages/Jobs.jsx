@@ -8,7 +8,7 @@ const Jobs = () => {
   return (
     <>
       <Navbar />
-      <SMS />
+      {/* <SMS /> */}
       <JobGrid />
       <Footer />
     </>
