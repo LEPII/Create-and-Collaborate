@@ -7,13 +7,13 @@ import EventSearch from '../components/EventSearch';
 
 function Events() {
   return (
-    <>
+    <div className="jobContainer">
       <Navbar />
       <EventsHead />
-      <EventSearch />
+      {/* <EventSearch /> */}
       <EventCalendar />
       {/* <Footer /> */}
-    </>
+    </div>
   );
 }
 

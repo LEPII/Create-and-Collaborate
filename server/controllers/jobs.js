@@ -72,7 +72,6 @@ exports.deleteJob = async (req, res) => {
   }
 };
 
-//Get all jobs
 exports.getAllJobs = async (req, res) => {
   try {
     const jobs = await Job.find().populate('user');
