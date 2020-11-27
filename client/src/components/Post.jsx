@@ -10,7 +10,7 @@ import '../Post.css';
 import { useHistory } from 'react-router-dom';
 import { Form, Button } from 'react-bootstrap';
 
-const Post = ({ handle, save }) => {
+const Post = () => {
   const [userData, setUserData] = useState([]);
   const { setLoading, post, setPost, currentUser } = useContext(AppContext);
   const history = useHistory();

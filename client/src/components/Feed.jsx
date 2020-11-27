@@ -8,34 +8,6 @@ import { useHistory } from 'react-router-dom';
 
 const Feed = ({ feed }) => {
   const history = useHistory();
-  console.log(feed);
-  // let imagess = feed?.images;
-  // console.log(imagess)
-  // let filteredFeed = imagess.filter(function (el) {
-  //   if imagess != null;
-  // });
-  // console.log(filteredFeed)
-  // function bouncer(arr) {
-  //     for (i = 0; i < arr.length; i++){
-  //         for (j=0; j<feed.length;j++) {
-  //            arr = arr.filter(x => x) {
-  //                  return val !== notAllowed[j];
-  //                 });
-  //    }
-  //   return arr;
-  //   }
-  ////////
-
-  // let realColors = imagess.filter(function (e) {return e != null;});
-
-  ////////
-
-  // const evens = imagess.filter(item => item != null);
-
-  ////////
-  // var result =  array.filter(function(e) {
-  //   return e.length;
-  // });
 
   console.log(feed?.user[0].avatar);
   return (
@@ -51,7 +23,7 @@ const Feed = ({ feed }) => {
             onClick={() => history.push(`/profile/${feed.user[0]._id}`)}
             className="feed__username"
           >
-            {feed?.user[0]?.username}{' '}
+            {feed?.user[0]?.username}
           </h3>
           <p>{feed?.images?.createdAt}</p>
         </div>

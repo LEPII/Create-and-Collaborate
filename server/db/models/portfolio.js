@@ -43,7 +43,7 @@ const portfolioSchema = new mongoose.Schema(
   }
 );
 
-portfolioSchema.virtual('portfolio', {
+portfolioSchema.virtual('user', {
   ref: 'User',
   localField: 'hostedBy',
   foreignField: '_id'

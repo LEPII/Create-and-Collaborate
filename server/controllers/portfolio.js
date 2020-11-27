@@ -56,9 +56,9 @@ exports.getAllPortfolio = async (req, res) => {
   try {
     const portfoliosAndUser = await Portfolio.find().populate('user');
 
-    const parsedPortfoliosAndUser = portfoliosAndUser.map((portfolios) => ({
-      user: portfolios.user,
-      portfolio: portfolios
+    const parsedPortfoliosAndUser = portfoliosAndUser.map((portfolio) => ({
+      user: portfolio.user,
+      portfolios: portfolio
     }));
     res.status(200).json(parsedPortfoliosAndUser);
   } catch (error) {

@@ -7,8 +7,8 @@ const express = require('express'),
   portfolioRouter = require('./routes/secure/portfolio'),
   eventRouter = require('./routes/secure/events'),
   jobRoutes = require('./routes/secure/jobs'),
+  likeRoutes = require('./routes/secure/likes'),
   galleryRoutes = require('./routes/secure/gallery'),
-  commentRoutes = require('./routes/secure/comments'),
   fileUpload = require('express-fileupload'),
   passport = require('./middleware/authentication/index');
 
@@ -40,7 +40,7 @@ app.use('/portfolios', portfolioRouter);
 app.use('/events', eventRouter);
 app.use('/jobs', jobRoutes);
 app.use('/gallery', galleryRoutes);
-app.use('/gallery/comment', commentRoutes);
+app.use('/likes', likeRoutes);
 
 // Handle React routing, return all requests to React app
 if (process.env.NODE_ENV === 'production') {

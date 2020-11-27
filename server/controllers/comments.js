@@ -1,33 +1,33 @@
-const Comment = require('../db/models/comment');
-const Image = require('../db/models/image');
-// ***********************************************//
-// Create a post
-// ***********************************************//
-exports.createComment = async (req, res) => {
-  try {
-    const comment = await new Comment({
-      hostedBy: req.user._id,
-      ...req.body
-    });
-    await comment.save();
-    const post = await Image.findById(req.params._id);
-    post.comments.push(comment._id);
-    await post.save();
-    await post.populate('comments', 'body').execPopulate();
-    res.status(200).json(post);
-  } catch (e) {
-    res.status(400).json({ error: e.message });
-  }
-};
+const express = require('express');
+const router = express.Router();
+const { Comment } = require('../models/comment');
 
-// ***********************************************//
-// Get all comments for a post
-// ***********************************************//
-exports.getAllComments = async (req, res) => {
-  try {
-    const comments = Comment.find();
-    res.status(200).json(comments);
-  } catch (e) {
-    res.status(200).json({ error: e.message });
-  }
-};
+//=================================
+//             Comment
+//=================================
+
+router.post('/saveComment', (req, res) => {
+  const comment = new Comment(req.body);
+
+  comment.save((err, comment) => {
+    if (err) return res.json({ success: false, err });
+
+    Comment.find({ _id: comment._id })
+      .populate('writer')
+      .exec((err, result) => {
+        if (err) return res.json({ success: false, err });
+        return res.status(200).json({ success: true, result });
+      });
+  });
+});
+
+router.post('/getComments', (req, res) => {
+  Comment.find({ postId: req.body.videoId })
+    .populate('writer')
+    .exec((err, comments) => {
+      if (err) return res.status(400).send(err);
+      res.status(200).json({ success: true, comments });
+    });
+});
+
+module.exports = router;
