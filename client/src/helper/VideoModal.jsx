@@ -46,8 +46,6 @@ export default function ImageModal() {
       });
   }, [setVideos]);
 
-  console.log(videos);
-
   return (
     <div>
       <button className="signup" type="button" onClick={handleOpen}>

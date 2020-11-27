@@ -37,7 +37,6 @@ const Feed = ({ feed }) => {
   //   return e.length;
   // });
 
-  console.log(feed);
   return (
     <div className="feed">
       <div className="feed__top">

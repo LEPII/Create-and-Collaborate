@@ -10,7 +10,6 @@ const User = require('../db/models/user'),
 
 //create a user
 exports.createUser = async (req, res) => {
-  console.log('im running');
   const { name, email, password, username } = req.body;
   try {
     const user = new User({
@@ -23,7 +22,6 @@ exports.createUser = async (req, res) => {
 
     sendWelcomeEmail(email, name);
     const token = await user.generateAuthToken();
-    console.log(token);
     res.cookie('jwt', token, {
       httpOnly: true,
       sameSite: 'Strict',
@@ -32,7 +30,6 @@ exports.createUser = async (req, res) => {
     res.status(201).json(user);
   } catch (e) {
     res.status(500).json({ error: e.message });
-    console.log(e);
   }
 };
 
