@@ -11,9 +11,15 @@ const CoverImage = () => {
       />
       <Card.ImgOverlay>
         <Card.Body>
-          <Card.Text className="Create">CREATE & COLLABORATE</Card.Text>
-          <Card.Text className="Create">Connecting with Artist </Card.Text>
-          <Card.Text className="Create">& the world around you!</Card.Text>
+          <Card.Text id="CCletters1" className="Create">
+            CREATE & COLLABORATE
+          </Card.Text>
+          <Card.Text id="CCletters2" className="Create">
+            Connecting with Artist{' '}
+          </Card.Text>
+          <Card.Text id="CCletters3" className="Create">
+            & the world around you!
+          </Card.Text>
           <LoginModal />
         </Card.Body>
       </Card.ImgOverlay>
