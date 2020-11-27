@@ -1,12 +1,16 @@
 const mongoose = require('mongoose');
 
-const jobSchema = new mongoose.Schema(
+const messageSchema = new mongoose.Schema(
   {
     text: {
       type: String,
       required: true
     },
-    hostedBy: {
+    to: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: 'User'
+    },
+    from: {
       type: mongoose.Schema.Types.ObjectId,
       ref: 'User'
     }
