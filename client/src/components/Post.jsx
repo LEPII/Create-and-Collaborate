@@ -25,16 +25,18 @@ const Post = () => {
     setVideo(e.target.files[0]);
   };
 
+  console.log(image);
+
   const handleSubmitFile = (e) => {
     e.preventDefault();
     const formData = new FormData();
     formData.append('ml_default', 'video');
-    formData.append('file', e.target.files[0]);
+    formData.append('image', e.target.files[0]);
     if (e.target.files[0].name.includes('mp4, mov')) {
       axios
         .post('/gallery/videos', formData)
         .then((res) => setVideo(res.data.secure_url));
-    } else {
+    } else if (e.target.files[0].name.includes('mp4, mov')) {
       axios
         .post('gallery/images', formData)
         .then((res) => setImage(res.data.secure.url));
@@ -56,6 +58,10 @@ const Post = () => {
 
   console.log(setUserData);
 
+  // const like = () => {
+  //   axios.post(`/likes/${id}`)
+  // }
+
   return (
     <div className="post__container">
       <div className="post">
@@ -64,7 +70,7 @@ const Post = () => {
             onClick={() => history.push(`/profile/${currentUser.user._id}`)}
           />
 
-          <form>
+          <form onSubmit={handleSubmitFile}>
             <input
               onChange={handleChange}
               className="post__input"
@@ -75,47 +81,49 @@ const Post = () => {
               className="post__input"
               placeholder={`Image or Video URL (Optional)`}
             />
-          </form>
-        </div>
-        <div className="post__bottom">
-          <div className="post__option">
-            <CameraEnhanceRoundedIcon style={{ color: 'blue' }} />
-            <input
-              type="file"
-              name="photo"
-              className="change"
-              accept="image/*"
-              formenctype="multipart/form-data"
-              onChange={handleChange}
-            ></input>
 
-            <h3 className="post__text"> Upload Photo </h3>
-          </div>
-          <div className="post__option">
-            <input
-              type="file"
-              name="video"
-              className="change"
-              accept="video/*"
-              placeholder="Share your artwork"
-              onChange={handleChange}
-            ></input>
-            <DuoRoundedIcon style={{ color: 'green' }} />
-            <h3> Upload Video </h3>
-          </div>
-          <div className="post__option">
-            <input
-              type="file"
-              name="video"
-              accept="video/*"
-              placeholder="Share your artwork"
-              size="2"
-              className="change"
-              onChange={handleChange}
-            ></input>
-            <EventRoundedIcon style={{ color: 'red' }} />
-            <h3> Schedule Event </h3>
-          </div>
+            <div className="post__bottom">
+              <div className="post__option">
+                <CameraEnhanceRoundedIcon style={{ color: 'blue' }} />
+                <input
+                  type="file"
+                  name="photo"
+                  className="change"
+                  accept="image/*"
+                  formenctype="multipart/form-data"
+                  onChange={handleChange}
+                ></input>
+
+                <h3 className="post__text"> Upload Photo </h3>
+              </div>
+              <div className="post__option">
+                <input
+                  type="file"
+                  name="video"
+                  className="change"
+                  accept="video/*"
+                  placeholder="Share your artwork"
+                  onChange={handleChange}
+                ></input>
+                <DuoRoundedIcon style={{ color: 'green' }} />
+                <h3> Upload Video </h3>
+              </div>
+              <div className="post__option">
+                <input
+                  type="file"
+                  name="video"
+                  accept="video/*"
+                  placeholder="Share your artwork"
+                  size="2"
+                  className="change"
+                  onChange={handleChange}
+                ></input>
+                <EventRoundedIcon style={{ color: 'red' }} />
+                <h3> Schedule Event </h3>
+              </div>
+            </div>
+            <button type="submit">Submit</button>
+          </form>
         </div>
         <div className="post__bottom"></div>
       </div>

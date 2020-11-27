@@ -1,4 +1,5 @@
-const Like = require('../db/models/like');
+const Like = require('../db/models/like'),
+  Image = require('../db/models/image');
 
 //=================================
 //             Likes
@@ -28,6 +29,8 @@ exports.postLike = async (req, res) => {
   try {
     const like = await new Like(variable);
     await like.save();
+    await Image.findById(req.params.id);
+    req.user.likes.push(like);
     res.status(200).json({ success: true }).send(like);
   } catch (error) {
     res.status(400).json({ success: false });
