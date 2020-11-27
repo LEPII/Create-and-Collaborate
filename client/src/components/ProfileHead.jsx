@@ -3,9 +3,9 @@ import axios from 'axios';
 import '../profile.css';
 import { useParams } from 'react-router-dom';
 import { Card } from 'react-bootstrap';
-import Footer from '../components/Footer';
 import Mentor from '../helper/Mentor';
 import Student from '../helper/Student';
+import SMSModal from '../helper/SMSModal';
 
 const ProfileHead = () => {
   const [user, setUser] = useState('');
@@ -37,19 +37,11 @@ const ProfileHead = () => {
           <img className="profPic fixSpace" src={user.avatar} alt="user" />
         </div>
         <div>
-          <button
-            type="button"
-            onClick={follow}
-            class="btn btn-primary fixSpace"
-          >
+          <button type="button" onClick={follow} class="btn  fixSpace">
             Connect
           </button>
         </div>
-        <div>
-          <button type="button" class="btn btn-primary fixSpace">
-            Message
-          </button>
-        </div>
+        <SMSModal />
         <div className="fixSpace">
           <h6>{user.category}</h6>
         </div>
@@ -64,7 +56,6 @@ const ProfileHead = () => {
           <h5>{user?.location}</h5>
         </div>
       </div>
-      <Footer className="foot" />
     </>
   );
 };

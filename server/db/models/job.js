@@ -29,6 +29,12 @@ const jobSchema = new mongoose.Schema({
   }
 });
 
+jobSchema.virtual('user', {
+  ref: 'User',
+  localField: 'hostedBy',
+  foreignField: '_id'
+});
+
 jobSchema.methods.toJSON = function () {
   const job = this;
   const jobObject = job.toObject();

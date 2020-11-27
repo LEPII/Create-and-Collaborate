@@ -1,6 +1,8 @@
 require('./db/config');
 const express = require('express'),
   cookieParser = require('cookie-parser'),
+  bodyParser = require('body-parser'),
+  pino = require('express-pino-logger')(),
   path = require('path'),
   openRoutes = require('./routes/open'),
   userRouter = require('./routes/secure/users'),
@@ -9,7 +11,11 @@ const express = require('express'),
   jobRoutes = require('./routes/secure/jobs'),
   galleryRoutes = require('./routes/secure/gallery'),
   fileUpload = require('express-fileupload'),
-  passport = require('./middleware/authentication/index');
+  passport = require('./middleware/authentication/index'),
+  client = require('twilio')(
+    process.env.TWILIO_ACCOUNT_SID,
+    process.env.TWILIO_AUTH_TOKEN
+  );
 
 const app = express();
 
@@ -39,6 +45,33 @@ app.use('/portfolios', portfolioRouter);
 app.use('/events', eventRouter);
 app.use('/jobs', jobRoutes);
 app.use('/gallery', galleryRoutes);
+
+app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.json());
+app.use(pino);
+
+app.get('/api/greeting', (req, res) => {
+  const name = req.query.name || 'World';
+  res.setHeader('Content-Type', 'application/json');
+  res.send(JSON.stringify({ greeting: `Hello ${name}!` }));
+});
+
+app.post('/api/messages', (req, res) => {
+  res.header('Content-Type', 'application/json');
+  client.messages
+    .create({
+      from: process.env.TWILIO_PHONE_NUMBER,
+      to: req.body.to,
+      body: req.body.body
+    })
+    .then(() => {
+      res.send(JSON.stringify({ success: true }));
+    })
+    .catch((err) => {
+      console.log(err);
+      res.send(JSON.stringify({ success: false }));
+    });
+});
 
 // Handle React routing, return all requests to React app
 if (process.env.NODE_ENV === 'production') {

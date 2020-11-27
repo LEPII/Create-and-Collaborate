@@ -72,12 +72,14 @@ exports.deleteJob = async (req, res) => {
   }
 };
 
-//Get all jobs
 exports.getAllJobs = async (req, res) => {
   try {
-    const jobs = await Job.find();
-    res.json(jobs);
-    res.status(200).json(req.user.portfolios);
+    const jobs = await Job.find().populate('user');
+    const parsedJobs = jobs.map((job) => ({
+      user: job.user,
+      job: job
+    }));
+    res.status(200).json(parsedJobs);
   } catch (error) {
     res.status(400).json({ error: error.message });
   }

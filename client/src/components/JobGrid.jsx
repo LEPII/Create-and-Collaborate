@@ -2,10 +2,12 @@ import React, { useState, useEffect } from 'react';
 import '../jobs.css';
 import axios from 'axios';
 import { Card } from 'react-bootstrap';
+import { Link } from 'react-router-dom';
 import JobSearch from './JobSearch';
 
 const JobGrid = () => {
-  const [jobs, setJobs] = useState(null);
+  const [jobs, setJobs] = useState([]);
+  const [users, setUsers] = useState([]);
   const [searchValue, setSearchValue] = useState('');
 
   useEffect(() => {
@@ -13,6 +15,8 @@ const JobGrid = () => {
       .get('/jobs', { withCredentials: true })
       .then((response) => {
         setJobs(response.data);
+        setUsers(response.data);
+        console.log(response.data[0].user[0].avatar);
       })
       .catch((error) => {
         console.log(error);
@@ -23,8 +27,9 @@ const JobGrid = () => {
     setSearchValue(searchTerm);
   };
 
-  const filteredJobs =
-    jobs && jobs.filter((jobs) => jobs.title.includes(searchValue));
+  const filteredJobs = jobs?.filter((job) => {
+    return job.job.title.toLowerCase().includes(searchValue.toLowerCase());
+  });
 
   return (
     <div className="jobContainer">
@@ -35,16 +40,21 @@ const JobGrid = () => {
           style={{ width: '100%', height: 400 }}
         />
       </Card>
-      <div class="table ">
+      <div class="container ">
         <JobSearch handleSearch={handleSearch} />
         {jobs &&
           filteredJobs.map((job) => {
             return (
-              <table className="container gridInnards">
+              <table className="table gridInnards">
                 <tbody>
                   <tr>
-                    <th scope="row">{job.compensation}</th>
-                    <td>{job.title}</td>
+                    <th scope="row">
+                      ${job.job.compensation}
+                      <a href={`/profile/${job.job.hostedBy}`}>
+                        <img className="jobAvatar" src={job.user[0].avatar} />
+                      </a>
+                    </th>
+                    <td>{job.job.title}</td>
                     <td colSpan="2">
                       Lorem ipsum dolor sit amet consectetur, adipisicing elit.
                       Laboriosam fuga repudiandae perferendis tempora minima
