@@ -47,6 +47,7 @@ exports.findUserConversation = async (req, res) => {
         ]
       }
     });
+    console.log(messages);
     res.json(messages);
   } catch (error) {
     console.log(error.message);

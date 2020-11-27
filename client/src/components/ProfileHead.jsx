@@ -22,8 +22,12 @@ const ProfileHead = () => {
       });
   }, [setUser]);
 
-  const follow = () => {
-    axios.put(`/users/${id}`, { withCredentials: true });
+  const follow = async () => {
+    try {
+      await axios.put(`/users/${id}`, { withCredentials: true });
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   return (
