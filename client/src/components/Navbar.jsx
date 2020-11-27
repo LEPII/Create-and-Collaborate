@@ -15,7 +15,8 @@ const NavBar = () => {
         withCredentials: true
       });
       sessionStorage.removeItem('user');
-      setCurrentUser(null).then(() => history.push('/welcome'));
+      setCurrentUser(null);
+      history.push('/welcome');
     } catch (error) {
       console.log(error);
     }
@@ -48,9 +49,8 @@ const NavBar = () => {
             <NavDropdown.Item href="/update-password">
               Update Password
             </NavDropdown.Item>
-            <NavDropdown.Item onClick={logout}>Log Out</NavDropdown.Item>
           </NavDropdown>
-          <Nav.Link href="/">User</Nav.Link>
+          <Nav.Link onClick={logout}>Log Out</Nav.Link>
         </Nav>
       </Navbar.Collapse>
     </Navbar>

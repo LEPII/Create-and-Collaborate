@@ -18,7 +18,7 @@ const LogForm = (props) => {
     try {
       const response = await axios.post('/auth/login', formData);
       setCurrentUser(response.data);
-      sessionStorage.setItem('user', response.data);
+      sessionStorage.setItem('user', JSON.stringify(response.data));
       history.push('/');
     } catch (error) {
       console.log('Login Error: ' + error);
@@ -29,7 +29,7 @@ const LogForm = (props) => {
     e.preventDefault();
     try {
       const response = await axios.post('/auth/create', formData);
-      sessionStorage.setItem('user', response.data);
+      sessionStorage.setItem('user', JSON.stringify(response.data));
       setCurrentUser(response.data.user);
       history.push('/user-edit-page');
     } catch (error) {
