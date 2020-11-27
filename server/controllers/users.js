@@ -231,35 +231,36 @@ exports.getAllUsers = async (req, res) => {
   }
 };
 
-exports.addFollowing = async (req, res) => {
-  User.findByIdAndUpdate(
-    req.user._id,
-    {
-      $push: { followers: req.user._id }
-    },
-    {
-      new: true
-    },
-    (err, result) => {
-      if (err) {
-        return res.status(422).json({ error: err });
-      }
-      User.findByIdAndUpdate(
-        req.user._id,
-        {
-          $push: { following: req.body.followId }
-        },
-        { new: true }
-      )
-        .select('-password')
-        .then((result) => {
-          res.json(result);
-        })
-        .catch((error) => {
-          res.status(400).json({ error: error.message });
-        });
+exports.followUser = async (req, res) => {
+  try {
+    const userToFollow = await User.findOne({ _id: req.params.id });
+    //If my id is already included in the followers array, remove it by filter (thus unfollowing)
+    if (userToFollow.followers.includes(req.user._id)) {
+      userToFollow.followers = userToFollow.followers.filter((id) => {
+        return id.toString() !== req.user._id.toString();
+      });
+
+      await userToFollow.save();
+      // Filter OUT the userToFollow's id from the people i am "following"
+      req.user.following = req.user.following.filter((id) => {
+        return id.toString() !== userToFollow._id.toString();
+      });
+      await req.user.save();
+      return res.status(400).json({
+        message: `You have unfollowed ${userToFollow.username}`
+      });
     }
-  );
+
+    userToFollow.followers.push(req.user._id);
+    await userToFollow.save();
+    req.user.following.push(userToFollow._id);
+    await req.user.save();
+    res
+      .status(200)
+      .json({ message: `You are now following ${userToFollow.username}` });
+  } catch (e) {
+    res.status(400).json({ error: e.message });
+  }
 };
 
 exports.getUserById = async (req, res) => {
