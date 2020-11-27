@@ -53,6 +53,14 @@
     #00aeee,
     #0dc6ee
   );
+  height: 100vh;
+}
+.portfolios {
+  margin: 20px;
+}
+
+.editPortfolioBox {
+  width: 10vw;
 }
 /* END */
 
