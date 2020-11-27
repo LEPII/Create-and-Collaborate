@@ -40,7 +40,10 @@ const Post = () => {
       axios
         .post('gallery/images', formData)
         .then((res) => setImage(res.data.secure.url));
-    }
+    } else
+      axios
+        .post('gallery/post', formData)
+        .then((res) => setImage(res.data.secure.url));
   };
 
   useEffect(() => {
