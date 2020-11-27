@@ -35,3 +35,15 @@ exports.messageUser = async (req, res) => {
     console.log(error.message);
   }
 };
+
+exports.findUserConversation = async (req, res) => {
+  try {
+    const message = await Message.find({
+      to: mongoose.Types.ObjectId(req.params.id),
+      from: mongoose.Types.ObjectId(req.user._id)
+    });
+    res.json(message);
+  } catch (error) {
+    console.log(error.message);
+  }
+};
