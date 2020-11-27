@@ -6,6 +6,7 @@ const messageSchema = new mongoose.Schema(
       type: String,
       required: true
     },
+    participants: [{ type: mongoose.Schema.Types.ObjectId, ref: 'User' }],
     to: {
       type: mongoose.Schema.Types.ObjectId,
       ref: 'User'
@@ -22,7 +23,7 @@ const messageSchema = new mongoose.Schema(
 
 messageSchema.virtual('user', {
   ref: 'User',
-  localField: 'hostedBy',
+  localField: 'from',
   foreignField: '_id'
 });
 

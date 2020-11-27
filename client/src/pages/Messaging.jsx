@@ -8,15 +8,14 @@ const Messaging = () => {
 
   useEffect(() => {
     axios
-      .get(`/messages/${id}`, { withCredentials: true })
+      .get(`/message/${id}`, { withCredentials: true })
       .then((response) => {
-        setMessages(response.data);
+        console.log(response);
       })
       .catch((error) => {
         console.log(error);
       });
   }, [setMessages]);
-  console.log(messages);
 
   return <div>messaging component</div>;
 };

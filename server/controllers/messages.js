@@ -1,6 +1,6 @@
 const Message = require('../db/models/message'),
-  User = require('../db/models/user');
-mongoose = require('mongoose');
+  User = require('../db/models/user'),
+  mongoose = require('mongoose');
 
 exports.createMessage = async (req, res) => {
   const _id = req.params.id;
@@ -23,6 +23,7 @@ exports.messageUser = async (req, res) => {
     const newMessage = new Message(req.body);
     newMessage.to = req.params.id;
     newMessage.from = req.user._id;
+    newMessage.participants = [req.params.id, req.user._id];
     const reciever = await User.findById(req.params.id);
     const sender = await User.findById(req.user._id);
     const createMessage = await newMessage.save();
@@ -38,11 +39,15 @@ exports.messageUser = async (req, res) => {
 
 exports.findUserConversation = async (req, res) => {
   try {
-    const message = await Message.find({
-      to: mongoose.Types.ObjectId(req.params.id),
-      from: mongoose.Types.ObjectId(req.user._id)
+    const messages = await Message.find({
+      participants: {
+        $all: [
+          mongoose.Types.ObjectId(req.params.id),
+          mongoose.Types.ObjectId(req.user._id)
+        ]
+      }
     });
-    res.json(message);
+    res.json(messages);
   } catch (error) {
     console.log(error.message);
   }
