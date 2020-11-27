@@ -29,7 +29,7 @@ function App() {
           <PrivateRoute exact path="/gallery/images/:id" component={Images} />
           <Route exact path="/reset-password" component={ResetPassword} />
           <Route exact path="/update-password" component={UpdatePassword} />
-          <Route exact path="/welcome" component={Welcome} />
+          <Route exact path="/" component={Welcome} />
           <Route exact path="/user-edit-page" component={UserEditPage} />
           <Route exact path="/portfolio-edit" component={PortfolioEditPage} />
         </Switch>
