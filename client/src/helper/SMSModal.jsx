@@ -21,7 +21,7 @@ const useStyles = makeStyles((theme) => ({
   }
 }));
 
-export default function ImageModal() {
+export default function ImageModal({ user }) {
   const classes = useStyles();
   let { id } = useParams();
   const [open, setOpen] = React.useState(false);
@@ -61,7 +61,7 @@ export default function ImageModal() {
           timeout: 500
         }}
       >
-        <SMS />
+        <SMS user={user} />
       </Modal>
     </div>
   );

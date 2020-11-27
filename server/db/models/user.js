@@ -72,7 +72,7 @@ const userSchema = new mongoose.Schema(
     avatar: {
       type: String
     },
-    messages: [{ type: mongoose.Schema.Types.ObjectId, ref: 'User' }],
+    messages: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Message' }],
     following: [{ type: mongoose.Schema.Types.ObjectId, ref: 'User' }],
     followers: [{ type: mongoose.Schema.Types.ObjectId, ref: 'User' }],
     category: [

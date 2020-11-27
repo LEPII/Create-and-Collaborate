@@ -10,7 +10,6 @@ function Events() {
     <div className="jobContainer">
       <Navbar />
       <EventsHead />
-      {/* <EventSearch /> */}
       <EventCalendar />
       {/* <Footer /> */}
     </div>

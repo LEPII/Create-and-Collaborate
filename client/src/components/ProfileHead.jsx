@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import '../profile.css';
-import { useParams } from 'react-router-dom';
+import { useParams, Link } from 'react-router-dom';
 import { Card } from 'react-bootstrap';
 import Mentor from '../helper/Mentor';
 import Student from '../helper/Student';
@@ -22,8 +22,12 @@ const ProfileHead = () => {
       });
   }, [setUser]);
 
-  const follow = () => {
-    axios.put(`/users/${id}`, { withCredentials: true });
+  const follow = async () => {
+    try {
+      await axios.put(`/users/${id}`, { withCredentials: true });
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   return (
@@ -41,7 +45,13 @@ const ProfileHead = () => {
             Connect
           </button>
         </div>
-        <SMSModal />
+        <div>
+          <Link to={`/messages/${id}`}>
+            <button type="button" class="btn  fixSpace">
+              Message
+            </button>
+          </Link>
+        </div>
         <div className="fixSpace">
           <h6>{user.category}</h6>
         </div>

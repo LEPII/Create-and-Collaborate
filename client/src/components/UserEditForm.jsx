@@ -14,8 +14,7 @@ const UserEditForm = () => {
   const handleChange = (event) => {
     setFormData({ ...formData, [event.target.name]: event.target.value });
   };
-  console.log(formData);
-  console.log(mentor);
+
   const handleLogin = async (e) => {
     e.preventDefault();
     try {

@@ -87,9 +87,7 @@ const Post = ({ handle, save }) => {
         </div>
       </div>
       {userData &&
-
         userData?.map((user) => {
-
           return <Feed key={user.user._id} feed={user} />;
         })}
     </div>

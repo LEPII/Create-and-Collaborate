@@ -1,12 +1,17 @@
 const mongoose = require('mongoose');
 
-const jobSchema = new mongoose.Schema(
+const messageSchema = new mongoose.Schema(
   {
     text: {
       type: String,
       required: true
     },
-    hostedBy: {
+    participants: [{ type: mongoose.Schema.Types.ObjectId, ref: 'User' }],
+    to: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: 'User'
+    },
+    from: {
       type: mongoose.Schema.Types.ObjectId,
       ref: 'User'
     }
@@ -18,7 +23,7 @@ const jobSchema = new mongoose.Schema(
 
 messageSchema.virtual('user', {
   ref: 'User',
-  localField: 'hostedBy',
+  localField: 'from',
   foreignField: '_id'
 });
 
