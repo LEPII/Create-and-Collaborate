@@ -34,7 +34,12 @@ export default function TransitionsModal() {
 
   return (
     <div>
-      <button className="signup" type="button" onClick={handleOpen}>
+      <button
+        id="CCletters"
+        className="signup"
+        type="button"
+        onClick={handleOpen}
+      >
         Connect
       </button>
       <Modal

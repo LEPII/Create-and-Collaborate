@@ -11,12 +11,13 @@ const express = require('express'),
   jobRoutes = require('./routes/secure/jobs'),
   likeRoutes = require('./routes/secure/likes'),
   galleryRoutes = require('./routes/secure/gallery'),
-  fileUpload = require('express-fileupload'),
-  passport = require('./middleware/authentication/index'),
-  client = require('twilio')(
+  messageRoutes = require('./routes/secure/messages');
+(fileUpload = require('express-fileupload')),
+  (passport = require('./middleware/authentication/index')),
+  (client = require('twilio')(
     process.env.TWILIO_ACCOUNT_SID,
     process.env.TWILIO_AUTH_TOKEN
-  );
+  ));
 
 const app = express();
 
@@ -47,6 +48,8 @@ app.use('/events', eventRouter);
 app.use('/jobs', jobRoutes);
 app.use('/gallery', galleryRoutes);
 app.use('/likes', likeRoutes);
+app.use('/message', messageRoutes);
+
 
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());

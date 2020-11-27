@@ -4,6 +4,7 @@ import { BrowserRouter, Switch, Route } from 'react-router-dom';
 import Events from './pages/Events';
 import Home from './pages/Home';
 import Jobs from './pages/Jobs';
+import Messaging from './pages/Messaging';
 import PrivateRoute from './components/PrivateRoute';
 import Profile from './pages/Profile';
 import ResetPassword from './pages/ResetPassword';
@@ -27,6 +28,7 @@ function App() {
           <PrivateRoute exact path="/talent" component={Talent} />
           <PrivateRoute exact path="/profile/:id" component={Profile} />
           <PrivateRoute exact path="/gallery/images/:id" component={Images} />
+          <PrivateRoute exact path="/messages/:id" component={Messaging} />
           <Route exact path="/reset-password" component={ResetPassword} />
           <Route exact path="/update-password" component={UpdatePassword} />
           <Route exact path="/welcome" component={Welcome} />

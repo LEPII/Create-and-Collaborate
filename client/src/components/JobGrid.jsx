@@ -16,7 +16,6 @@ const JobGrid = () => {
       .then((response) => {
         setJobs(response.data);
         setUsers(response.data);
-        console.log(response.data[0].user[0].avatar);
       })
       .catch((error) => {
         console.log(error);

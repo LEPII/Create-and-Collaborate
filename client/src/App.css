@@ -35,7 +35,6 @@
 .Create {
   color: #f4ac33;
 }
-/* END */
 
 /* USER EDIT FORM */
 .UserEditForm {
@@ -54,6 +53,32 @@
     #00aeee,
     #0dc6ee
   );
+}
+/* END */
+
+/* CCletters */
+#CCletters {
+  position: absolute;
+  top: 45%;
+  left: 15%;
+}
+
+#CCletters1 {
+  position: absolute;
+  top: 30%;
+  left: 13%;
+}
+
+#CCletters2 {
+  position: absolute;
+  top: 35%;
+  left: 13%;
+}
+
+#CCletters3 {
+  position: absolute;
+  top: 40%;
+  left: 13%;
 }
 /* END */
 
