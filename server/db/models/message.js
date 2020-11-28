@@ -10,7 +10,15 @@ const messageSchema = new mongoose.Schema(
     to: {
       type: String
     },
+    toID: { type: mongoose.Schema.Types.ObjectId, ref: 'User' },
+    toAvatar: {
+      type: String
+    },
     from: {
+      type: String
+    },
+    fromID: { type: mongoose.Schema.Types.ObjectId, ref: 'User' },
+    fromAvatar: {
       type: String
     }
   },

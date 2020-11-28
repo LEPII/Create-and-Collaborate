@@ -26,16 +26,14 @@ exports.messageUser = async (req, res) => {
     const sender = await User.findById(req.user._id);
     newMessage.to = reciever.name;
     newMessage.from = sender.name;
-    await reciever.messages.push(newMessage.username);
-    await sender.messages.push(newMessage.username);
+    newMessage.toID = reciever._id;
+    newMessage.fromID = sender._id;
+    await reciever.messages.push(newMessage);
+    await sender.messages.push(newMessage);
     await newMessage.save();
     await reciever.save();
     await sender.save();
-    res.json({
-      messages: newMessage,
-      userTo: reciever,
-      userFrom: sender
-    });
+    res.json(newMessage);
   } catch (error) {
     console.log(error.message);
   }
@@ -67,9 +65,10 @@ exports.getAllMessages = async (req, res) => {
   }
 };
 
-exports.getUsersMessages = async (req, res) => {
+exports.getMyMessages = async (req, res) => {
   try {
-    const messages = await Message.find();
+    const messages = await Message.find(req.user._id);
+    res.json(messages);
   } catch (error) {
     res.status(400).json({ error: error.message });
   }
