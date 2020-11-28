@@ -142,9 +142,7 @@ exports.likedPost = async (req, res) => {
     await postToLike.save();
     req.images.likes.push(postToLike._id);
     await req.images.save();
-    res
-      .status(200)
-      .json({ message: `You are now likes ${postToLike.imagesname}` });
+    res.status(200).json({ postToLike });
   } catch (e) {
     res.status(400).json({ message: 'likes not found :-(' });
   }

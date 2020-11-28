@@ -13,7 +13,6 @@ const imageSchema = new mongoose.Schema(
     },
     likes: [{ type: mongoose.Schema.Types.ObjectId, ref: 'User' }],
     likedBy: [{ type: mongoose.Schema.Types.ObjectId, ref: 'User' }],
-    comments: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Comment' }],
     hostedBy: { type: mongoose.Schema.Types.ObjectId, ref: 'User' }
   },
   {
