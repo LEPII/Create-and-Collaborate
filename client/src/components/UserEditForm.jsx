@@ -1,5 +1,5 @@
 import React, { useState, useContext } from 'react';
-import { Form, Button } from 'react-bootstrap';
+import { Form, Button, Col, InputGroup } from 'react-bootstrap';
 import { useHistory } from 'react-router-dom';
 import { AppContext } from '../context/AppContext';
 import axios from 'axios';
@@ -15,7 +15,7 @@ const UserEditForm = () => {
     setFormData({ ...formData, [event.target.name]: event.target.value });
   };
 
-  const handleLogin = async (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     try {
       const response = await axios.patch('/users/me', { ...formData, mentor });
@@ -28,142 +28,153 @@ const UserEditForm = () => {
   };
 
   return (
-    <div className="portfolios">
-      <form onSubmit={handleLogin}>
-        <h6 className="Create">User information</h6>
-        <div class="pl-lg-4">
-          <div class="row">
-            <div class="col-lg-6">
-              <div class="form-group focused">
-                <label className="Create" htmlFor="input-username">
-                  Username
-                </label>
-                <input
-                  defaultValue={currentUser?.user?.username}
-                  type="text"
-                  id="input-username"
-                  name="username"
-                  class="form-control form-control-alternative"
-                  placeholder="Username"
-                  onChange={handleChange}
-                />
-              </div>
-            </div>
-            <div class="col-lg-6">
-              <div class="form-group">
-                <label className="Create" htmlFor="input-email">
-                  Email address
-                </label>
-                <input
-                  defaultValue={currentUser?.user?.email}
-                  type="email"
-                  id="input-email"
-                  name="email"
-                  class="form-control form-control-alternative"
-                  placeholder="Enter Email"
-                  onChange={handleChange}
-                />
-              </div>
-            </div>
-          </div>
-          <div class="row">
-            <div class="col-lg-6">
-              <div class="form-group focused">
-                <label className="Create" for="input-first-name">
-                  Name
-                </label>
-                <input
-                  defaultValue={currentUser?.user?.name}
-                  type="text"
-                  id="input-first-name"
-                  name="name"
-                  class="form-control form-control-alternative editPortfolioBox"
-                  placeholder="Name"
-                  onChange={handleChange}
-                />
-              </div>
-            </div>
-            <div class="col-lg-4">
-              <Form.Group controlId="formBasicCheckbox">
-                <Form.Check
-                  className="Create"
-                  type="checkbox"
-                  label="Mentor"
-                  name="mentor"
-                  onChange={() => setMentor(!mentor)}
-                />
-              </Form.Group>
-            </div>
-            <div class="col-lg-6">
-              <div class="form-group focused editPortfolioBox">
-                <div>
-                  <Form.Group controlId="exampleForm.ControlSelect2">
-                    <Form.Label className="Create">Art Category</Form.Label>
-                    <Form.Control as="select" multiple>
-                      <option>Exhibition</option>
-                      <option>Film and Television</option>
-                      <option>Broadcasting</option>
-                      <option>Animation</option>
-                      <option>Music</option>
-                      <option>News Media</option>
-                      <option>Fashion</option>
-                      <option>Video</option>
-                      <option>Games</option>
-                      <option>Sports</option>
-                      <option>Cultural Event</option>
-                      <option>Performance Arts</option>
-                      <option>Art</option>
-                      <option>Design</option>
-                      <option>Writing</option>
-                      <option>Other</option>
-                    </Form.Control>
-                  </Form.Group>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="pl-lg-4">
-          <div class="row">
-            <div class="col-md-12"></div>
-          </div>
-          <div class="row">
-            <div class="col-lg-4">
-              <div class="form-group focused">
-                <label className="Create" for="input-city">
-                  City
-                </label>
-                <input
-                  type="text"
-                  id="input-city"
-                  class="form-control form-control-alternative"
-                  placeholder="City"
-                  name="location"
-                  onChange={handleChange}
-                />
-              </div>
-            </div>
-            <div class="col-lg-4"></div>
-          </div>
-        </div>
-        <hr class="my-4" />
-        <h6 className="Create">About me</h6>
-        <div class="pl-lg-4">
-          <div class="form-group focused">
-            <textarea
-              rows="4"
-              class="form-control form-control-alternative"
-              placeholder="A few words about you ..."
-              name="bio"
+    <Form style={{ padding: '10rem' }} onSubmit={handleSubmit}>
+      <Form.Row>
+        <Form.Group as={Col} md="4" controlId="validationFormik01">
+          <Form.Label>Full Name</Form.Label>
+          <Form.Control
+            htmlFor="name"
+            type="text"
+            name="firstName"
+            onChange={handleChange}
+            defaultValue={currentUser?.user?.name}
+          />
+          <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
+        </Form.Group>
+        <Form.Group as={Col} md="4" controlId="validationFormik02">
+          <Form.Label>Email</Form.Label>
+          <Form.Control
+            htmlFor="email"
+            type="text"
+            name="email"
+            defaultValue={currentUser?.user?.email} //
+            onChange={handleChange}
+          />
+
+          <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
+        </Form.Group>
+        <Form.Group as={Col} md="4" controlId="validationFormikUsername">
+          <Form.Label>Username</Form.Label>
+          <InputGroup>
+            <InputGroup.Prepend>
+              <InputGroup.Text id="inputGroupPrepend">@</InputGroup.Text>
+            </InputGroup.Prepend>
+            <Form.Control
+              type="text"
+              placeholder="BabyMama45"
+              aria-describedby="inputGroupPrepend"
+              name="username"
+              htmlFor="username"
               onChange={handleChange}
-            ></textarea>
-            <Button className="Create" variant="primary" type="submit">
-              Submit
-            </Button>
-          </div>
-        </div>
-      </form>
-    </div>
+            />
+            <Form.Control.Feedback></Form.Control.Feedback>
+          </InputGroup>
+        </Form.Group>
+      </Form.Row>
+      <Form.Row>
+        <Form.Group as={Col} md="6" controlId="validationFormik03">
+          <Form.Label>City and State</Form.Label>
+          <Form.Control
+            type="text"
+            placeholder="location"
+            name="location"
+            htmlFor="location"
+            onChange={handleChange}
+          />
+
+          <Form.Control.Feedback></Form.Control.Feedback>
+        </Form.Group>
+        <Form.Group as={Col} md="6" controlId="validationFormik04">
+          <Form.Label>Phone Number</Form.Label>
+          <Form.Control
+            type="text"
+            htmlFor="number"
+            placeholder="010-101-0101"
+            name="number"
+            onChange={handleChange}
+          />
+          <Form.Control.Feedback></Form.Control.Feedback>
+        </Form.Group>
+        <Form.Group as={Col} md="6" controlId="validationFormik05">
+          <Form.Label>Password</Form.Label>
+          <Form.Control
+            htmlFor="password"
+            type="text"
+            placeholder="Please do not make it password"
+            name="password"
+            defaultValue={currentUser?.user?.password}
+            onChange={handleChange}
+          />
+          <Form.Control.Feedback></Form.Control.Feedback>
+        </Form.Group>
+        <Form.Group as={Col} md="6" controlId="validationFormik05">
+          <Form.Label>Website</Form.Label>
+          <Form.Control
+            htmlFor="website"
+            type="text"
+            placeholder="www.Pineappletimer"
+            name="zip"
+            onChange={handleChange}
+          />
+          <Form.Control.Feedback></Form.Control.Feedback>
+        </Form.Group>
+      </Form.Row>
+      <Form.Group controlId="exampleForm.ControlSelect2">
+        <Form.Label className="Create">What's your Passion?</Form.Label>
+        <Form.Control as="select" htmlFor="category" onChange={handleChange}>
+          <option>Exhibition</option>
+          <option>Film and Television</option>
+          <option>Broadcasting</option>
+          <option>Animation</option>
+          <option>Music</option>
+          <option>News Media</option>
+          <option>Fashion</option>
+          <option>Video</option>
+          <option>Games</option>
+          <option>Sports</option>
+          <option>Cultural Event</option>
+          <option>Performance Arts</option>
+          <option>Art</option>
+          <option>Design</option>
+          <option>Writing</option>
+          <option>Other</option>
+        </Form.Control>
+      </Form.Group>
+      <Form.Group>
+        <Form.Check
+          htmlFor="mentor"
+          name="Mentor"
+          label="Mentor"
+          onChange={() => setMentor(!mentor)}
+          id="validationFormik0"
+        />
+      </Form.Group>
+      <Form.Group>
+        <textarea
+          rows="3"
+          htmlFor="bio"
+          class="form-control form-control-alternative"
+          placeholder="Share what you are all about!"
+          name="bio"
+          onChange={handleChange}
+        ></textarea>
+      </Form.Group>
+
+      <Button
+        style={{ marginLeft: '345px', marginTop: '50px', position: 'center' }}
+        type="submit"
+      >
+        Finish Creating Profile
+      </Button>
+
+      <Button
+        style={{ marginLeft: '30px', marginTop: '50px', position: 'center' }}
+        onClick={() => history.push('/portfolio-edit')}
+      >
+        {' '}
+        Create Portfolio - Optional{' '}
+      </Button>
+    </Form>
   );
 };
 

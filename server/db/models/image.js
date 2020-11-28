@@ -12,7 +12,7 @@ const imageSchema = new mongoose.Schema(
       type: String
     },
     likes: [{ type: mongoose.Schema.Types.ObjectId, ref: 'User' }],
-    comments: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Comment' }],
+    likedBy: [{ type: mongoose.Schema.Types.ObjectId, ref: 'User' }],
     hostedBy: { type: mongoose.Schema.Types.ObjectId, ref: 'User' }
   },
   {
@@ -30,7 +30,7 @@ imageSchema.methods.toJSON = function () {
   const image = this;
   const imageObject = image.toObject();
   if (imageObject.dateOfImage) {
-    imageObject.dateOfImage = moment(imageObject.dateOfImage).format('lll');
+    imageObject.dateOfImage = moment(fromNow).format('m');
   }
   return imageObject;
 };
