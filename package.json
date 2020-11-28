@@ -50,6 +50,7 @@
     }
   },
   "scripts": {
+    "proxy": "localhost:3000/",
     "start": "node server.js",
     "server": "nodemon server.js",
     "db:reset": "node server/db/seeds",

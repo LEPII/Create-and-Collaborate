@@ -13,6 +13,7 @@ import Welcome from './pages/Welcome';
 import Talent from './pages/Talent';
 import UserEditPage from './pages/EditUser';
 import PortfolioEditPage from './pages/EditPortfolio';
+import PersonalMessaging from './pages/PersonalMessaging';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './App.css';
 import Images from './pages/Images';
@@ -28,7 +29,12 @@ function App() {
           <PrivateRoute exact path="/talent" component={Talent} />
           <PrivateRoute exact path="/profile/:id" component={Profile} />
           <PrivateRoute exact path="/gallery/images/:id" component={Images} />
-          <PrivateRoute exact path="/messages/:id" component={Messaging} />
+          <PrivateRoute exact path="/messages/" component={Messaging} />
+          <PrivateRoute
+            exact
+            path="/messages/:id"
+            component={PersonalMessaging}
+          />
           <Route exact path="/reset-password" component={ResetPassword} />
           <Route exact path="/update-password" component={UpdatePassword} />
           <Route exact path="/" component={Welcome} />

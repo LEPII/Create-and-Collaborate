@@ -6,8 +6,6 @@ import { AppContext } from '../context/AppContext';
 import { Card } from 'react-bootstrap';
 import Mentor from '../helper/Mentor';
 import Student from '../helper/Student';
-import Follow from '../helper/Follow';
-import Unfollow from '../helper/Unfollow';
 
 const ProfileHead = () => {
   const [user, setUser] = useState('');
@@ -27,6 +25,7 @@ const ProfileHead = () => {
         console.log(error);
       });
   }, [setUser]);
+  console.log(following);
 
   const follow = async () => {
     try {
