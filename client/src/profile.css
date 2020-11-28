@@ -222,3 +222,18 @@
   height: 200px;
   background-color: gray;
 }
+
+.message {
+  width: 40vw;
+  height: 10vh;
+  position: absolute;
+  right: 537px;
+  top: 405px;
+}
+
+.messageForm {
+  width: 45vw;
+  height: 15vh;
+  background-color: gray;
+  border-radius: 20px;
+}
