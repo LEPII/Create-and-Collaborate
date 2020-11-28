@@ -37,11 +37,11 @@ exports.createImage = async (req, res) => {
 //Get all jobs
 exports.getAllImages = async (req, res) => {
   try {
-    const posts = await Image.find().populate('images');
+    const posts = await Image.find().populate('user');
 
     const parsedImages = posts.map((post) => ({
-      images: post.images,
-      images: post
+      images: post,
+      user: post.user
     }));
     res.status(200).json(parsedImages);
   } catch (error) {
