@@ -4,7 +4,7 @@ const AppContext = createContext();
 
 const AppContextProvider = ({ children }) => {
   const user = JSON.parse(sessionStorage.getItem('user'));
-  const [currentUser, setCurrentUser] = useState(null);
+  const [currentUser, setCurrentUser] = useState([]);
   const [search, setSearch] = useState('');
   const [loading, setLoading] = useState(false);
   const [events, setEvents] = useState(null);
@@ -13,17 +13,15 @@ const AppContextProvider = ({ children }) => {
   const [imageUrl, setImageUrl] = useState(null);
 
   useEffect(() => {
-    if (user && !currentUser) {
-      axios
-        .get(`/users/me`, {
-          withCredentials: true
-        })
-        .then(({ data }) => {
-          setCurrentUser(data);
-        })
-        .catch((error) => console.log(error));
-    }
-  }, [currentUser, user]);
+    axios
+      .get(`/users/me`, {
+        withCredentials: true
+      })
+      .then((response) => {
+        setCurrentUser(response.data.user);
+      })
+      .catch((error) => console.log(error));
+  }, [setCurrentUser, user]);
 
   return (
     <AppContext.Provider

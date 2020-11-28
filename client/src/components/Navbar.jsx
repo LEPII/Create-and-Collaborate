@@ -9,7 +9,7 @@ const NavBar = () => {
   const history = useHistory();
   const logout = async () => {
     try {
-      const response = await axios({
+      await axios({
         method: 'POST',
         url: '/users/logout',
         withCredentials: true

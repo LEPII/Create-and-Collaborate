@@ -1,14 +1,19 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useContext, useRef } from 'react';
 import axios from 'axios';
 import '../profile.css';
 import { useParams, Link } from 'react-router-dom';
+import { AppContext } from '../context/AppContext';
 import { Card } from 'react-bootstrap';
 import Mentor from '../helper/Mentor';
 import Student from '../helper/Student';
-import SMSModal from '../helper/SMSModal';
+import Follow from '../helper/Follow';
+import Unfollow from '../helper/Unfollow';
 
 const ProfileHead = () => {
   const [user, setUser] = useState('');
+  const [following, setFollowing] = useState([]);
+  const { currentUser } = useContext(AppContext);
+  const followButton = useRef(null);
   let { id } = useParams();
 
   useEffect(() => {
@@ -16,6 +21,7 @@ const ProfileHead = () => {
       .get(`/users/${id}`, { withCredentials: true })
       .then((response) => {
         setUser(response.data.user);
+        setFollowing(response.data.user.followers);
       })
       .catch((error) => {
         console.log(error);
@@ -27,6 +33,11 @@ const ProfileHead = () => {
       await axios.put(`/users/${id}`, { withCredentials: true });
     } catch (error) {
       console.log(error);
+    }
+    if (following.indexOf(currentUser._id) === -1) {
+      exampleRef.current.className = 'follow';
+    } else {
+      exampleRef.current.className = 'unfollow';
     }
   };
 
@@ -41,13 +52,19 @@ const ProfileHead = () => {
           <img className="profPic fixSpace" src={user.avatar} alt="user" />
         </div>
         <div>
-          <button type="button" onClick={follow} class="btn  fixSpace">
+          <button
+            type="button"
+            ref={followButton}
+            onClick={follow}
+            class="btn fixSpace"
+          >
             Connect
           </button>
+          {/* {(following.indexOf(current) === -1 )? <Follow /> : <Unfollow />} */}
         </div>
         <div>
           <Link to={`/messages/${id}`}>
-            <button type="button" class="btn  fixSpace">
+            <button type="button" class="btn fixSpace">
               Message
             </button>
           </Link>
