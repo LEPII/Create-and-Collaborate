@@ -42,6 +42,7 @@ const NavBar = () => {
             className="dropleft"
             id="collasible-nav-dropdown"
           >
+
             <NavDropdown.Item onClick={logout}>Logout</NavDropdown.Item>
             <NavDropdown.Item href="/update-password">
               Update Password

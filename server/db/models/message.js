@@ -8,12 +8,18 @@ const messageSchema = new mongoose.Schema(
     },
     participants: [{ type: mongoose.Schema.Types.ObjectId, ref: 'User' }],
     to: {
-      type: mongoose.Schema.Types.ObjectId,
-      ref: 'User'
+      type: String
+    },
+    toID: { type: mongoose.Schema.Types.ObjectId, ref: 'User' },
+    toAvatar: {
+      type: String
     },
     from: {
-      type: mongoose.Schema.Types.ObjectId,
-      ref: 'User'
+      type: String
+    },
+    fromID: { type: mongoose.Schema.Types.ObjectId, ref: 'User' },
+    fromAvatar: {
+      type: String
     }
   },
   {
