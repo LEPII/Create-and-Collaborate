@@ -69,9 +69,10 @@ const LogForm = () => {
       <h3 className="mb-4">Sign Up</h3>
       <Form style={{ width: 300 }} onSubmit={handleSignUp}>
         <Form.Group>
-          <Form.Label htmlFor="fullName">Full Name</Form.Label>
+          <Form.Label>Full Name</Form.Label>
           <Form.Control
-            id="fullName"
+            htmlFor="name"
+            id="name"
             type="text"
             placeholder="Full Name"
             name="name"
@@ -80,8 +81,9 @@ const LogForm = () => {
         </Form.Group>
 
         <Form.Group>
-          <Form.Label htmlFor="email">Enter Email</Form.Label>
+          <Form.Label>Enter Email</Form.Label>
           <Form.Control
+            htmlFor="email"
             id="email"
             type="email"
             placeholder="JonSnowTheWatcher@TheWall.com"
@@ -91,12 +93,25 @@ const LogForm = () => {
         </Form.Group>
 
         <Form.Group>
-          <Form.Label htmlFor="password">Enter Password</Form.Label>
+          <Form.Label>Enter Password</Form.Label>
           <Form.Control
+            htmlFor="password"
             id="password"
             type="password"
             placeholder="hopefully not password"
             name="password"
+            onChange={handleChange}
+          />
+        </Form.Group>
+
+        <Form.Group>
+          <Form.Label>Enter Username</Form.Label>
+          <Form.Control
+            htmlFor="username"
+            id="username"
+            type="password"
+            placeholder="hopefully not password"
+            name="username"
             onChange={handleChange}
           />
         </Form.Group>

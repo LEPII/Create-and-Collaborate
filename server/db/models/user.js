@@ -2,7 +2,6 @@ const mongoose = require('mongoose'),
   validator = require('validator'),
   bcrypt = require('bcryptjs'),
   jwt = require('jsonwebtoken');
-
 const userSchema = new mongoose.Schema(
   {
     username: {
@@ -39,7 +38,6 @@ const userSchema = new mongoose.Schema(
     number: {
       type: String
     },
-
     password: {
       type: String,
       required: true,
@@ -89,37 +87,31 @@ const userSchema = new mongoose.Schema(
     timestamps: true
   }
 );
-
 userSchema.virtual('jobs', {
   ref: 'Job',
   localField: '_id',
   foreignField: 'hostedBy'
 });
-
 userSchema.virtual('videos', {
   ref: 'Video',
   localField: '_id',
   foreignField: 'hostedBy'
 });
-
 userSchema.virtual('images', {
   ref: 'Image',
   localField: '_id',
   foreignField: 'hostedBy'
 });
-
 userSchema.virtual('portfolio', {
   ref: 'Portfolio',
   localField: '_id',
   foreignField: 'hostedBy'
 });
-
 userSchema.virtual('events', {
   ref: 'Event',
   localField: '_id',
   foreignField: 'hostedBy'
 });
-
 //password/token camo
 userSchema.methods.toJSON = function () {
   const user = this;
@@ -128,7 +120,6 @@ userSchema.methods.toJSON = function () {
   delete userObject.tokens;
   return userObject;
 };
-
 //create token for user
 userSchema.methods.generateAuthToken = async function () {
   const user = this;
@@ -144,7 +135,6 @@ userSchema.methods.generateAuthToken = async function () {
   await user.save();
   return token;
 };
-
 //secure login for existing user
 userSchema.statics.findByCredentials = async (email, password) => {
   const user = await User.findOne({ email });
@@ -153,7 +143,6 @@ userSchema.statics.findByCredentials = async (email, password) => {
   if (!isMatch) throw new Error('Invalid password, try again.');
   return user;
 };
-
 //password hasher
 userSchema.pre('save', async function (next) {
   const user = this;
@@ -161,7 +150,5 @@ userSchema.pre('save', async function (next) {
     user.password = await bcrypt.hash(user.password, 8);
   next();
 });
-
 const User = mongoose.model('User', userSchema);
-
 module.exports = User;
