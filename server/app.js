@@ -10,19 +10,26 @@ const express = require('express'),
   eventRouter = require('./routes/secure/events'),
   jobRoutes = require('./routes/secure/jobs'),
   galleryRoutes = require('./routes/secure/gallery'),
-  messageRoutes = require('./routes/secure/messages');
-(fileUpload = require('express-fileupload')),
-  (passport = require('./middleware/authentication/index')),
-  (client = require('twilio')(
+  messageRoutes = require('./routes/secure/messages'),
+  fileUpload = require('express-fileupload'),
+  passport = require('./middleware/authentication/index'),
+  client = require('twilio')(
     process.env.TWILIO_ACCOUNT_SID,
     process.env.TWILIO_AUTH_TOKEN
-  ));
+  ),
+  cors = require('cors');
 
 const app = express();
 
 //Middleware
 app.use(express.json());
 app.use(cookieParser());
+app.use(
+  cors({
+    credentials: true,
+    origin: process.env.URL || 'http://localhost:3000'
+  })
+);
 
 // Unauthenticated routes
 app.use('/auth', openRoutes);

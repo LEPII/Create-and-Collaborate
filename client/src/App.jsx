@@ -22,7 +22,7 @@ function App() {
       <BrowserRouter>
         <Switch>
           <Route exact path="/events" component={Events} />
-          <PrivateRoute exact path="/" component={Home} />
+          <Route exact path="/" component={Home} />
           <PrivateRoute exact path="/jobs" component={Jobs} />
           <PrivateRoute exact path="/profile/:id" component={Profile} />
           <PrivateRoute exact path="/gallery/images/:id" component={Images} />
