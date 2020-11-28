@@ -24,7 +24,7 @@ const Post = (props) => {
     setVideo(e.target.files[0]);
   };
 
-  console.log(image);
+  console.log(userData);
 
   const handleSubmitFile = (e) => {
     e.preventDefault();

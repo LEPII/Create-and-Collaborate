@@ -17,6 +17,7 @@ const AppContextProvider = ({ children }) => {
       .get(`/users/me`, {
         withCredentials: true
       })
+
       .then(({ data }) => {
         setCurrentUser(data);
       })
