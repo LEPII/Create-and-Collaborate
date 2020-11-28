@@ -75,6 +75,7 @@ exports.deleteJob = async (req, res) => {
 exports.getAllJobs = async (req, res) => {
   try {
     const jobs = await Job.find().populate('user');
+
     const parsedJobs = jobs.map((job) => ({
       user: job.user,
       job: job

@@ -75,6 +75,7 @@ const userSchema = new mongoose.Schema(
     messages: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Message' }],
     following: [{ type: mongoose.Schema.Types.ObjectId, ref: 'User' }],
     followers: [{ type: mongoose.Schema.Types.ObjectId, ref: 'User' }],
+    Image: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Image' }],
     category: [
       {
         type: String
@@ -107,7 +108,7 @@ userSchema.virtual('images', {
   foreignField: 'hostedBy'
 });
 
-userSchema.virtual('portfolios', {
+userSchema.virtual('portfolio', {
   ref: 'Portfolio',
   localField: '_id',
   foreignField: 'hostedBy'

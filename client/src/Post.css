@@ -1,4 +1,23 @@
+.change {
+  position: absolute;
+  opacity: 0;
+}
 .post {
+  background-image: linear-gradient(
+    to right top,
+    #a93ccf,
+    #9538ca,
+    #8034c4,
+    #6a31be,
+    #512eb8,
+    #403fc2,
+    #2b4dca,
+    #005ad0,
+    #0079e1,
+    #0094eb,
+    #00aeee,
+    #0dc6ee
+  );
   display: flex;
   margin-top: 30px;
   flex-direction: column;
@@ -7,7 +26,15 @@
   box-shadow: 0px 5px 7px -7px rgba(0, 0, 0, 0.75);
   width: 100%;
 }
-
+.post__text {
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  -o-user-select: none;
+  user-select: none;
+  cursor: default;
+}
 .post__top {
   display: flex;
   border-bottom: 1px solid #eff2f5;

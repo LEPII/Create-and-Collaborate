@@ -43,6 +43,12 @@ const portfolioSchema = new mongoose.Schema(
   }
 );
 
+portfolioSchema.virtual('user', {
+  ref: 'User',
+  localField: 'hostedBy',
+  foreignField: '_id'
+});
+
 portfolioSchema.methods.toJSON = function () {
   const portfolioEmpDate = this;
   const portfolioEmpObject = portfolioEmpDate.toObject();

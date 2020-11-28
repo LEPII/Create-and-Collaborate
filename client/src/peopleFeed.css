@@ -1,0 +1,62 @@
+.peoplesearch {
+  margin: 15px;
+  padding: 10px;
+  height: 20vh;
+  width: 72vw;
+  border-radius: 1%;
+  min-width: 400px;
+}
+
+.peoplesearch input {
+  width: 25vw;
+  margin: 15px;
+}
+
+.peoplesearch button {
+  height: 3vw;
+  margin: 15px;
+  border-radius: 100%;
+}
+
+.peoplesearchfix {
+  display: flex;
+  justify-content: center;
+  min-width: 400px;
+}
+
+.peopleFeed_gridInnards {
+  background-color: white;
+  width: 72vw;
+  height: 11vh;
+  margin-top: 30px;
+  border-radius: 10px;
+}
+
+.peopleFeed__Container {
+  background-image: linear-gradient(
+    to right top,
+    #a93ccf,
+    #9538ca,
+    #8034c4,
+    #6a31be,
+    #512eb8,
+    #403fc2,
+    #2b4dca,
+    #005ad0,
+    #0079e1,
+    #0094eb,
+    #00aeee,
+    #0dc6ee
+  );
+  background-position: center;
+  background-size: auto;
+}
+
+.peopleFeed__Avatar {
+  height: 55px;
+  width: 55px;
+  border-radius: 100%;
+  margin-top: 25px;
+  position: absolute;
+  left: 355px;
+}

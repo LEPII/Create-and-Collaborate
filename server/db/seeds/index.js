@@ -5,6 +5,7 @@ const Job = require('../models/job'),
   User = require('../models/user'),
   Event = require('../models/event'),
   Image = require('../models/image'),
+  Comment = require('../models/comment'),
   Video = require('../models/video'),
   Portfolio = require('../models/portfolio'),
   faker = require('faker'),
@@ -32,6 +33,9 @@ const dbReset = async () => {
   });
   await Image.countDocuments({}, function (err, count) {
     console.log('Number of Images: ', count);
+  });
+  await Comment.countDocuments({}, function (err, count) {
+    console.log('Number of Comments: ', count);
   });
   await Video.countDocuments({}, function (err, count) {
     console.log('Number of Videos: ', count);
@@ -111,6 +115,13 @@ const dbReset = async () => {
   }
   //Loop 10 times and create 10 new images
   for (let i = 0; i < 10; i++) {
+    const comment = new Comment({
+      body: faker.lorem.words()
+    });
+    await comment.save();
+  }
+  //Loop 10 times and create 10 new videos
+  for (let i = 0; i < 10; i++) {
     const video = new Video({
       hostedBy: userIdArray[Math.floor(Math.random() * userIdArray.length)],
       caption: faker.lorem.sentence()
@@ -136,6 +147,9 @@ const dbReset = async () => {
   //Count number of images ===> should be 10
   await Image.countDocuments({}, function (err, count) {
     console.log('Number of images: ', count);
+  });
+  await Comment.countDocuments({}, function (err, count) {
+    console.log('Number of Comments: ', count);
   });
   //Count number of videos ===> should be 10
   await Video.countDocuments({}, function (err, count) {
