@@ -36,22 +36,22 @@ const PortfolioEditForm = () => {
           <div className="row">
             <div className="col-lg-6">
               <div className="form-group focused">
-                <label className="Create" htmlFor="input-username">
-                  Company
+                <label className="Create" htmlFor="company">
+                  Name of the Company
                 </label>
                 <input
                   type="text"
                   id="input-username"
                   name="company"
                   className="form-control form-control-alternative"
-                  placeholder="Company"
+                  placeholder="Los Pollos Hermanos"
                   onChange={handleChange}
                 />
               </div>
             </div>
             <div className="col-lg-6">
               <div className="form-group">
-                <label className="Create" htmlFor="input-email">
+                <label className="Create" htmlFor="position">
                   Position
                 </label>
                 <input
@@ -68,7 +68,7 @@ const PortfolioEditForm = () => {
           <div className="row">
             <div className="col-lg-6">
               <div className="form-group focused">
-                <label className="Create" htmlFor="input-first-name">
+                <label className="Create" htmlFor="typeOfEmployment">
                   Type Of Employment
                 </label>
                 <input
@@ -76,7 +76,7 @@ const PortfolioEditForm = () => {
                   id="input-first-name"
                   name="typeOfEmployment"
                   className="form-control form-control-alternative"
-                  placeholder="Enter Type Of Employment"
+                  placeholder="Contract, Part Time, Full Time, For Life...."
                   onChange={handleChange}
                 />
               </div>
@@ -184,7 +184,7 @@ const PortfolioEditForm = () => {
             </div>
 
             <Button className="Create" variant="primary" type="submit">
-              Submit
+              Submit Your Craft
             </Button>
           </div>
         </div>

@@ -4,12 +4,13 @@ import { Form, Button } from 'react-bootstrap';
 import { AppContext } from '../context/AppContext';
 import axios from 'axios';
 
-const LogForm = (props) => {
+const LogForm = () => {
   const { setCurrentUser } = useContext(AppContext);
   const [formData, setFormData] = useState(null);
   const history = useHistory();
 
   const handleChange = (event) => {
+    event.preventDefault();
     setFormData({ ...formData, [event.target.name]: event.target.value });
   };
 
@@ -79,45 +80,23 @@ const LogForm = (props) => {
         </Form.Group>
 
         <Form.Group>
-          <Form.Label htmlFor="username">Username</Form.Label>
-          <Form.Control
-            id="username"
-            type="text"
-            placeholder="Username"
-            name="username"
-            onChange={handleChange}
-          />
-        </Form.Group>
-
-        <Form.Group>
-          <Form.Label htmlFor="email">Email Address</Form.Label>
+          <Form.Label htmlFor="email">Enter Email</Form.Label>
           <Form.Control
             id="email"
             type="email"
-            placeholder="Email Address"
+            placeholder="JonSnowTheWatcher@TheWall.com"
             name="email"
             onChange={handleChange}
           />
         </Form.Group>
 
         <Form.Group>
-          <Form.Label htmlFor="password">Password</Form.Label>
+          <Form.Label htmlFor="password">Enter Password</Form.Label>
           <Form.Control
             id="password"
             type="password"
-            placeholder="Password"
+            placeholder="hopefully not password"
             name="password"
-            onChange={handleChange}
-          />
-        </Form.Group>
-
-        <Form.Group>
-          <Form.Label htmlFor="profession">Profession</Form.Label>
-          <Form.Control
-            id="profession"
-            type="text"
-            placeholder="Profession"
-            name="category"
             onChange={handleChange}
           />
         </Form.Group>

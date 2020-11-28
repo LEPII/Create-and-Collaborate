@@ -32,8 +32,12 @@ function App() {
           <Route exact path="/reset-password" component={ResetPassword} />
           <Route exact path="/update-password" component={UpdatePassword} />
           <Route exact path="/" component={Welcome} />
-          <Route exact path="/user-edit-page" component={UserEditPage} />
-          <Route exact path="/portfolio-edit" component={PortfolioEditPage} />
+          <PrivateRoute exact path="/user-edit-page" component={UserEditPage} />
+          <PrivateRoute
+            exact
+            path="/portfolio-edit"
+            component={PortfolioEditPage}
+          />
         </Switch>
       </BrowserRouter>
     </AppContextProvider>
