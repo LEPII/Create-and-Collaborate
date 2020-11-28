@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { useParams } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import Navbar from '../components/Navbar';
 import './messaging.css';
 import axios from 'axios';
@@ -30,7 +30,7 @@ const Messaging = () => {
                 <h5 class="card-title to">{message.to}</h5>
                 <h6 class="card-subtitle time">{message.createdAt}</h6>
                 <p class="card-text text">{message.text}</p>
-                <a href="#" class="card-link">
+                <a href={`/messages/${message.toID}`} class="card-link">
                   Reply
                 </a>
               </div>
