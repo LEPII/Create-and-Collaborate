@@ -4,7 +4,7 @@ import Footer from '../components/Footer';
 import Post from '../components/Post';
 import Feed from '../components/Feed';
 import Container from '@material-ui/core/Container';
-import '../../home.css';
+import '../Home.css';
 
 const Home = () => {
   return (
