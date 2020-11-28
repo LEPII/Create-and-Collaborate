@@ -2,7 +2,7 @@ require('./db/config');
 const express = require('express'),
   cookieParser = require('cookie-parser'),
   bodyParser = require('body-parser'),
-  pino = require('express-pino-logger')(),
+  pino = require('express-pino-logger'),
   path = require('path'),
   openRoutes = require('./routes/open'),
   userRouter = require('./routes/secure/users'),

@@ -35,9 +35,9 @@ const ProfileHead = () => {
       console.log(error);
     }
     if (following.indexOf(currentUser._id) === -1) {
-      exampleRef.current.className = 'follow';
+      followButton.current.className = 'follow';
     } else {
-      exampleRef.current.className = 'unfollow';
+      followButton.current.className = 'unfollow';
     }
   };
 

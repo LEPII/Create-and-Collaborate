@@ -65,6 +65,7 @@ const UserEditForm = () => {
               aria-describedby="inputGroupPrepend"
               name="username"
               htmlFor="username"
+              defaultValue={currentUser?.user?.username}
               onChange={handleChange}
             />
             <Form.Control.Feedback></Form.Control.Feedback>
