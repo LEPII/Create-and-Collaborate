@@ -23,7 +23,7 @@ const UpdatePassword = ({ history }) => {
     history.push('/login');
   };
   return (
-    <Container className="container d-flex flex-column align-items-center justify-content-center fullscreen">
+    <Container className="container d-flex flex-column align-items-center justify-content-center Fullscreen">
       <h1 className="mb-4">Update Password</h1>
       <Form style={{ width: 300 }} onSubmit={handleSubmit}>
         <Form.Group controlId="formBasicPassword">

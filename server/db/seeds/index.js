@@ -53,7 +53,8 @@ const dbReset = async () => {
       header: faker.image.nightlife(),
       bio: faker.lorem.paragraph(),
       location: faker.address.stateAbbr(),
-      category: faker.name.jobTitle()
+      category: faker.name.jobTitle(),
+      number: faker.phone.phoneNumber()
     });
     await me.generateAuthToken();
     userIdArray.push(me._id);

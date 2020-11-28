@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Modal from '@material-ui/core/Modal';
-import { Carousel } from 'react-bootstrap';
+import SMS from './SMS';
 import Backdrop from '@material-ui/core/Backdrop';
 import { useParams } from 'react-router-dom';
 import axios from 'axios';
@@ -21,11 +21,11 @@ const useStyles = makeStyles((theme) => ({
   }
 }));
 
-export default function ImageModal() {
+export default function ImageModal({ user }) {
   const classes = useStyles();
   let { id } = useParams();
   const [open, setOpen] = React.useState(false);
-  const [videos, setVideos] = useState([]);
+  const [images, setImages] = useState([]);
 
   const handleOpen = () => {
     setOpen(true);
@@ -37,19 +37,19 @@ export default function ImageModal() {
 
   useEffect(() => {
     axios
-      .get(`/gallery/videos/${id}`, { withCredentials: true })
+      .get(`/gallery/images/${id}`, { withCredentials: true })
       .then((response) => {
-        setVideos(response.data);
+        setImages(response.data);
       })
       .catch((error) => {
         console.log(error);
       });
-  }, [setVideos]);
+  }, [setImages]);
 
   return (
     <div>
       <button className="signup" type="button" onClick={handleOpen}>
-        Videos
+        Message
       </button>
       <Modal
         className={classes.modal}
@@ -61,27 +61,7 @@ export default function ImageModal() {
           timeout: 500
         }}
       >
-        <div className={classes.paper}>
-          <Carousel fade id="carouselInterval">
-            {videos?.map((video) => {
-              return (
-                <Carousel.Item data-interval="5000">
-                  <video
-                    autoPlay
-                    loop
-                    style={{
-                      width: '40vw',
-                      height: '50vh',
-                      objectFit: 'fill'
-                    }}
-                  >
-                    <source src={video.video} type="video/mp4" />
-                  </video>
-                </Carousel.Item>
-              );
-            })}
-          </Carousel>
-        </div>
+        <SMS user={user} />
       </Modal>
     </div>
   );

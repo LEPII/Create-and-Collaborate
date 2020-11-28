@@ -9,7 +9,6 @@ import { useHistory } from 'react-router-dom';
 const Feed = ({ feed }) => {
   const history = useHistory();
 
-  console.log(feed?.user[0].avatar);
   return (
     <div className="feed">
       <div className="feed__top">

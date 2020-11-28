@@ -1,9 +1,8 @@
 .jobsearch {
-  background-size: cover;
   margin: 15px;
   padding: 10px;
   height: 20vh;
-  width: 62.5vw;
+  width: 72vw;
   border-radius: 1%;
   min-width: 400px;
 }
@@ -27,9 +26,9 @@
 
 .gridInnards {
   background-color: white;
-  min-width: 400px;
-  height: 15vh;
-  margin: 20px;
+  width: 72vw;
+  height: 11vh;
+  margin-top: 30px;
   border-radius: 10px;
 }
 
@@ -49,4 +48,15 @@
     #00aeee,
     #0dc6ee
   );
+  background-position: center;
+  background-size: auto;
+}
+
+.jobAvatar {
+  height: 55px;
+  width: 55px;
+  border-radius: 100%;
+  margin-top: 25px;
+  position: absolute;
+  left: 355px;
 }

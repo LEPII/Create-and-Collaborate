@@ -12,7 +12,6 @@ const PortfolioEditForm = () => {
 
   const handleChange = (event) => {
     setFormData({ ...formData, [event.target.name]: event.target.value });
-    console.log(formData);
   };
 
   const handleLogin = async (e) => {
@@ -22,7 +21,7 @@ const PortfolioEditForm = () => {
         withCredentials: true
       });
       setCurrentUser(response.data);
-      sessionStorage.setItem('user', response.data);
+      sessionStorage.setItem('user', JSON.stringify(response.data));
       history.push(`/profile/${currentUser.user._id}`);
     } catch (error) {
       swal(`Oops!`, 'Something went wrong.');

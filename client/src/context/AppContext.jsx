@@ -3,7 +3,7 @@ import axios from 'axios';
 const AppContext = createContext();
 
 const AppContextProvider = ({ children }) => {
-  const user = sessionStorage.getItem('user');
+  const user = JSON.parse(sessionStorage.getItem('user'));
   const [currentUser, setCurrentUser] = useState(null);
   const [search, setSearch] = useState('');
   const [loading, setLoading] = useState(false);
