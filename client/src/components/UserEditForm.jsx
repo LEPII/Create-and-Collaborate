@@ -28,7 +28,7 @@ const UserEditForm = () => {
   };
 
   return (
-    <div class="card-body">
+    <div className="portfolios">
       <form onSubmit={handleLogin}>
         <h6 className="Create">User information</h6>
         <div class="pl-lg-4">
@@ -77,7 +77,7 @@ const UserEditForm = () => {
                   type="text"
                   id="input-first-name"
                   name="name"
-                  class="form-control form-control-alternative"
+                  class="form-control form-control-alternative editPortfolioBox"
                   placeholder="Name"
                   onChange={handleChange}
                 />
@@ -95,7 +95,7 @@ const UserEditForm = () => {
               </Form.Group>
             </div>
             <div class="col-lg-6">
-              <div class="form-group focused">
+              <div class="form-group focused editPortfolioBox">
                 <div>
                   <Form.Group controlId="exampleForm.ControlSelect2">
                     <Form.Label className="Create">Art Category</Form.Label>
