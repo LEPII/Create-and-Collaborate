@@ -9,14 +9,42 @@ import EventRoundedIcon from '@material-ui/icons/EventRounded';
 import '../Post.css';
 import { useHistory } from 'react-router-dom';
 
-const Post = ({ handle, save }) => {
+const Post = (props) => {
   const [userData, setUserData] = useState([]);
   const { setLoading, post, setPost, currentUser } = useContext(AppContext);
   const history = useHistory();
+  const [video, setVideo] = useState('');
+  const [image, setImage] = useState(null);
+  const [preview, setPreview] = useState(null);
+
+  const handleChange = (e) => {
+    setPost({ ...post, [e.target.name]: e.target.value });
+    // setPreview(URL.createObjectURL(e.target.files[0]));
+    setImage(e.target.files[0]);
+    setVideo(e.target.files[0]);
+  };
+
+  console.log(image);
+
+  const handleSubmitFile = (e) => {
+    e.preventDefault();
+    const formData = new FormData();
+    formData.append('ml_default', 'video');
+    formData.append('image', e.target.files[0]);
+    if (e.target.files[0].name.includes('mp4, mov')) {
+      axios
+        .post('/gallery/videos', formData)
+        .then((res) => setVideo(res.data.secure_url));
+    } else {
+      axios
+        .post('gallery/images', formData)
+        .then((res) => setImage(res.data.secure.url));
+    }
+  };
 
   useEffect(() => {
     axios
-      .get('/users/all', {
+      .get('/gallery/images', {
         withCredentials: true
       })
       .then((response) => {
@@ -27,69 +55,81 @@ const Post = ({ handle, save }) => {
       });
   }, [setUserData]);
 
-  const handleChange = (e) => {
-    setPost({ ...post, [e.target.name]: e.target.value });
-  };
-
-  const handleSubmit = async (e) => {
-    const form = e.target;
-    setLoading(true);
-    e.preventDefault();
-    try {
-      await axios({
-        method: 'POST',
-        url: '/gallery/images',
-        withCredentials: true,
-        data: setPost
-      });
-      setLoading(false);
-      form.reset();
-    } catch (error) {
-      console.log('Login Error: ' + error);
-    }
-  };
+  console.log(setUserData);
 
   return (
-    <div className="post">
-      <div className="post__top">
-        <Avatar
-          onClick={() => history.push(`/profile/${currentUser.user._id}`)}
-        />
-        <form>
-          <input
-            onChange={handleChange}
-            className="post__input"
-            placeholder={`What do you want to share today`}
+    <div className="post__container">
+      <div className="post">
+        <div className="post__top">
+          <Avatar
+            onClick={() => history.push(`/profile/${currentUser.user._id}`)}
           />
-          <input
-            onChange={handleChange}
-            className="post__input"
-            placeholder={`Image or Video URL (Optional)`}
-          />
-          <button onClick={handleSubmit} type="submit"></button>
-        </form>
-      </div>
-      <div className="post__bottom">
-        <div className="post__option">
-          <CameraEnhanceRoundedIcon
-            onClick={handle}
-            style={{ color: 'blue' }}
-          />
-          <h3> Upload Photo </h3>
+
+          <form onSubmit={handleSubmitFile}>
+            <input
+              onChange={handleChange}
+              className="post__input"
+              placeholder={`What do you want to share today`}
+            />
+            <input
+              onChange={handleChange}
+              className="post__input"
+              placeholder={`Image or Video URL (Optional)`}
+            />
+            <button type="submit" style={{ position: 'absolute' }}>
+              Submit
+            </button>
+
+            <div className="post__bottom">
+              <div className="post__option">
+                <CameraEnhanceRoundedIcon style={{ color: 'blue' }} />
+                <input
+                  type="file"
+                  name="photo"
+                  className="change"
+                  accept="image/*"
+                  formenctype="multipart/form-data"
+                  onChange={handleChange}
+                ></input>
+
+                <h3 className="post__text"> Upload Photo </h3>
+              </div>
+              <div className="post__option">
+                <input
+                  type="file"
+                  name="video"
+                  className="change"
+                  accept="video/*"
+                  placeholder="Share your artwork"
+                  onChange={handleChange}
+                ></input>
+                <DuoRoundedIcon style={{ color: 'green' }} />
+                <h3> Upload Video </h3>
+              </div>
+              <div className="post__option">
+                <input
+                  type="Date"
+                  name="video"
+                  accept="video/*"
+                  placeholder="startDate"
+                  size="2"
+                  className="change"
+                  onChange={handleChange}
+                ></input>
+                <EventRoundedIcon style={{ color: 'red' }} />
+                <h3> Schedule Event </h3>
+              </div>
+            </div>
+          </form>
         </div>
-        <div className="post__option">
-          <DuoRoundedIcon onClick={handle} style={{ color: 'green' }} />
-          <h3> Upload Video </h3>
-        </div>
-        <div className="post__option">
-          <EventRoundedIcon style={{ color: 'red' }} />
-          <h3> Schedule Event </h3>
-        </div>
+        <div className="post__bottom"></div>
       </div>
       {userData &&
-        userData?.map((user) => {
-          return <Feed key={user.user._id} feed={user} />;
-        })}
+        userData
+          ?.map((user) => {
+            return <Feed key={user.user._id} feed={user} />;
+          })
+          .reverse()}
     </div>
   );
 };

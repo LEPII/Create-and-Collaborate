@@ -1,21 +1,20 @@
-import React, { useContext } from 'react';
-import { AppContext } from '../context/AppContext';
+import React from 'react';
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
 import Post from '../components/Post';
 import Feed from '../components/Feed';
 import Container from '@material-ui/core/Container';
+import '../home.css';
 
-const Home = ({ history }) => {
+const Home = () => {
   return (
-    <div className="jobContainer">
+    <div className="home__body">
       <Navbar />
       <Container maxWidth="md">
-        <div className="home__body">
-          <Post />
-          <Feed />
-        </div>
+        <Post />
+        <Feed />
       </Container>
+      <Footer />
     </div>
   );
 };

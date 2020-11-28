@@ -11,23 +11,20 @@ const imageSchema = new mongoose.Schema(
     caption: {
       type: String
     },
-    likes: [
-      {
-        user: {
-          type: mongoose.Schema.Types.ObjectId,
-          ref: 'User'
-        }
-      }
-    ],
-    hostedBy: {
-      type: mongoose.Schema.Types.ObjectId,
-      ref: 'User'
-    }
+    likes: [{ type: mongoose.Schema.Types.ObjectId, ref: 'User' }],
+    comments: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Comment' }],
+    hostedBy: { type: mongoose.Schema.Types.ObjectId, ref: 'User' }
   },
   {
     timestamps: true
   }
 );
+
+imageSchema.virtual('user', {
+  ref: 'User',
+  localField: 'hostedBy',
+  foreignField: '_id'
+});
 
 imageSchema.methods.toJSON = function () {
   const image = this;

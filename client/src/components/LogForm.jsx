@@ -19,7 +19,7 @@ const LogForm = (props) => {
       const response = await axios.post('/auth/login', formData);
       setCurrentUser(response.data);
       sessionStorage.setItem('user', JSON.stringify(response.data));
-      history.push('/');
+      history.push('/home');
     } catch (error) {
       console.log('Login Error: ' + error);
     }

@@ -29,8 +29,7 @@ exports.updatePortfolio = async (req, res) => {
     'schoolDegree',
     'schoolDate',
     'image',
-    'video',
-    'hostedBy'
+    'video'
   ];
   const isValidOperation = updates.every((update) =>
     allowedUpdates.includes(update)
@@ -55,9 +54,13 @@ exports.updatePortfolio = async (req, res) => {
 
 exports.getAllPortfolio = async (req, res) => {
   try {
-    const portfolios = await Portfolio.find();
-    res.json(portfolios);
-    res.status(200).json(req.user.portfolios);
+    const portfoliosAndUser = await Portfolio.find().populate('user');
+
+    const parsedPortfoliosAndUser = portfoliosAndUser.map((portfolio) => ({
+      user: portfolio.user,
+      portfolios: portfolio
+    }));
+    res.status(200).json(parsedPortfoliosAndUser);
   } catch (error) {
     res.status(400).json({ error: error.message });
   }

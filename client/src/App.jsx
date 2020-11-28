@@ -10,6 +10,7 @@ import Profile from './pages/Profile';
 import ResetPassword from './pages/ResetPassword';
 import UpdatePassword from './pages/UpdatePassword';
 import Welcome from './pages/Welcome';
+import Talent from './pages/Talent';
 import UserEditPage from './pages/EditUser';
 import PortfolioEditPage from './pages/EditPortfolio';
 import 'bootstrap/dist/css/bootstrap.min.css';
@@ -22,14 +23,15 @@ function App() {
       <BrowserRouter>
         <Switch>
           <Route exact path="/events" component={Events} />
-          <Route exact path="/" component={Home} />
+          <PrivateRoute exact path="/home" component={Home} />
           <PrivateRoute exact path="/jobs" component={Jobs} />
+          <PrivateRoute exact path="/talent" component={Talent} />
           <PrivateRoute exact path="/profile/:id" component={Profile} />
           <PrivateRoute exact path="/gallery/images/:id" component={Images} />
           <PrivateRoute exact path="/messages/:id" component={Messaging} />
           <Route exact path="/reset-password" component={ResetPassword} />
           <Route exact path="/update-password" component={UpdatePassword} />
-          <Route exact path="/welcome" component={Welcome} />
+          <Route exact path="/" component={Welcome} />
           <Route exact path="/user-edit-page" component={UserEditPage} />
           <Route exact path="/portfolio-edit" component={PortfolioEditPage} />
         </Switch>

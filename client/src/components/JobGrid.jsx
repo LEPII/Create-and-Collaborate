@@ -39,7 +39,7 @@ const JobGrid = () => {
           style={{ width: '100%', height: 400 }}
         />
       </Card>
-      <div class="container ">
+      <div class="container">
         <JobSearch handleSearch={handleSearch} />
         {jobs &&
           filteredJobs.map((job) => {
