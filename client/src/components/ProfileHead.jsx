@@ -13,7 +13,7 @@ const ProfileHead = () => {
   const [user, setUser] = useState('');
   const [following, setFollowing] = useState([]);
   const { currentUser } = useContext(AppContext);
-  const exampleRef = useRef(null);
+  const followButton = useRef(null);
   let { id } = useParams();
 
   useEffect(() => {
@@ -28,22 +28,18 @@ const ProfileHead = () => {
       });
   }, [setUser]);
 
-  const current = currentUser._id;
-
   const follow = async () => {
     try {
       await axios.put(`/users/${id}`, { withCredentials: true });
     } catch (error) {
       console.log(error);
     }
-    if (following.indexOf(current) === -1) {
+    if (following.indexOf(currentUser._id) === -1) {
       exampleRef.current.className = 'follow';
     } else {
       exampleRef.current.className = 'unfollow';
     }
   };
-
-  console.log(following.indexOf(current));
 
   return (
     <>
@@ -58,9 +54,9 @@ const ProfileHead = () => {
         <div>
           <button
             type="button"
-            ref={exampleRef}
+            ref={followButton}
             onClick={follow}
-            class="btn  fixSpace"
+            class="btn fixSpace"
           >
             Connect
           </button>
@@ -68,7 +64,7 @@ const ProfileHead = () => {
         </div>
         <div>
           <Link to={`/messages/${id}`}>
-            <button type="button" class="btn  fixSpace">
+            <button type="button" class="btn fixSpace">
               Message
             </button>
           </Link>

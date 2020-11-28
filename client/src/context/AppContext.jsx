@@ -21,7 +21,7 @@ const AppContextProvider = ({ children }) => {
         setCurrentUser(response.data.user);
       })
       .catch((error) => console.log(error));
-  }, [setCurrentUser]);
+  }, [setCurrentUser, user]);
 
   return (
     <AppContext.Provider
