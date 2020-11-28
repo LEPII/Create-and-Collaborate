@@ -1,14 +1,17 @@
 .jobsearch {
+  display: flex;
+  align-items: center;
   margin: 15px;
   padding: 10px;
-  height: 20vh;
-  width: 72vw;
+  height: 10vh;
+  width: 75vw;
   border-radius: 1%;
+  max-height: 8vh;
   min-width: 400px;
 }
 
 .jobsearch input {
-  width: 25vw;
+  width: 38vw;
   margin: 15px;
 }
 
@@ -16,6 +19,15 @@
   height: 3vw;
   margin: 15px;
   border-radius: 100%;
+  min-width: 3vw;
+  min-height: 3vw;
+  max-height: 4vh;
+}
+
+.jobsearch h3 {
+  min-width: 3vw;
+  min-height: 3vw;
+  max-height: 4vh;
 }
 
 .jobsearchfix {
@@ -56,7 +68,6 @@
   height: 55px;
   width: 55px;
   border-radius: 100%;
-  margin-top: 25px;
-  position: absolute;
-  left: 355px;
+  margin-top: 8px;
+  margin-left: 6px;
 }
