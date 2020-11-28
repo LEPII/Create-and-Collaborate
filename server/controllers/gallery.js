@@ -37,11 +37,11 @@ exports.createImage = async (req, res) => {
 //Get all jobs
 exports.getAllImages = async (req, res) => {
   try {
-    const posts = await Image.find().populate('images');
+    const posts = await Image.find().populate('user');
 
     const parsedImages = posts.map((post) => ({
-      images: post.images,
-      images: post
+      images: post,
+      user: post.user
     }));
     res.status(200).json(parsedImages);
   } catch (error) {
@@ -49,15 +49,15 @@ exports.getAllImages = async (req, res) => {
   }
 };
 
-exports.getimagesImages = async (req, res) => {
+exports.getUserVideos = async (req, res) => {
   const _id = req.params.id;
   if (!mongoose.Types.ObjectId.isValid(_id))
-    return res.status(400).json({ message: 'Images not found :-(' });
+    return res.status(400).json({ message: 'Videos not found :-(' });
   try {
-    const image = await Image.find({ hostedBy: _id });
-    if (!image)
-      return res.status(400).json({ message: 'Images not found :-(' });
-    res.status(200).json(image);
+    const video = await Video.find({ hostedBy: _id });
+    if (!video)
+      return res.status(400).json({ message: 'Videos not found :-(' });
+    res.status(200).json(video);
   } catch (error) {
     res.status(400).json({ error: error.message });
   }
@@ -106,44 +106,44 @@ exports.getAllVideos = async (req, res) => {
   }
 };
 
-exports.getimagesVideos = async (req, res) => {
+exports.getUserImages = async (req, res) => {
   const _id = req.params.id;
   if (!mongoose.Types.ObjectId.isValid(_id))
-    return res.status(400).json({ message: 'Videos not found :-(' });
+    return res.status(400).json({ message: 'Images not found :-(' });
   try {
-    const video = await Video.find({ hostedBy: _id });
-    if (!video)
-      return res.status(400).json({ message: 'Videos not found :-(' });
-    res.status(200).json(video);
+    const image = await Image.find({ hostedBy: _id });
+    if (!image)
+      return res.status(400).json({ message: 'Images not found :-(' });
+    res.status(200).json(image);
   } catch (error) {
     res.status(400).json({ error: error.message });
   }
 };
 
-exports.likedPost = async (req, res) => {
-  try {
-    const postToLike = await Image.findOne({ _id: req.params.id });
-    //If my id is already included in the likedBy array, remove it by filter (thus unlikes)
-    if (postToLike.likedBy.includes(req.user._id)) {
-      postToLike.likedBy = postToLike.likedBy.filter((id) => {
-        return id.toString() !== req.images._id.toString();
-      });
-      await postToLike.save();
-      // Filter OUT the postToLike's id from the people i am "likes"
-      req.images.likes = req.images.likes.filter((id) => {
-        return id.toString() !== postToLike._id.toString();
-      });
-      await req.images.save();
-      return res.status(400).json({
-        message: 'likes not found :-('
-      });
-    }
-    postToLike.likedBy.push(req.images._id);
-    await postToLike.save();
-    req.images.likes.push(postToLike._id);
-    await req.images.save();
-    res.status(200).json({ postToLike });
-  } catch (e) {
-    res.status(400).json({ message: 'likes not found :-(' });
-  }
-};
+// exports.likedPost = async (req, res) => {
+//   try {
+//     const postToLike = await Image.findOne({ _id: req.params.id });
+//     //If my id is already included in the likedBy array, remove it by filter (thus unlikes)
+//     if (postToLike.likedBy.includes(req.user._id)) {
+//       postToLike.likedBy = postToLike.likedBy.filter((id) => {
+//         return id.toString() !== req.images._id.toString();
+//       });
+//       await postToLike.save();
+//       // Filter OUT the postToLike's id from the people i am "likes"
+//       req.images.likes = req.images.likes.filter((id) => {
+//         return id.toString() !== postToLike._id.toString();
+//       });
+//       await req.images.save();
+//       return res.status(400).json({
+//         message: 'likes not found :-('
+//       });
+//     }
+//     postToLike.likedBy.push(req.images._id);
+//     await postToLike.save();
+//     req.images.likes.push(postToLike._id);
+//     await req.images.save();
+//     res.status(200).json({ postToLike });
+//   } catch (e) {
+//     res.status(400).json({ message: 'likes not found :-(' });
+//   }
+// };
