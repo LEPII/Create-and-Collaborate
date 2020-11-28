@@ -15,7 +15,7 @@ const NavBar = () => {
         withCredentials: true
       });
       sessionStorage.removeItem('user');
-      setCurrentUser(null).then(() => history.push('/welcome'));
+      setCurrentUser(null).then(() => history.push('/'));
     } catch (error) {
       console.log(error);
     }
@@ -29,7 +29,7 @@ const NavBar = () => {
       variant="dark"
       className="foot"
     >
-      <Navbar.Brand href="/">C & C</Navbar.Brand>
+      <Navbar.Brand href="/home">C & C</Navbar.Brand>
       <Navbar.Toggle aria-controls="responsive-navbar-nav" />
       <Navbar.Collapse id="responsive-navbar-nav">
         <Nav className="mr-auto">

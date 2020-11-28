@@ -8,9 +8,8 @@ import { Avatar } from '@material-ui/core';
 import EventRoundedIcon from '@material-ui/icons/EventRounded';
 import '../Post.css';
 import { useHistory } from 'react-router-dom';
-import { Form, Button } from 'react-bootstrap';
 
-const Post = () => {
+const Post = (props) => {
   const [userData, setUserData] = useState([]);
   const { setLoading, post, setPost, currentUser } = useContext(AppContext);
   const history = useHistory();
@@ -20,7 +19,7 @@ const Post = () => {
 
   const handleChange = (e) => {
     setPost({ ...post, [e.target.name]: e.target.value });
-    setPreview(URL.createObjectURL(e.target.files[0]));
+    // setPreview(URL.createObjectURL(e.target.files[0]));
     setImage(e.target.files[0]);
     setVideo(e.target.files[0]);
   };
@@ -36,14 +35,11 @@ const Post = () => {
       axios
         .post('/gallery/videos', formData)
         .then((res) => setVideo(res.data.secure_url));
-    } else if (e.target.files[0].name.includes('mp4, mov')) {
+    } else {
       axios
         .post('gallery/images', formData)
         .then((res) => setImage(res.data.secure.url));
-    } else
-      axios
-        .post('gallery/post', formData)
-        .then((res) => setImage(res.data.secure.url));
+    }
   };
 
   useEffect(() => {
@@ -60,10 +56,6 @@ const Post = () => {
   }, [setUserData]);
 
   console.log(setUserData);
-
-  // const like = () => {
-  //   axios.post(`/likes/${id}`)
-  // }
 
   return (
     <div className="post__container">
@@ -84,6 +76,9 @@ const Post = () => {
               className="post__input"
               placeholder={`Image or Video URL (Optional)`}
             />
+            <button type="submit" style={{ position: 'absolute' }}>
+              Submit
+            </button>
 
             <div className="post__bottom">
               <div className="post__option">
@@ -113,10 +108,10 @@ const Post = () => {
               </div>
               <div className="post__option">
                 <input
-                  type="file"
+                  type="Date"
                   name="video"
                   accept="video/*"
-                  placeholder="Share your artwork"
+                  placeholder="startDate"
                   size="2"
                   className="change"
                   onChange={handleChange}
@@ -125,15 +120,16 @@ const Post = () => {
                 <h3> Schedule Event </h3>
               </div>
             </div>
-            <button type="submit">Submit</button>
           </form>
         </div>
         <div className="post__bottom"></div>
       </div>
       {userData &&
-        userData?.map((user) => {
-          return <Feed key={user.user._id} feed={user} />;
-        })}
+        userData
+          ?.map((user) => {
+            return <Feed key={user.user._id} feed={user} />;
+          })
+          .reverse()}
     </div>
   );
 };
