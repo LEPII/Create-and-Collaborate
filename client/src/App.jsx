@@ -26,7 +26,7 @@ function App() {
           <PrivateRoute exact path="/jobs" component={Jobs} />
           <PrivateRoute exact path="/profile/:id" component={Profile} />
           <PrivateRoute exact path="/gallery/images/:id" component={Images} />
-          <PrivateRoute exact path="/messages/:id" component={Messaging} />
+          <PrivateRoute exact path="/messages/" component={Messaging} />
           <Route exact path="/reset-password" component={ResetPassword} />
           <Route exact path="/update-password" component={UpdatePassword} />
           <Route exact path="/welcome" component={Welcome} />

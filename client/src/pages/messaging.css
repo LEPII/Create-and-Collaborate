@@ -1,0 +1,48 @@
+.messageContainer {
+  background-image: linear-gradient(
+    to right top,
+    #a93ccf,
+    #9538ca,
+    #8034c4,
+    #6a31be,
+    #512eb8,
+    #403fc2,
+    #2b4dca,
+    #005ad0,
+    #0079e1,
+    #0094eb,
+    #00aeee,
+    #0dc6ee
+  );
+}
+
+.chat {
+  margin: 50px;
+  background-color: white;
+  border-radius: 20px;
+  position: absolute;
+  left: 410px;
+  max-width: 50vw;
+}
+
+.chat button {
+  /* position: absolute;
+  right: 455px; */
+}
+
+.to {
+  font-size: small;
+  /* position: absolute;
+  left: 300px;  */
+}
+
+.time {
+  font-size: small;
+  /* position: absolute;
+  right:255px; */
+}
+
+.text {
+  margin: 15px;
+  word-wrap: break-word;
+}

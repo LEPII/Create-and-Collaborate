@@ -3,6 +3,7 @@ import { Avatar } from '@material-ui/core';
 import FavoriteBorderOutlinedIcon from '@material-ui/icons/FavoriteBorderOutlined';
 import AssistantRoundedIcon from '@material-ui/icons/AssistantRounded';
 import ShareRoundedIcon from '@material-ui/icons/ShareRounded';
+import Messaging from '../pages/Messaging';
 import '../Feed.css';
 import { useHistory } from 'react-router-dom';
 
