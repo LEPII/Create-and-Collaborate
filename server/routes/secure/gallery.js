@@ -5,10 +5,12 @@ const router = require('express').Router(),
     getAllVideos,
     getAllImages,
     getUserImages,
-    getUserVideos
+    getUserVideos,
+    createImage
   } = require('../../controllers/gallery');
 
 router.post('/images', uploadImage);
+router.post('/post', createImage);
 router.get('/images', getAllImages);
 router.get('/images/:id', getUserImages);
 router.post('/videos', uploadVideo);

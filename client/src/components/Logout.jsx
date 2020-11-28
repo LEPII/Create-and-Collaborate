@@ -18,7 +18,7 @@ const Logout = () => {
       sessionStorage.removeItem('user');
       setCurrentUser(null);
       swal(response.data.message, 'You have signed out!', 'success').then(() =>
-        history.push('/welcome')
+        history.push('/')
       );
     } catch (error) {
       console.log(error);
