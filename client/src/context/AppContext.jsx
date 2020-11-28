@@ -18,7 +18,7 @@ const AppContextProvider = ({ children }) => {
         withCredentials: true
       })
       .then((response) => {
-        setCurrentUser(response.data.user);
+        setCurrentUser(response.data);
       })
       .catch((error) => console.log(error));
   }, [setCurrentUser, user]);
