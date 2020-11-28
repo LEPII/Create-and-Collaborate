@@ -42,6 +42,7 @@ const NavBar = () => {
             className="dropleft"
             id="collasible-nav-dropdown"
           >
+            <NavDropdown.Item href="/messages">Messages</NavDropdown.Item>
             <NavDropdown.Item href="/portfolio-edit">
               Create Portfolio
             </NavDropdown.Item>
