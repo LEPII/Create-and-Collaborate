@@ -10,7 +10,7 @@ const Messaging = () => {
 
   useEffect(() => {
     axios
-      .get(`/message/`)
+      .get(`/message/me`)
       .then((response) => {
         setMessages(response.data);
       })
@@ -18,6 +18,8 @@ const Messaging = () => {
         console.log(error);
       });
   }, []);
+
+  console.log(messages);
 
   return (
     <div className="messageContainer">
@@ -27,7 +29,7 @@ const Messaging = () => {
           return (
             <div class="card chat">
               <div class="card-body">
-                <h5 class="card-title to">{message.to}</h5>
+                <h5 class="card-title from">From: {message.from}</h5>
                 <h6 class="card-subtitle time">{message.createdAt}</h6>
                 <p class="card-text text">{message.text}</p>
                 <a href={`/messages/${message.toID}`} class="card-link">
