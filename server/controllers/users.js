@@ -242,7 +242,7 @@ exports.followUser = async (req, res) => {
 
       await userToFollow.save();
       // Filter OUT the userToFollow's id from the people i am "following"
-      req.user.following = req.user.following.filter((id) => {
+      req.user.followers = req.user.followers.filter((id) => {
         return id.toString() !== userToFollow._id.toString();
       });
       await req.user.save();

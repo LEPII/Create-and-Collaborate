@@ -9,6 +9,7 @@ import Student from '../helper/Student';
 
 const ProfileHead = () => {
   const [user, setUser] = useState([]);
+  const [following, setFollowing] = useState([]);
   const { currentUser, setLoading, loading } = useContext(AppContext);
   const { id } = useParams();
 
@@ -17,6 +18,7 @@ const ProfileHead = () => {
       .get(`/users/${id}`, { withCredentials: true })
       .then((response) => {
         setUser(response.data.user);
+        setFollowing(response.data.user.followers);
       })
       .catch((error) => {
         console.log(error);
@@ -43,13 +45,10 @@ const ProfileHead = () => {
   const isFollowing = (user.followers || []).some(
     (follower) => follower._id === currentUser?._id
   );
+
   const followColor = isFollowing ? 'green' : 'grey';
 
-  console.log('what', {
-    isFollowing,
-    followerIds: (user.followers || []).map((f) => f._id),
-    currentUser: currentUser?._id
-  });
+  console.log(following);
 
   return (
     <>
@@ -81,11 +80,19 @@ const ProfileHead = () => {
         <div className="fixSpace">
           <h6>{user.category}</h6>
         </div>
+        <p>FOLLOWERS:</p>
         <div>
-          <p>FOLLOWERS:</p>
-          {/* <div><img src={following?.user?.avatar}/></div>
-          <div><img src={following?.user[1]?.avatar}/></div>
-          <div><img src={following?.user[3]?.avatar}/></div> */}
+          <div className="follower-avatar">
+            <a href={`/profile/${following[0]?._id}`}>
+              <img src={following[0]?.avatar} />
+            </a>
+            <a href={`/profile/${following[1]?._id}`}>
+              <img src={following[1]?.avatar} />
+            </a>
+            <a href={`/profile/${following[2]?._id}`}>
+              <img src={following[2]?.avatar} />
+            </a>
+          </div>
         </div>
       </div>
       <div className="mentor">

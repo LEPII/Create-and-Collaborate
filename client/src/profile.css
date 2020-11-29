@@ -215,12 +215,12 @@
 
 #follow-button {
   height: 50px;
-  background-color: skyblue;
+  background-color: tomato;
 }
 
 #unfollow-button {
-  height: 200px;
-  background-color: gray;
+  height: 50px;
+  background-color: mediumseagreen;
 }
 
 .message {
@@ -236,4 +236,11 @@
   height: 15vh;
   background-color: gray;
   border-radius: 20px;
+}
+
+.follower-avatar img {
+  height: 100px;
+  width: 100px;
+  border-radius: 100%;
+  margin: 5px;
 }
