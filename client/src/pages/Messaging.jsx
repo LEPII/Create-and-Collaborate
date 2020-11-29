@@ -1,12 +1,10 @@
 import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
 import Navbar from '../components/Navbar';
 import './messaging.css';
 import axios from 'axios';
 
 const Messaging = () => {
   const [messages, setMessages] = useState([]);
-  const [formData, setFormData] = useState(null);
 
   useEffect(() => {
     axios
@@ -18,8 +16,6 @@ const Messaging = () => {
         console.log(error);
       });
   }, []);
-
-  console.log(messages);
 
   return (
     <div className="messageContainer">

@@ -14,8 +14,8 @@
     #00aeee,
     #0dc6ee
   );
-  height: 100vh;
-  min-height: 100vh;
+  background-position: center;
+  background-size: cover;
 }
 
 .chat {
