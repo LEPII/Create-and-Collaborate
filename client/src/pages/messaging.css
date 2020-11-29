@@ -33,6 +33,10 @@
   left: 300px;  */
 }
 
+.from {
+  font-size: small;
+}
+
 .time {
   font-size: small;
 }
@@ -40,4 +44,15 @@
 .text {
   margin: 15px;
   word-wrap: break-word;
+}
+
+.messageBox {
+  background-color: white;
+  border-radius: 20px;
+  padding-top: 12px;
+  padding-left: 3px;
+  position: absolute;
+  height: 6vh;
+  width: 6vw;
+  left: 150px;
 }
