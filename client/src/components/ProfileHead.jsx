@@ -8,14 +8,14 @@ import Mentor from '../helper/Mentor';
 import Student from '../helper/Student';
 
 const ProfileHead = () => {
-  const [user, setUser] = useState('');
+  const [user, setUser] = useState([]);
   const [following, setFollowing] = useState([]);
-  const { currentUser } = useContext(AppContext);
+  const { currentUser, loading, setLoading } = useContext(AppContext);
   const followButton = useRef(null);
   let { id } = useParams();
 
-  useEffect(() => {
-    axios
+  useEffect(async () => {
+    await axios
       .get(`/users/${id}`, { withCredentials: true })
       .then((response) => {
         setUser(response.data.user);
@@ -24,7 +24,8 @@ const ProfileHead = () => {
       .catch((error) => {
         console.log(error);
       });
-  }, [setUser]);
+  }, []);
+
   console.log(following);
 
   const follow = async () => {
@@ -73,6 +74,9 @@ const ProfileHead = () => {
         </div>
         <div>
           <p>FOLLOWERS:</p>
+          {/* <div><img src={following?.user?.avatar}/></div>
+          <div><img src={following?.user[1]?.avatar}/></div>
+          <div><img src={following?.user[3]?.avatar}/></div> */}
         </div>
       </div>
       <div className="mentor">

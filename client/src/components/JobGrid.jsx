@@ -2,12 +2,10 @@ import React, { useState, useEffect } from 'react';
 import '../jobs.css';
 import axios from 'axios';
 import { Card } from 'react-bootstrap';
-import { Link } from 'react-router-dom';
 import JobSearch from './JobSearch';
 
 const JobGrid = () => {
   const [jobs, setJobs] = useState([]);
-  const [users, setUsers] = useState([]);
   const [searchValue, setSearchValue] = useState('');
 
   useEffect(() => {
@@ -15,12 +13,11 @@ const JobGrid = () => {
       .get('/jobs', { withCredentials: true })
       .then((response) => {
         setJobs(response.data);
-        setUsers(response.data);
       })
       .catch((error) => {
         console.log(error);
       });
-  }, [setJobs]);
+  }, []);
 
   const handleSearch = (searchTerm) => {
     setSearchValue(searchTerm);

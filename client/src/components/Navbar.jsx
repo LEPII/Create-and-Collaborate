@@ -42,7 +42,7 @@ const NavBar = () => {
             className="dropleft"
             id="collasible-nav-dropdown"
           >
-
+            <NavDropdown.Item href="/messages">Messages</NavDropdown.Item>
             <NavDropdown.Item onClick={logout}>Logout</NavDropdown.Item>
             <NavDropdown.Item href="/update-password">
               Update Password
@@ -51,7 +51,7 @@ const NavBar = () => {
               Create Portfolio
             </NavDropdown.Item>
           </NavDropdown>
-          <Nav.Link href="/">Profile</Nav.Link>
+          <Nav.Link href="/home">Profile</Nav.Link>
         </Nav>
       </Navbar.Collapse>
     </Navbar>

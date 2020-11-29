@@ -182,7 +182,7 @@ exports.deleteUser = async (req, res) => {
 exports.uploadAvatar = async (req, res) => {
   try {
     const response = await cloudinary.uploader.upload(
-      req.files.image.tempFilePath
+      req.files.images.tempFilePath
     );
     req.user.avatar = response.secure_url;
     await req.user.save();

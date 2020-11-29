@@ -13,6 +13,10 @@
   width: 100px;
 }
 
+.messageButton {
+  margin: 200px;
+}
+
 /* WELCOME PAGE */
 .jobContainer {
   background-image: linear-gradient(

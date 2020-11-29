@@ -1,4 +1,5 @@
 import React, { useContext, useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
 import axios from 'axios';
 import { AppContext } from '../context/AppContext';
 import Feed from './Feed';
@@ -56,7 +57,6 @@ const Post = (props) => {
   }, [setUserData]);
 
   console.log(setUserData);
-
   return (
     <div className="post__container">
       <div className="post">
@@ -116,8 +116,10 @@ const Post = (props) => {
                   className="change"
                   onChange={handleChange}
                 ></input>
-                <EventRoundedIcon style={{ color: 'red' }} />
-                <h3> Schedule Event </h3>
+                <Link to="/events-form">
+                  <EventRoundedIcon style={{ color: 'red' }} />
+                  <h3> Schedule Event </h3>
+                </Link>
               </div>
             </div>
           </form>
