@@ -8,13 +8,12 @@ const JobSearch = ({ handleSearch }) => {
       <Card>
         <form>
           <div className="jobsearch">
-            <h3>Find your next gig!</h3>
+            <h5>Find your next gig!</h5>
             <input
               type="text"
               placeholder="Search by Title..."
               onChange={(e) => handleSearch(e.target.value)}
             />
-            <button>Search</button>
           </div>
         </form>
       </Card>

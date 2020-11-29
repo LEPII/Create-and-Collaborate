@@ -58,7 +58,7 @@ export default function Messengerl() {
   return (
     <div>
       <button className="signup" type="button" onClick={handleOpen}>
-        Reply
+        Message
       </button>
       <Modal
         className={classes.modal}

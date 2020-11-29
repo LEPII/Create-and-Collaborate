@@ -25,6 +25,7 @@ const PersonalMessaging = () => {
     <div className="messageContainer">
       <Navbar />
       <div>
+        <Messenger />
         {messages?.map((message) => {
           return (
             <div class="card chat">
@@ -32,7 +33,6 @@ const PersonalMessaging = () => {
                 <h5 class="card-title to">{message.to}</h5>
                 <h6 class="card-subtitle time">{message.createdAt}</h6>
                 <p class="card-text text">{message.text}</p>
-                <Messenger />
               </div>
             </div>
           );

@@ -14,8 +14,8 @@ const ProfileHead = () => {
   const followButton = useRef(null);
   let { id } = useParams();
 
-  useEffect(() => {
-    axios
+  useEffect(async () => {
+    await axios
       .get(`/users/${id}`, { withCredentials: true })
       .then((response) => {
         setUser(response.data.user);
@@ -27,7 +27,6 @@ const ProfileHead = () => {
   }, []);
 
   console.log(following);
-  console.log(user);
 
   const follow = async () => {
     try {
@@ -75,7 +74,9 @@ const ProfileHead = () => {
         </div>
         <div>
           <p>FOLLOWERS:</p>
-          <div></div>
+          {/* <div><img src={following?.user?.avatar}/></div>
+          <div><img src={following?.user[1]?.avatar}/></div>
+          <div><img src={following?.user[3]?.avatar}/></div> */}
         </div>
       </div>
       <div className="mentor">
