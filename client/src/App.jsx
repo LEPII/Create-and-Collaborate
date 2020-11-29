@@ -13,6 +13,7 @@ import Welcome from './pages/Welcome';
 import UserEditPage from './pages/EditUser';
 import PortfolioEditPage from './pages/EditPortfolio';
 import PersonalMessaging from './pages/PersonalMessaging';
+import EventsForm from './helper/EventsForm';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './App.css';
 import Images from './pages/Images';
@@ -33,6 +34,7 @@ function App() {
             path="/messages/:id"
             component={PersonalMessaging}
           />
+          <Route exact path="/events-form" component={EventsForm} />
           <Route exact path="/reset-password" component={ResetPassword} />
           <Route exact path="/update-password" component={UpdatePassword} />
           <Route exact path="/" component={Welcome} />

@@ -1,4 +1,5 @@
 import React, { useContext, useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
 import axios from 'axios';
 import { AppContext } from '../context/AppContext';
 import Feed from './Feed';
@@ -41,21 +42,6 @@ const Post = (props) => {
         .then((res) => setImage(res.data.secure.url));
     }
   };
-
-  useEffect(() => {
-    axios
-      .get('/gallery/images', {
-        withCredentials: true
-      })
-      .then((response) => {
-        setUserData(response.data);
-      })
-      .catch((error) => {
-        console.log(error);
-      });
-  }, [setUserData]);
-
-  console.log(setUserData);
 
   return (
     <div className="post__container">
@@ -116,8 +102,10 @@ const Post = (props) => {
                   className="change"
                   onChange={handleChange}
                 ></input>
-                <EventRoundedIcon style={{ color: 'red' }} />
-                <h3> Schedule Event </h3>
+                <Link to="/events-form">
+                  <EventRoundedIcon style={{ color: 'red' }} />
+                  <h3> Schedule Event </h3>
+                </Link>
               </div>
             </div>
           </form>
