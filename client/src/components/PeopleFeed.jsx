@@ -17,7 +17,7 @@ const PeopleFeed = () => {
       .catch((error) => {
         console.log(error);
       });
-  }, [setProfileData]);
+  }, []);
 
   const handleSearch = (searchTerm) => {
     setSearchValue(searchTerm);

@@ -18,7 +18,7 @@ const ProfileBody = () => {
       .catch((error) => {
         console.log(error);
       });
-  }, [setPortfolio]);
+  }, []);
 
   return (
     <>

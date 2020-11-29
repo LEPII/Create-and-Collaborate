@@ -13,34 +13,40 @@ import { useHistory } from 'react-router-dom';
 
 const Post = (props) => {
   const [userData, setUserData] = useState([]);
-  const { setLoading, post, setPost, currentUser } = useContext(AppContext);
+  const { setLoading, post, setPost, currentUser, loading } = useContext(
+    AppContext
+  );
   const history = useHistory();
   const [video, setVideo] = useState('');
   const [image, setImage] = useState(null);
   const [preview, setPreview] = useState(null);
 
   const handleChange = (e) => {
-    setPost({ ...post, [e.target.name]: e.target.value });
-    // setPreview(URL.createObjectURL(e.target.files[0]));
+    if (e.target.files[0].name.includes('mov')) {
+      return setVideo(e.target.files[0]);
+    }
+
     setImage(e.target.files[0]);
-    setVideo(e.target.files[0]);
   };
 
-  console.log(userData);
+  console.log(currentUser);
 
-  const handleSubmitFile = (e) => {
+  const handleSubmitFile = async (e) => {
     e.preventDefault();
+    setLoading(true);
     const formData = new FormData();
     formData.append('ml_default', 'video');
-    formData.append('image', e.target.files[0]);
-    if (e.target.files[0].name.includes('mp4, mov')) {
-      axios
-        .post('/gallery/videos', formData)
-        .then((res) => setVideo(res.data.secure_url));
-    } else {
-      axios
-        .post('gallery/images', formData)
-        .then((res) => setImage(res.data.secure.url));
+    formData.append(image ? 'image' : 'video', image || video);
+    try {
+      const { data } = await axios.post(
+        `/gallery/${image ? 'images' : 'videos'}`,
+        formData,
+        { withCredentials: true }
+      );
+      console.log(data);
+      setLoading(false);
+    } catch (error) {
+      console.log(error.message);
     }
   };
 
@@ -55,9 +61,8 @@ const Post = (props) => {
       .catch((error) => {
         console.log(error);
       });
-  }, [setUserData]);
+  }, [loading]);
 
-  console.log(setUserData);
   return (
     <div className="post__container">
       <div className="post">
@@ -92,19 +97,11 @@ const Post = (props) => {
                   formenctype="multipart/form-data"
                   onChange={handleChange}
                 />
-                <h3 className="post__text"> Upload Photo </h3>
+                <h3 className="post__text"> Upload Media </h3>
               </div>
               <div className="post__option">
                 <DuoRoundedIcon style={{ color: 'green' }} />
-                <input
-                  type="file"
-                  name="video"
-                  className="change"
-                  accept="video/*"
-                  placeholder="Share your artwork"
-                  onChange={handleChange}
-                />
-                <h3 className="post__text"> Upload Video </h3>
+                <button onClick={handleSubmitFile}>Save Media</button>
               </div>
 
               <div className="post__option">

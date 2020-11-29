@@ -47,7 +47,7 @@ export default function Messengerl() {
     setLoading(true);
     try {
       await axios.post(`/message/${id}`, formData);
-      await history.push(`/messages/${id}`);
+      history.push(`/messages/${id}`);
       setLoading(false);
     } catch (error) {
       console.log('Login Error: ' + error);

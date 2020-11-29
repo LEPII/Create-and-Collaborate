@@ -10,12 +10,13 @@ import Student from '../helper/Student';
 const ProfileHead = () => {
   const [user, setUser] = useState([]);
   const [following, setFollowing] = useState([]);
-  const { currentUser, loading, setLoading } = useContext(AppContext);
+  const [followColor, setFollowColor] = useState('green');
+  const { currentUser, setLoading, loading } = useContext(AppContext);
   const followButton = useRef(null);
   let { id } = useParams();
 
-  useEffect(async () => {
-    await axios
+  useEffect(() => {
+    axios
       .get(`/users/${id}`, { withCredentials: true })
       .then((response) => {
         setUser(response.data.user);
@@ -24,20 +25,27 @@ const ProfileHead = () => {
       .catch((error) => {
         console.log(error);
       });
-  }, []);
+  }, [loading]);
 
   console.log(following);
 
   const follow = async () => {
+    setLoading(true);
     try {
-      await axios.put(`/users/${id}`, { withCredentials: true });
+      const { data } = await axios.put(`/users/${id}`, {
+        withCredentials: true
+      });
+      console.log('DATA: ', data);
+      setLoading(false);
     } catch (error) {
       console.log(error);
     }
     if (following.indexOf(currentUser._id) === -1) {
-      followButton.current.className = 'follow';
+      // followButton.current.className = 'follow';
+      return setFollowColor('follow');
     } else {
-      followButton.current.className = 'unfollow';
+      // followButton.current.className = 'unfollow';
+      return setFollowColor('unfollow');
     }
   };
 
@@ -54,9 +62,9 @@ const ProfileHead = () => {
         <div>
           <button
             type="button"
-            ref={followButton}
+            // ref={followButton}
             onClick={follow}
-            class="btn fixSpace"
+            class={`btn fixSpace ${followColor}`}
           >
             Connect
           </button>

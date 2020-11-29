@@ -1,0 +1,12 @@
+.scheduler {
+  height: 77vh;
+  width: 70vw;
+  position: absolute;
+  right: 300px;
+}
+
+.eventsBG {
+  background: radial-gradient(ellipse at bottom, #1b2735 0%, #090a0f 100%)
+    no-repeat center center fixed;
+  color: #ececed;
+}
