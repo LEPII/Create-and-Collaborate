@@ -10,12 +10,12 @@ import Student from '../helper/Student';
 const ProfileHead = () => {
   const [user, setUser] = useState([]);
   const [following, setFollowing] = useState([]);
-  const { currentUser, loading, setLoading } = useContext(AppContext);
+  const { currentUser } = useContext(AppContext);
   const followButton = useRef(null);
   let { id } = useParams();
 
-  useEffect(async () => {
-    await axios
+  useEffect(() => {
+    axios
       .get(`/users/${id}`, { withCredentials: true })
       .then((response) => {
         setUser(response.data.user);

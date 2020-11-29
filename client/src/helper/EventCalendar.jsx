@@ -29,8 +29,8 @@ const EventCalendar = () => {
   console.log(events);
 
   return (
-    <div>
-      <Paper>
+    <div className="eventsBG">
+      <Paper className="scheduler">
         <Scheduler data={events}>
           <ViewState />
           <MonthView />

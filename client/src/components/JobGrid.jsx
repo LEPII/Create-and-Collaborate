@@ -39,9 +39,9 @@ const JobGrid = () => {
       <div class="container">
         <JobSearch handleSearch={handleSearch} />
         {jobs &&
-          filteredJobs.map((job) => {
+          filteredJobs.map((job, id) => {
             return (
-              <table className="table gridInnards">
+              <table key={id} className="table gridInnards">
                 <tbody>
                   <tr>
                     <th scope="row">

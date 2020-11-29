@@ -8,7 +8,6 @@ import axios from 'axios';
 const JobsForm = () => {
   const history = useHistory();
   const [formData, setFormData] = useState(null);
-  const { setCurrentUser, currentUser } = useContext(AppContext);
 
   const handleChange = (event) => {
     setFormData({ ...formData, [event.target.name]: event.target.value });
