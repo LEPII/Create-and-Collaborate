@@ -75,12 +75,7 @@ const Post = (props) => {
             <input
               onChange={handleChange}
               className="post__input"
-              placeholder={`What do you want to share today`}
-            />
-            <input
-              onChange={handleChange}
-              className="post__input"
-              placeholder={`Image or Video URL (Optional)`}
+              placeholder="What masterpiece do you want to share today?"
             />
             <button type="submit" style={{ position: 'absolute' }}>
               Submit
@@ -88,12 +83,16 @@ const Post = (props) => {
 
             <div className="post__bottom">
               <div className="post__option">
-                <CameraEnhanceRoundedIcon style={{ color: 'blue' }} />
+                <CameraEnhanceRoundedIcon
+                  className="post__option__pic"
+                  style={{ color: 'blue' }}
+                />
                 <input
                   type="file"
                   name="photo"
                   className="change"
                   accept="image/*"
+                  maxlength="2"
                   formenctype="multipart/form-data"
                   onChange={handleChange}
                 />
@@ -116,16 +115,20 @@ const Post = (props) => {
                   <h3 className="post__text"> Post Job </h3>
                 </Link>
               </div>
+              <div className="post__option">
+                <Link to="/jobs-form">
+                  <WorkIcon
+                    style={{ color: 'orange' }}
+                    className="post__option__pic"
+                  />
+                </Link>
+                <h3> Post Job </h3>
+              </div>
             </div>
           </form>
         </div>
       </div>
-      {userData &&
-        userData
-          ?.map((user) => {
-            return <Feed key={user.user._id} feed={user} />;
-          })
-          .reverse()}
+      {}
     </div>
   );
 };

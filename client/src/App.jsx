@@ -35,6 +35,15 @@ function App() {
             path="/messages/:id"
             component={PersonalMessaging}
           />
+          <Route exact path="/reset-password" component={ResetPassword} />
+          <Route exact path="/update-password" component={UpdatePassword} />
+          <Route exact path="/" component={Welcome} />
+          <PrivateRoute exact path="/user-edit-page" component={UserEditPage} />
+          <PrivateRoute
+            exact
+            path="/messages/:id"
+            component={PersonalMessaging}
+          />
           <PrivateRoute exact path="/jobs-form" component={JobsForm} />
           <Route exact path="/events-form" component={EventsForm} />
           <Route exact path="/reset-password" component={ResetPassword} />

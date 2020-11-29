@@ -8,7 +8,7 @@ const JobSearch = ({ handleSearch }) => {
       <Card>
         <form>
           <div className="jobsearch">
-            <h5>Find your next gig!</h5>
+            <h3>Find your next gig!</h3>
             <input
               type="text"
               placeholder="Search by Title..."
