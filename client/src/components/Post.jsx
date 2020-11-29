@@ -43,6 +43,20 @@ const Post = (props) => {
     }
   };
 
+  useEffect(() => {
+    axios
+      .get('/gallery/images', {
+        withCredentials: true
+      })
+      .then((response) => {
+        setUserData(response.data);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  }, [setUserData]);
+
+  console.log(setUserData);
   return (
     <div className="post__container">
       <div className="post">
