@@ -1,7 +1,7 @@
 .change {
   position: absolute;
   opacity: 0;
-  height: 10px;
+  height: 100px;
   width: 15px;
 }
 .post {

@@ -25,7 +25,7 @@ const EventCalendar = () => {
       .catch((error) => {
         console.log(error);
       });
-  }, [setEvents]);
+  }, []);
   console.log(events);
 
   return (
