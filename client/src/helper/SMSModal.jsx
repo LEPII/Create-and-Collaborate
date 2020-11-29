@@ -44,7 +44,7 @@ export default function ImageModal({ user }) {
       .catch((error) => {
         console.log(error);
       });
-  }, [setImages]);
+  }, []);
 
   return (
     <div>

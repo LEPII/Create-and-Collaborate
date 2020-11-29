@@ -1,44 +1,52 @@
 import React, { useContext, useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
 import axios from 'axios';
 import { AppContext } from '../context/AppContext';
 import Feed from './Feed';
 import CameraEnhanceRoundedIcon from '@material-ui/icons/CameraEnhanceRounded';
 import DuoRoundedIcon from '@material-ui/icons/DuoRounded';
 import { Avatar } from '@material-ui/core';
+import WorkIcon from '@material-ui/icons/Work';
 import EventRoundedIcon from '@material-ui/icons/EventRounded';
 import '../Post.css';
 import { useHistory } from 'react-router-dom';
 
 const Post = (props) => {
   const [userData, setUserData] = useState([]);
-  const { setLoading, post, setPost, currentUser } = useContext(AppContext);
+  const { setLoading, post, setPost, currentUser, loading } = useContext(
+    AppContext
+  );
   const history = useHistory();
   const [video, setVideo] = useState('');
   const [image, setImage] = useState(null);
   const [preview, setPreview] = useState(null);
 
   const handleChange = (e) => {
-    setPost({ ...post, [e.target.name]: e.target.value });
-    // setPreview(URL.createObjectURL(e.target.files[0]));
+    if (e.target.files[0].name.includes('mov')) {
+      return setVideo(e.target.files[0]);
+    }
+
     setImage(e.target.files[0]);
-    setVideo(e.target.files[0]);
   };
 
-  console.log(userData);
+  console.log(currentUser);
 
-  const handleSubmitFile = (e) => {
+  const handleSubmitFile = async (e) => {
     e.preventDefault();
+    setLoading(true);
     const formData = new FormData();
     formData.append('ml_default', 'video');
-    formData.append('image', e.target.files[0]);
-    if (e.target.files[0].name.includes('mp4, mov')) {
-      axios
-        .post('/gallery/videos', formData)
-        .then((res) => setVideo(res.data.secure_url));
-    } else {
-      axios
-        .post('gallery/images', formData)
-        .then((res) => setImage(res.data.secure.url));
+    formData.append(image ? 'image' : 'video', image || video);
+    try {
+      const { data } = await axios.post(
+        `/gallery/${image ? 'images' : 'videos'}`,
+        formData,
+        { withCredentials: true }
+      );
+      console.log(data);
+      setLoading(false);
+    } catch (error) {
+      console.log(error.message);
     }
   };
 
@@ -53,9 +61,7 @@ const Post = (props) => {
       .catch((error) => {
         console.log(error);
       });
-  }, [setUserData]);
-
-  console.log(setUserData);
+  }, [loading]);
 
   return (
     <div className="post__container">
@@ -69,12 +75,7 @@ const Post = (props) => {
             <input
               onChange={handleChange}
               className="post__input"
-              placeholder={`What do you want to share today`}
-            />
-            <input
-              onChange={handleChange}
-              className="post__input"
-              placeholder={`Image or Video URL (Optional)`}
+              placeholder="What masterpiece do you want to share today?"
             />
             <button type="submit" style={{ position: 'absolute' }}>
               Submit
@@ -82,54 +83,52 @@ const Post = (props) => {
 
             <div className="post__bottom">
               <div className="post__option">
-                <CameraEnhanceRoundedIcon style={{ color: 'blue' }} />
+                <CameraEnhanceRoundedIcon
+                  className="post__option__pic"
+                  style={{ color: 'blue' }}
+                />
                 <input
                   type="file"
                   name="photo"
                   className="change"
                   accept="image/*"
+                  maxlength="2"
                   formenctype="multipart/form-data"
                   onChange={handleChange}
-                ></input>
-
-                <h3 className="post__text"> Upload Photo </h3>
+                />
+                <h3 className="post__text"> Upload Media </h3>
               </div>
               <div className="post__option">
-                <input
-                  type="file"
-                  name="video"
-                  className="change"
-                  accept="video/*"
-                  placeholder="Share your artwork"
-                  onChange={handleChange}
-                ></input>
                 <DuoRoundedIcon style={{ color: 'green' }} />
-                <h3> Upload Video </h3>
+                <button onClick={handleSubmitFile}>Save Media</button>
+              </div>
+
+              <div className="post__option">
+                <EventRoundedIcon style={{ color: 'red' }} />
+                <Link to="/events-form">
+                  <h3 className="post__text"> Schedule Event </h3>
+                </Link>
               </div>
               <div className="post__option">
-                <input
-                  type="Date"
-                  name="video"
-                  accept="video/*"
-                  placeholder="startDate"
-                  size="2"
-                  className="change"
-                  onChange={handleChange}
-                ></input>
-                <EventRoundedIcon style={{ color: 'red' }} />
-                <h3> Schedule Event </h3>
+                <WorkIcon style={{ color: 'orange' }} />
+                <Link to="/jobs-form">
+                  <h3 className="post__text"> Post Job </h3>
+                </Link>
+              </div>
+              <div className="post__option">
+                <Link to="/jobs-form">
+                  <WorkIcon
+                    style={{ color: 'orange' }}
+                    className="post__option__pic"
+                  />
+                </Link>
+                <h3> Post Job </h3>
               </div>
             </div>
           </form>
         </div>
-        <div className="post__bottom"></div>
       </div>
-      {userData &&
-        userData
-          ?.map((user) => {
-            return <Feed key={user.user._id} feed={user} />;
-          })
-          .reverse()}
+      {}
     </div>
   );
 };

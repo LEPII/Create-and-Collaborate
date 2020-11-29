@@ -14,7 +14,6 @@ const JobSearch = ({ handleSearch }) => {
               placeholder="Search by Title..."
               onChange={(e) => handleSearch(e.target.value)}
             />
-            <button>Search</button>
           </div>
         </form>
       </Card>

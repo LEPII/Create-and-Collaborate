@@ -1,63 +1,53 @@
 .change {
   position: absolute;
+  top: 30px;
   opacity: 0;
+  height: 100px;
+  width: 15px;
 }
 .post {
-  background-image: linear-gradient(
-    to right top,
-    #a93ccf,
-    #9538ca,
-    #8034c4,
-    #6a31be,
-    #512eb8,
-    #403fc2,
-    #2b4dca,
-    #005ad0,
-    #0079e1,
-    #0094eb,
-    #00aeee,
-    #0dc6ee
-  );
+  background: radial-gradient(ellipse at bottom, #1b2735 0%, #090a0f 100%)
+    no-repeat center center fixed;
   display: flex;
-  margin-top: 30px;
+  margin-top: 70px;
   flex-direction: column;
   background-color: white;
+  border: 1px solid;
   border-radius: 15px;
   box-shadow: 0px 5px 7px -7px rgba(0, 0, 0, 0.75);
   width: 100%;
+  color: #ececed;
 }
 .post__text {
-  -webkit-user-select: none;
-  -khtml-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
-  -o-user-select: none;
-  user-select: none;
-  cursor: default;
+  cursor: pointer;
 }
 .post__top {
   display: flex;
-  border-bottom: 1px solid #eff2f5;
-  /* padding-bottom: 15px; */
+  padding-bottom: 15px;
   padding: 15px;
 }
 
-.post __top > form {
-  flex: 1;
-  display: flex;
+.post__top > form {
+  flex: 10;
+  border: 1px;
+  margin-left: 15px;
+  /* display: flex; */
 }
 
 .post__top > form > input {
-  outline-width: 0;
   border: none;
+  color: #ececed;
+  outline: none;
+  width: 400px;
   padding: 5px 20px;
   margin: 0 10px;
   border-radius: 999px;
-  background-color: #eff2f5;
+  background-color: transparent;
 }
 
 .post__top > form > button {
   display: none;
+  cursor: pointer;
 }
 
 .post__input {
@@ -70,19 +60,25 @@
 }
 
 .post__option {
-  padding: 20px;
+  padding: 25px;
   display: flex;
-  align-items: center;
-  color: gray;
-  margin: 5px;
+  align-items: left;
+  color: #e9eaeb;
+  margin-right: 25px;
+  margin-top: 10px;
 }
 
 .post__option > h3 {
-  font-size: medium;
+  font-size: 16px;
   margin-left: 10px;
 }
 
 .post__option:hover {
-  border-radius: 20px;
-  background-color: #eff2f5;
+  transition: 1.1s;
+  transform: scale(1.1, 1.1);
+  cursor: pointer;
+}
+
+.post__option__pic {
+  cursor: pointer;
 }

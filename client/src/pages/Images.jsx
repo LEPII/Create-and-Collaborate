@@ -15,7 +15,7 @@ const Images = () => {
       .catch((error) => {
         console.log(error);
       });
-  }, [setImage]);
+  }, []);
 
   return (
     <div>

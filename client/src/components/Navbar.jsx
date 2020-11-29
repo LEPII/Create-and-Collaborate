@@ -15,7 +15,8 @@ const NavBar = () => {
         withCredentials: true
       });
       sessionStorage.removeItem('user');
-      setCurrentUser(null).then(() => history.push('/'));
+      setCurrentUser(null);
+      history.push('/');
     } catch (error) {
       console.log(error);
     }
@@ -42,16 +43,13 @@ const NavBar = () => {
             className="dropleft"
             id="collasible-nav-dropdown"
           >
-
+            <NavDropdown.Item href="/messages">Messages</NavDropdown.Item>
             <NavDropdown.Item onClick={logout}>Logout</NavDropdown.Item>
             <NavDropdown.Item href="/update-password">
               Update Password
             </NavDropdown.Item>
-            <NavDropdown.Item href="/portfolio-edit">
-              Create Portfolio
-            </NavDropdown.Item>
           </NavDropdown>
-          <Nav.Link href="/">Profile</Nav.Link>
+          <Nav.Link href="/home">Profile</Nav.Link>
         </Nav>
       </Navbar.Collapse>
     </Navbar>

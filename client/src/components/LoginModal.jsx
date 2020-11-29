@@ -34,14 +34,16 @@ export default function TransitionsModal() {
 
   return (
     <div>
-      <button
-        id="CCletters"
-        className="signup"
-        type="button"
-        onClick={handleOpen}
-      >
-        Connect
-      </button>
+      <div class="wrap">
+        <button
+          id="CCletters"
+          className="button"
+          type="button"
+          onClick={handleOpen}
+        >
+          Connect
+        </button>{' '}
+      </div>
       <Modal
         aria-labelledby="transition-modal-title"
         aria-describedby="transition-modal-description"
