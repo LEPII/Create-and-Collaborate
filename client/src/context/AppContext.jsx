@@ -12,7 +12,7 @@ const AppContextProvider = ({ children }) => {
   const [image, setImage] = useState(null);
   const [imageUrl, setImageUrl] = useState(null);
 
-  useEffect(() => {
+  const fetchCurrentUser = () => {
     axios
       .get(`/users/me`, {
         withCredentials: true
@@ -22,12 +22,21 @@ const AppContextProvider = ({ children }) => {
         setCurrentUser(data);
       })
       .catch((error) => console.log(error));
-  }, [currentUser, user]);
+  };
+
+  useEffect(() => {
+    fetchCurrentUser();
+  }, []);
+
+  useEffect(() => {
+    console.log('current user in congtext', currentUser);
+  }, [currentUser]);
 
   return (
     <AppContext.Provider
       value={{
         currentUser,
+        fetchCurrentUser,
         setCurrentUser,
         loading,
         setLoading,

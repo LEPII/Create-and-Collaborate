@@ -9,45 +9,47 @@ import Student from '../helper/Student';
 
 const ProfileHead = () => {
   const [user, setUser] = useState([]);
-  const [following, setFollowing] = useState([]);
-  const [followColor, setFollowColor] = useState('green');
   const { currentUser, setLoading, loading } = useContext(AppContext);
-  const followButton = useRef(null);
-  let { id } = useParams();
+  const { id } = useParams();
 
-  useEffect(() => {
+  const fetchUser = () => {
     axios
       .get(`/users/${id}`, { withCredentials: true })
       .then((response) => {
         setUser(response.data.user);
-        setFollowing(response.data.user.followers);
       })
       .catch((error) => {
         console.log(error);
       });
-  }, [loading]);
+  };
 
-  console.log(following);
+  useEffect(() => {
+    fetchUser();
+  }, [loading]);
 
   const follow = async () => {
     setLoading(true);
     try {
-      const { data } = await axios.put(`/users/${id}`, {
+      await axios.put(`/users/${id}`, {
         withCredentials: true
       });
-      console.log('DATA: ', data);
+      await fetchUser();
       setLoading(false);
     } catch (error) {
-      console.log(error);
-    }
-    if (following.indexOf(currentUser._id) === -1) {
-      // followButton.current.className = 'follow';
-      return setFollowColor('follow');
-    } else {
-      // followButton.current.className = 'unfollow';
-      return setFollowColor('unfollow');
+      console.log('what happened', error.message);
     }
   };
+
+  const isFollowing = (user.followers || []).some(
+    (follower) => follower._id === currentUser?._id
+  );
+  const followColor = isFollowing ? 'green' : 'grey';
+
+  console.log('what', {
+    isFollowing,
+    followerIds: (user.followers || []).map((f) => f._id),
+    currentUser: currentUser?._id
+  });
 
   return (
     <>
@@ -62,20 +64,19 @@ const ProfileHead = () => {
         <div>
           <button
             type="button"
-            // ref={followButton}
             onClick={follow}
-            class={`btn fixSpace ${followColor}`}
+            className={'btn fixSpace'}
+            id={`${isFollowing ? 'unfollow-button' : 'follow-button'}`}
           >
             Connect
           </button>
-          {/* {(following.indexOf(current) === -1 )? <Follow /> : <Unfollow />} */}
         </div>
         <div>
-          <Link to={`/messages/${id}`}>
+          {/* <Link to={`/messages/${id}`}>
             <button type="button" class="btn fixSpace">
               Message
             </button>
-          </Link>
+          </Link> */}
         </div>
         <div className="fixSpace">
           <h6>{user.category}</h6>

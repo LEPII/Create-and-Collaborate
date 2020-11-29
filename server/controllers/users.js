@@ -98,7 +98,7 @@ exports.getCurrentUser = async (req, res) => {
     .populate('followers');
 
   res.json({
-    user: user,
+    ...user.toObject(),
     jobs: user.jobs,
     portfolios: user.portfolios,
     events: user.events,
@@ -246,7 +246,7 @@ exports.followUser = async (req, res) => {
         return id.toString() !== userToFollow._id.toString();
       });
       await req.user.save();
-      return res.status(400).json({
+      return res.status(200).json({
         message: `You have unfollowed ${userToFollow.username}`
       });
     }

@@ -213,12 +213,12 @@
   top: 0.55px;
 }
 
-.follow {
+#follow-button {
   height: 50px;
   background-color: skyblue;
 }
 
-.unfollow {
+#unfollow-button {
   height: 200px;
   background-color: gray;
 }

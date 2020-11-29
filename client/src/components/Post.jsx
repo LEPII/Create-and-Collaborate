@@ -10,7 +10,6 @@ import WorkIcon from '@material-ui/icons/Work';
 import EventRoundedIcon from '@material-ui/icons/EventRounded';
 import '../Post.css';
 import { useHistory } from 'react-router-dom';
-
 const Post = (props) => {
   const [userData, setUserData] = useState([]);
   const { setLoading, post, setPost, currentUser, loading } = useContext(
@@ -20,17 +19,13 @@ const Post = (props) => {
   const [video, setVideo] = useState('');
   const [image, setImage] = useState(null);
   const [preview, setPreview] = useState(null);
-
   const handleChange = (e) => {
     if (e.target.files[0].name.includes('mov')) {
       return setVideo(e.target.files[0]);
     }
-
     setImage(e.target.files[0]);
   };
-
   console.log(currentUser);
-
   const handleSubmitFile = async (e) => {
     e.preventDefault();
     setLoading(true);
@@ -49,7 +44,6 @@ const Post = (props) => {
       console.log(error.message);
     }
   };
-
   useEffect(() => {
     axios
       .get('/gallery/images', {
@@ -62,15 +56,11 @@ const Post = (props) => {
         console.log(error);
       });
   }, [loading]);
-
   return (
     <div className="post__container">
       <div className="post">
         <div className="post__top">
-          <Avatar
-            onClick={() => history.push(`/profile/${currentUser.user._id}`)}
-          />
-
+          <Avatar onClick={() => history.push(`/profile/${currentUser._id}`)} />
           <form onSubmit={handleSubmitFile}>
             <input
               onChange={handleChange}
@@ -80,7 +70,6 @@ const Post = (props) => {
             <button type="submit" style={{ position: 'absolute' }}>
               Submit
             </button>
-
             <div className="post__bottom">
               <div className="post__option">
                 <CameraEnhanceRoundedIcon
@@ -95,25 +84,32 @@ const Post = (props) => {
                   maxlength="2"
                   formenctype="multipart/form-data"
                   onChange={handleChange}
-                />
-                <h3 className="post__text"> Upload Media </h3>
+                ></input>
+                <h3 className="post__text"> Upload Photo </h3>
               </div>
               <div className="post__option">
-                <DuoRoundedIcon style={{ color: 'green' }} />
-                <button onClick={handleSubmitFile}>Save Media</button>
+                <DuoRoundedIcon
+                  className="post__option__pic"
+                  style={{ color: 'green' }}
+                />{' '}
+                <input
+                  type="file"
+                  name="photo"
+                  className="change"
+                  accept="video/*"
+                  placeholder="Share your artwork"
+                  onChange={handleChange}
+                ></input>
+                <h3> Upload Video </h3>
               </div>
-
               <div className="post__option">
-                <EventRoundedIcon style={{ color: 'red' }} />
                 <Link to="/events-form">
-                  <h3 className="post__text"> Schedule Event </h3>
+                  <EventRoundedIcon
+                    style={{ color: 'red' }}
+                    className="post__option__pic"
+                  />
                 </Link>
-              </div>
-              <div className="post__option">
-                <WorkIcon style={{ color: 'orange' }} />
-                <Link to="/jobs-form">
-                  <h3 className="post__text"> Post Job </h3>
-                </Link>
+                <h3> Schedule Event </h3>
               </div>
               <div className="post__option">
                 <Link to="/jobs-form">
@@ -127,10 +123,15 @@ const Post = (props) => {
             </div>
           </form>
         </div>
+        <div className="post__bottom"></div>
       </div>
-      {}
+      {userData &&
+        userData
+          ?.map((user) => {
+            return <Feed key={user.user._id} feed={user} />;
+          })
+          .reverse()}
     </div>
   );
 };
-
 export default Post;
