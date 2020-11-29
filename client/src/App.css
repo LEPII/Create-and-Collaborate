@@ -7,6 +7,7 @@
 } */
 
 /* END DEMO */
+@import url('https://fonts.googleapis.com/css2?family=Lato&display=swap');
 
 .signup {
   border-radius: 20px;
@@ -93,6 +94,20 @@
   left: 13%;
 }
 /* END */
+
+/* CREATE JOBFORM */
+.jobForm {
+  background: radial-gradient(ellipse at bottom, #1b2735 0%, #090a0f 100%)
+    no-repeat center center fixed;
+  color: #ececed;
+}
+
+.font {
+  font-family: 'Lato', sans-serif;
+}
+/* END */
+
+/*  */
 
 @media only screen and (max-width: 600px) {
   .card {
