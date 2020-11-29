@@ -97,19 +97,11 @@ const Post = (props) => {
                   formenctype="multipart/form-data"
                   onChange={handleChange}
                 />
-                <h3 className="post__text"> Upload Photo </h3>
+                <h3 className="post__text"> Upload Media </h3>
               </div>
               <div className="post__option">
                 <DuoRoundedIcon style={{ color: 'green' }} />
-                <input
-                  type="file"
-                  name="video"
-                  className="change"
-                  accept="video/*"
-                  placeholder="Share your artwork"
-                  onChange={handleChange}
-                />
-                <h3 className="post__text"> Upload Video </h3>
+                <button onClick={handleSubmitFile}>Save Media</button>
               </div>
 
               <div className="post__option">
@@ -124,7 +116,6 @@ const Post = (props) => {
                   <h3 className="post__text"> Post Job </h3>
                 </Link>
               </div>
-              <button onClick={handleSubmitFile}>Save Image/Video</button>
             </div>
           </form>
         </div>
