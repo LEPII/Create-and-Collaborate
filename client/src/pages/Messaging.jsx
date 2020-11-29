@@ -16,6 +16,7 @@ const Messaging = () => {
         console.log(error);
       });
   }, []);
+  console.log(messages);
 
   return (
     <div className="messageContainer">

@@ -109,7 +109,7 @@ const LogForm = () => {
           <Form.Control
             htmlFor="username"
             id="username"
-            type="password"
+            type="text"
             placeholder="hopefully not password"
             name="username"
             onChange={handleChange}

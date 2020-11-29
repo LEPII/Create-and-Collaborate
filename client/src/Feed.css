@@ -1,9 +1,16 @@
 .feed {
   width: 100%;
   margin-top: 15px;
+  border: 1px solid;
   border-radius: 15px;
-  background-color: rgba(160, 209, 141, 0.762);
-  box-shadow: 0px 0px 7px -7px rgba(0, 0, 0, 0.75);
+  background-color: linear-gradient(ellipse bottom, #1b2735 0%, #090a0f 100%);
+  box-shadow: 50px, 50px, 50px, -50px #99b5fe;
+  transition: 1.6s;
+  color: #f7f8f8;
+}
+
+.feed:hover {
+  transform: scale(0.97, 0.97);
 }
 
 .feed__top {

@@ -8,8 +8,9 @@ import DuoRoundedIcon from '@material-ui/icons/DuoRounded';
 import { Avatar } from '@material-ui/core';
 import WorkIcon from '@material-ui/icons/Work';
 import EventRoundedIcon from '@material-ui/icons/EventRounded';
+import WorkIcon from '@material-ui/icons/EventRounded';
 import '../Post.css';
-import { useHistory } from 'react-router-dom';
+import { useHistory, Link } from 'react-router-dom';
 
 const Post = (props) => {
   const [userData, setUserData] = useState([]);
@@ -88,7 +89,10 @@ const Post = (props) => {
 
             <div className="post__bottom">
               <div className="post__option">
-                <CameraEnhanceRoundedIcon style={{ color: 'blue' }} />
+                <CameraEnhanceRoundedIcon
+                  className="post__option__pic"
+                  style={{ color: 'blue' }}
+                />
                 <input
                   type="file"
                   name="photo"
@@ -116,16 +120,17 @@ const Post = (props) => {
                   <h3 className="post__text"> Post Job </h3>
                 </Link>
               </div>
+              <div className="post__option">
+                <Link to="/jobs-form">
+                  <WorkIcon style={{ color: 'orange' }} />
+                </Link>
+                <h3> Post Job </h3>
+              </div>
             </div>
           </form>
         </div>
       </div>
-      {userData &&
-        userData
-          ?.map((user) => {
-            return <Feed key={user.user._id} feed={user} />;
-          })
-          .reverse()}
+      {}
     </div>
   );
 };

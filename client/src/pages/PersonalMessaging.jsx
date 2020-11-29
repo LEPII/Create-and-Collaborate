@@ -6,7 +6,7 @@ import './messaging.css';
 import axios from 'axios';
 
 const PersonalMessaging = () => {
-  const [messages, setMessages] = useState(null);
+  const [messages, setMessages] = useState([]);
   const { id } = useParams();
 
   useEffect(() => {
