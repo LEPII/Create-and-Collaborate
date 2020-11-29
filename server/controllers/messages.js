@@ -39,22 +39,6 @@ exports.messageUser = async (req, res) => {
   }
 };
 
-// exports.findUserConversation = async (req, res) => {
-//   try {
-//     const messages = await Message.find({
-//       participants: {
-//         $all: [
-//           mongoose.Types.ObjectId(req.params.id),
-//           mongoose.Types.ObjectId(req.user._id)
-//         ]
-//       }
-//     });
-//     res.json(messages);
-//   } catch (error) {
-//     console.log(error.message);
-//   }
-// };
-
 exports.getAllMessages = async (req, res) => {
   try {
     const messages = await Message.find();
@@ -95,7 +79,7 @@ exports.getAllMessages = async (req, res) => {
 
 exports.getMyMessages = async (req, res) => {
   try {
-    const messages = await Message.find(req.user._id);
+    const messages = await Message.find({ fromID: req.user._id });
     res.json(messages);
   } catch (error) {
     res.status(400).json({ error: error.message });
