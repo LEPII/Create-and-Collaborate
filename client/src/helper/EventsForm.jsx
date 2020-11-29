@@ -24,12 +24,12 @@ const EventsForm = () => {
   };
 
   return (
-    <div className="">
+    <div className="jobForm">
       <Navbar />
       <Form style={{ padding: '10rem' }} onSubmit={handleSubmit}>
         <Form.Row>
           <Form.Group as={Col} md="4" controlId="validationFormik01">
-            <Form.Label>Title</Form.Label>
+            <Form.Label className="font">Title</Form.Label>
             <Form.Control
               htmlFor="title"
               type="text"
@@ -39,7 +39,7 @@ const EventsForm = () => {
             <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
           </Form.Group>
           <Form.Group as={Col} md="4" controlId="validationFormik02">
-            <Form.Label>Location</Form.Label>
+            <Form.Label className="font">Location</Form.Label>
             <Form.Control
               htmlFor="location"
               type="text"
@@ -52,7 +52,7 @@ const EventsForm = () => {
         </Form.Row>
         <Form.Row>
           <Form.Group as={Col} md="6" controlId="validationFormik03">
-            <Form.Label>Price</Form.Label>
+            <Form.Label className="font">Price</Form.Label>
             <Form.Control
               type="text"
               placeholder="$$$"
@@ -64,7 +64,7 @@ const EventsForm = () => {
             <Form.Control.Feedback></Form.Control.Feedback>
           </Form.Group>
           <Form.Group as={Col} md="6" controlId="validationFormik04">
-            <Form.Label>Start/End Date</Form.Label>
+            <Form.Label className="font">Start/End Date</Form.Label>
             <Form.Control
               type="date"
               htmlFor="startDate"
