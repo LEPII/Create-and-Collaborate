@@ -71,11 +71,11 @@ const ProfileHead = () => {
           </button>
         </div>
         <div>
-          {/* <Link to={`/messages/${id}`}>
+          <Link to={`/messages/${id}`}>
             <button type="button" class="btn fixSpace">
               Message
             </button>
-          </Link> */}
+          </Link>
         </div>
         <div className="fixSpace">
           <h6>{user.category}</h6>
