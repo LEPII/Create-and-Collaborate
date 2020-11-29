@@ -1,6 +1,8 @@
 .change {
   position: absolute;
   opacity: 0;
+  height: 10px;
+  width: 15px;
 }
 .post {
   background-image: linear-gradient(
