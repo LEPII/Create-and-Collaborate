@@ -130,7 +130,6 @@ const UserEditForm = () => {
           <option>Music</option>
           <option>News Media</option>
           <option>Fashion</option>
-          <option>Video</option>
           <option>Games</option>
           <option>Sports</option>
           <option>Cultural Event</option>
@@ -160,20 +159,13 @@ const UserEditForm = () => {
           onChange={handleChange}
         ></textarea>
       </Form.Group>
-
       <Button
-        style={{ marginLeft: '345px', marginTop: '50px', position: 'center' }}
         type="submit"
-      >
-        Finish Creating Profile
-      </Button>
-
-      <Button
         style={{ marginLeft: '30px', marginTop: '50px', position: 'center' }}
         onClick={() => history.push('/portfolio-edit')}
       >
         {' '}
-        Create Portfolio - Optional{' '}
+        Create Portfolio{' '}
       </Button>
     </Form>
   );

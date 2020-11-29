@@ -7,9 +7,7 @@ import axios from 'axios';
 
 const PersonalMessaging = () => {
   const [messages, setMessages] = useState(null);
-  const [formData, setFormData] = useState(null);
-
-  let { id } = useParams();
+  const { id } = useParams();
 
   useEffect(() => {
     axios

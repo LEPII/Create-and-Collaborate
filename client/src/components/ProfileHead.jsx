@@ -8,9 +8,9 @@ import Mentor from '../helper/Mentor';
 import Student from '../helper/Student';
 
 const ProfileHead = () => {
-  const [user, setUser] = useState('');
+  const [user, setUser] = useState([]);
   const [following, setFollowing] = useState([]);
-  const { currentUser } = useContext(AppContext);
+  const { currentUser, loading, setLoading } = useContext(AppContext);
   const followButton = useRef(null);
   let { id } = useParams();
 
@@ -24,8 +24,10 @@ const ProfileHead = () => {
       .catch((error) => {
         console.log(error);
       });
-  }, [setUser]);
+  }, []);
+
   console.log(following);
+  console.log(user);
 
   const follow = async () => {
     try {
@@ -73,6 +75,7 @@ const ProfileHead = () => {
         </div>
         <div>
           <p>FOLLOWERS:</p>
+          <div></div>
         </div>
       </div>
       <div className="mentor">
