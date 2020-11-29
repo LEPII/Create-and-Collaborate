@@ -14,6 +14,7 @@ import UserEditPage from './pages/EditUser';
 import PortfolioEditPage from './pages/EditPortfolio';
 import PersonalMessaging from './pages/PersonalMessaging';
 import EventsForm from './helper/EventsForm';
+import JobsForm from './helper/JobsForm';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './App.css';
 import Images from './pages/Images';
@@ -34,6 +35,7 @@ function App() {
             path="/messages/:id"
             component={PersonalMessaging}
           />
+          <PrivateRoute exact path="/jobs-form" component={JobsForm} />
           <Route exact path="/events-form" component={EventsForm} />
           <Route exact path="/reset-password" component={ResetPassword} />
           <Route exact path="/update-password" component={UpdatePassword} />

@@ -6,6 +6,7 @@ import Feed from './Feed';
 import CameraEnhanceRoundedIcon from '@material-ui/icons/CameraEnhanceRounded';
 import DuoRoundedIcon from '@material-ui/icons/DuoRounded';
 import { Avatar } from '@material-ui/core';
+import WorkIcon from '@material-ui/icons/Work';
 import EventRoundedIcon from '@material-ui/icons/EventRounded';
 import '../Post.css';
 import { useHistory } from 'react-router-dom';
@@ -90,11 +91,11 @@ const Post = (props) => {
                   accept="image/*"
                   formenctype="multipart/form-data"
                   onChange={handleChange}
-                ></input>
-
+                />
                 <h3 className="post__text"> Upload Photo </h3>
               </div>
               <div className="post__option">
+                <DuoRoundedIcon style={{ color: 'green' }} />
                 <input
                   type="file"
                   name="video"
@@ -102,29 +103,25 @@ const Post = (props) => {
                   accept="video/*"
                   placeholder="Share your artwork"
                   onChange={handleChange}
-                ></input>
-                <DuoRoundedIcon style={{ color: 'green' }} />
-                <h3> Upload Video </h3>
+                />
+                <h3 className="post__text"> Upload Video </h3>
+              </div>
+
+              <div className="post__option">
+                <EventRoundedIcon style={{ color: 'red' }} />
+                <Link to="/events-form">
+                  <h3 className="post__text"> Schedule Event </h3>
+                </Link>
               </div>
               <div className="post__option">
-                <input
-                  type="Date"
-                  name="video"
-                  accept="video/*"
-                  placeholder="startDate"
-                  size="2"
-                  className="change"
-                  onChange={handleChange}
-                ></input>
-                <Link to="/events-form">
-                  <EventRoundedIcon style={{ color: 'red' }} />
-                  <h3> Schedule Event </h3>
+                <WorkIcon style={{ color: 'orange' }} />
+                <Link to="/jobs-form">
+                  <h3 className="post__text"> Post Job </h3>
                 </Link>
               </div>
             </div>
           </form>
         </div>
-        <div className="post__bottom"></div>
       </div>
       {userData &&
         userData
