@@ -36,16 +36,16 @@ const Feed = ({ feed }) => {
       </div>
       <div className="feed__options">
         <div className="feed__option">
-          <FavoriteBorderOutlinedIcon />
-          <p>Love</p>
+          <FavoriteBorderOutlinedIcon className="feed__icon" />
+          <p> Love</p>
         </div>
         <div className="feed__option">
-          <AssistantRoundedIcon />
-          <p>Reflect</p>
+          <AssistantRoundedIcon className="feed__icon" />
+          <p> Reflect</p>
         </div>
         <div className="feed__option">
-          <ShareRoundedIcon />
-          <p>Share</p>
+          <ShareRoundedIcon className="feed__icon" />
+          <p> Share</p>
         </div>
       </div>
     </div>

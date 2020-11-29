@@ -8,9 +8,8 @@ import DuoRoundedIcon from '@material-ui/icons/DuoRounded';
 import { Avatar } from '@material-ui/core';
 import WorkIcon from '@material-ui/icons/Work';
 import EventRoundedIcon from '@material-ui/icons/EventRounded';
-import WorkIcon from '@material-ui/icons/EventRounded';
 import '../Post.css';
-import { useHistory, Link } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
 
 const Post = (props) => {
   const [userData, setUserData] = useState([]);
@@ -76,12 +75,7 @@ const Post = (props) => {
             <input
               onChange={handleChange}
               className="post__input"
-              placeholder={`What do you want to share today`}
-            />
-            <input
-              onChange={handleChange}
-              className="post__input"
-              placeholder={`Image or Video URL (Optional)`}
+              placeholder="What masterpiece do you want to share today?"
             />
             <button type="submit" style={{ position: 'absolute' }}>
               Submit
@@ -98,6 +92,7 @@ const Post = (props) => {
                   name="photo"
                   className="change"
                   accept="image/*"
+                  maxlength="2"
                   formenctype="multipart/form-data"
                   onChange={handleChange}
                 />
@@ -122,7 +117,10 @@ const Post = (props) => {
               </div>
               <div className="post__option">
                 <Link to="/jobs-form">
-                  <WorkIcon style={{ color: 'orange' }} />
+                  <WorkIcon
+                    style={{ color: 'orange' }}
+                    className="post__option__pic"
+                  />
                 </Link>
                 <h3> Post Job </h3>
               </div>
