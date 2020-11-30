@@ -28,7 +28,7 @@ const NavBar = () => {
       expand="lg"
       bg="dark"
       variant="dark"
-      className="foot"
+      className="nav"
     >
       <Navbar.Brand href="/home">C & C</Navbar.Brand>
       <Navbar.Toggle aria-controls="responsive-navbar-nav" />

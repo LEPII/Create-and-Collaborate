@@ -119,6 +119,11 @@
     no-repeat center center fixed;
 }
 
+.nav {
+  background: radial-gradient(ellipse at bottom, #1b2735 0%, #090a0f 100%)
+    no-repeat center center fixed;
+}
+
 .mentor {
   border: black solid 1px;
   background-color: white;
