@@ -10,15 +10,14 @@ import WorkIcon from '@material-ui/icons/Work';
 import EventRoundedIcon from '@material-ui/icons/EventRounded';
 import '../Post.css';
 import { useHistory } from 'react-router-dom';
-const Post = (props) => {
+
+const Post = () => {
   const [userData, setUserData] = useState([]);
-  const { setLoading, post, setPost, currentUser, loading } = useContext(
-    AppContext
-  );
+  const { setLoading, currentUser, loading } = useContext(AppContext);
   const history = useHistory();
   const [video, setVideo] = useState('');
   const [image, setImage] = useState(null);
-  const [preview, setPreview] = useState(null);
+
   const handleChange = (e) => {
     if (e.target.files[0].name.includes('mov')) {
       return setVideo(e.target.files[0]);
@@ -57,90 +56,97 @@ const Post = (props) => {
       });
   }, [loading]);
 
-  
   return (
-    <div className="post__container">
-      <div className="post">
-        <div className="post__top">
-          <Avatar
-            onClick={() => history.push(`/profile/${currentUser.user._id}`)}
-          />
-          <form onSubmit={handleSubmitFile}>
-            <input
-              className="post__input"
-              placeholder="Select a file then hit the share button!"
-              disabled
+    <>
+      <div className="post__container">
+        <div className="post">
+          <div className="post__top">
+            <Avatar
+              onClick={() => history.push(`/profile/${currentUser.user._id}`)}
             />
-            <button
-              type="submit"
-              style={{ position: 'absolute' }}
-              class="glow-on-hover"
-              type="submit"
-            >
-              SHARE!
-            </button>
-            <div className="post__bottom">
-              <div className="post__option">
-                <CameraEnhanceRoundedIcon
-                  className="post__option__pic"
-                  style={{ color: 'blue' }}
-                />
-                <input
-                  type="file"
-                  name="photo"
-                  className="change"
-                  accept="image/*"
-                  maxlength="2"
-                  formenctype="multipart/form-data"
-                  onChange={handleChange}
-                ></input>
-                <h3 className="post__text"> Upload Photo </h3>
-              </div>
-              <div className="post__option">
-                <DuoRoundedIcon
-                  className="post__option__pic"
-                  style={{ color: 'green' }}
-                />{' '}
-                <input
-                  type="file"
-                  name="photo"
-                  className="change"
-                  accept="video/*"
-                  placeholder="Share your artwork"
-                  onChange={handleChange}
-                ></input>
-                <h3> Upload Video </h3>
-              </div>
-              <div className="post__option">
-                <Link to="/events-form">
-                  <EventRoundedIcon
-                    style={{ color: 'red' }}
+            <form onSubmit={handleSubmitFile}>
+              <input
+                className="post__input"
+                placeholder="Select a file then hit the share button!"
+                disabled
+              />
+              <button
+                type="submit"
+                style={{ position: 'absolute' }}
+                className="glow-on-hover"
+              >
+                POST A VIDEO!!
+              </button>
+              <button
+                type="submit"
+                style={{ position: 'absolute' }}
+                className="glow-on-hover_second"
+              >
+                POST PIC
+              </button>
+              <div className="post__bottom">
+                <div className="post__option">
+                  <CameraEnhanceRoundedIcon
                     className="post__option__pic"
+                    style={{ color: 'blue' }}
                   />
-                </Link>
-                <h3> Schedule Event </h3>
-              </div>
-              <div className="post__option">
-                <Link to="/jobs-form">
-                  <WorkIcon
-                    style={{ color: 'orange' }}
+                  <input
+                    type="file"
+                    name="photo"
+                    className="change"
+                    accept="image/*"
+                    maxlength="2"
+                    formenctype="multipart/form-data"
+                    onChange={handleChange}
+                  ></input>
+                  <h3 className="post__text"> Upload Photo </h3>
+                </div>
+                <div className="post__option">
+                  <DuoRoundedIcon
                     className="post__option__pic"
-                  />
-                </Link>
-                <h3> Post Job </h3>
+                    style={{ color: 'green' }}
+                  />{' '}
+                  <input
+                    type="file"
+                    name="photo"
+                    className="change"
+                    accept="video/*"
+                    placeholder="Share your artwork"
+                    onChange={handleChange}
+                  ></input>
+                  <h3> Upload Video </h3>
+                </div>
+                <div className="post__option">
+                  <Link to="/events-form">
+                    <EventRoundedIcon
+                      style={{ color: 'red' }}
+                      className="post__option__pic"
+                    />
+                  </Link>
+                  <h3> Schedule Event </h3>
+                </div>
+                <div className="post__option">
+                  <Link to="/jobs-form">
+                    <WorkIcon
+                      style={{ color: 'orange' }}
+                      className="post__option__pic"
+                    />
+                  </Link>
+                  <h3> Post Job </h3>
+                </div>
               </div>
-            </div>
-          </form>
+            </form>
+          </div>
+          <div className="post__bottom"></div>
         </div>
-        <div className="post__bottom"></div>
+        {userData &&
+          userData
+            ?.map((user) => {
+              return <Feed key={user.user._id} feed={user} />;
+            })
+            .reverse()}
       </div>
-      {userData &&
-        userData
-          ?.map((user) => {
-            return <Feed key={user.user._id} feed={user} />;
-          })
-          .reverse()}
-    </div>
+    </>
   );
 };
 export default Post;

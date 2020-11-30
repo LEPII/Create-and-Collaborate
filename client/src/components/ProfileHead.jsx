@@ -6,6 +6,7 @@ import { AppContext } from '../context/AppContext';
 import { Card } from 'react-bootstrap';
 import Mentor from '../helper/Mentor';
 import Student from '../helper/Student';
+
 const ProfileHead = () => {
   const [user, setUser] = useState([]);
   const [following, setFollowing] = useState([]);
@@ -40,8 +41,6 @@ const ProfileHead = () => {
   const isFollowing = (user.followers || []).some(
     (follower) => follower._id === currentUser?._id
   );
-  const followColor = isFollowing ? 'green' : 'grey';
-  console.log(following);
   return (
     <>
       <Card>

@@ -71,8 +71,6 @@ export default function ImageModal() {
               );
             })}
           </Carousel>
-
-          {/* <img src={images.image} /> */}
         </div>
       </Modal>
     </div>

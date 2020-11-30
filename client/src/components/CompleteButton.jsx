@@ -7,7 +7,6 @@ import swal from 'sweetalert';
 const CompleteButton = ({ event }) => {
   const { setLoading } = useContext(AppContext);
 
-  // Renders a button that will toggle from true to false
   const toggleComplete = async () => {
     setLoading(true);
     try {
