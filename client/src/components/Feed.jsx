@@ -11,7 +11,7 @@ const Feed = ({ feed }) => {
     <div className="feed">
       <div className="feed__top">
         <Avatar
-          src={feed?.user[0].avatar}
+          src={feed?.user[0]?.avatar}
           onClick={() => history.push(`/profile/${feed.user[0]._id}`)}
           className="feed__avatar"
         />

@@ -50,7 +50,7 @@ const NavBar = () => {
             </NavDropdown.Item>
           </NavDropdown>
           <Nav.Link>
-            <Link to={`/profile/${currentUser._id}`}>Profile</Link>
+            <Link to={`/profile/${currentUser?._id}`}>Profile</Link>
           </Nav.Link>
         </Nav>
       </Navbar.Collapse>
