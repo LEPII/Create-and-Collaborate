@@ -30,7 +30,9 @@ const NavBar = () => {
       variant="dark"
       className="nav"
     >
-      <Navbar.Brand href="/home">C & C</Navbar.Brand>
+      <Navbar.Brand as={Link} to="/home">
+        C & C
+      </Navbar.Brand>
       <Navbar.Toggle aria-controls="responsive-navbar-nav" />
       <Navbar.Collapse id="responsive-navbar-nav">
         <Nav className="mr-auto">
