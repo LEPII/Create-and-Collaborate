@@ -30,7 +30,7 @@ const EventCalendar = () => {
 
   return (
     <div className="eventsBG">
-      <Paper className="scheduler">
+      <Paper>
         <Scheduler data={events}>
           <ViewState />
           <MonthView />
