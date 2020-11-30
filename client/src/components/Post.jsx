@@ -10,15 +10,14 @@ import WorkIcon from '@material-ui/icons/Work';
 import EventRoundedIcon from '@material-ui/icons/EventRounded';
 import '../Post.css';
 import { useHistory } from 'react-router-dom';
-const Post = (props) => {
+
+const Post = () => {
   const [userData, setUserData] = useState([]);
-  const { setLoading, post, setPost, currentUser, loading } = useContext(
-    AppContext
-  );
+  const { setLoading, currentUser, loading } = useContext(AppContext);
   const history = useHistory();
   const [video, setVideo] = useState('');
   const [image, setImage] = useState(null);
-  const [preview, setPreview] = useState(null);
+
   const handleChange = (e) => {
     if (e.target.files[0].name.includes('mov')) {
       return setVideo(e.target.files[0]);

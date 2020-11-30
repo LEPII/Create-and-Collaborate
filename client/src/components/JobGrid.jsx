@@ -1,20 +1,24 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
+import { AppContext } from '../context/AppContext';
 import '../jobs.css';
 import axios from 'axios';
 import { Card } from 'react-bootstrap';
 import JobSearch from './JobSearch';
 
 const JobGrid = () => {
+  const { setLoading } = useContext(AppContext);
   const [jobs, setJobs] = useState([]);
   const [searchValue, setSearchValue] = useState('');
 
   useEffect(() => {
+    setLoading(true);
     axios
       .get('/jobs', { withCredentials: true })
       .then((response) => {
         setJobs(response.data);
       })
       .catch((error) => {
+        setLoading(false);
         console.log(error);
       });
   }, []);

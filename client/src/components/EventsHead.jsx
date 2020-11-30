@@ -10,7 +10,7 @@ const EventsHead = () => {
         style={{ width: '100%', height: 400 }}
       />
       <Card.ImgOverlay>
-        <Card.Body>
+        <Card.Body style={{ color: '#000000' }}>
           <Card.Text>GIGS</Card.Text>
           <Card.Text>find a gig, and start creating!</Card.Text>
         </Card.Body>
