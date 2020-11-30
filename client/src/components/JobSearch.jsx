@@ -4,11 +4,11 @@ import { Card } from 'react-bootstrap';
 
 const JobSearch = ({ handleSearch }) => {
   return (
-    <div class="jobsearchfix">
-      <Card>
+    <div className="jobsearchfix">
+      <Card className="jobForm">
         <form>
           <div className="jobsearch">
-            <h3>Find your next gig!</h3>
+            <h3 className="Create">Find your next gig!</h3>
             <input
               type="text"
               placeholder="Search by Title..."

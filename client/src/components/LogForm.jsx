@@ -18,6 +18,7 @@ const LogForm = () => {
     e.preventDefault();
     try {
       const response = await axios.post('/auth/login', formData);
+      console.log('response', response);
       setCurrentUser(response.data);
       sessionStorage.setItem('user', JSON.stringify(response.data));
       history.push('/home');

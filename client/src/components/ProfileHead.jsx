@@ -6,16 +6,12 @@ import { AppContext } from '../context/AppContext';
 import { Card } from 'react-bootstrap';
 import Mentor from '../helper/Mentor';
 import Student from '../helper/Student';
-
 const ProfileHead = () => {
   const [user, setUser] = useState([]);
   const [following, setFollowing] = useState([]);
-  const [followColor, setFollowColor] = useState('green');
   const { currentUser, setLoading, loading } = useContext(AppContext);
-  const followButton = useRef(null);
-  let { id } = useParams();
-
-  useEffect(() => {
+  const { id } = useParams();
+  const fetchUser = () => {
     axios
       .get(`/users/${id}`, { withCredentials: true })
       .then((response) => {
@@ -25,30 +21,27 @@ const ProfileHead = () => {
       .catch((error) => {
         console.log(error);
       });
+  };
+  useEffect(() => {
+    fetchUser();
   }, [loading]);
-
-  console.log(following);
-
   const follow = async () => {
     setLoading(true);
     try {
-      const { data } = await axios.put(`/users/${id}`, {
+      await axios.put(`/users/${id}`, {
         withCredentials: true
       });
-      console.log('DATA: ', data);
+      await fetchUser();
       setLoading(false);
     } catch (error) {
-      console.log(error);
-    }
-    if (following.indexOf(currentUser._id) === -1) {
-      // followButton.current.className = 'follow';
-      return setFollowColor('follow');
-    } else {
-      // followButton.current.className = 'unfollow';
-      return setFollowColor('unfollow');
+      console.log('what happened', error.message);
     }
   };
-
+  const isFollowing = (user.followers || []).some(
+    (follower) => follower._id === currentUser?._id
+  );
+  const followColor = isFollowing ? 'green' : 'grey';
+  console.log(following);
   return (
     <>
       <Card>
@@ -62,13 +55,12 @@ const ProfileHead = () => {
         <div>
           <button
             type="button"
-            // ref={followButton}
             onClick={follow}
-            class={`btn fixSpace ${followColor}`}
+            className={'btn fixSpace'}
+            id={`${isFollowing ? 'unfollow-button' : 'follow-button'}`}
           >
             Connect
           </button>
-          {/* {(following.indexOf(current) === -1 )? <Follow /> : <Unfollow />} */}
         </div>
         <div>
           <Link to={`/messages/${id}`}>
@@ -80,11 +72,19 @@ const ProfileHead = () => {
         <div className="fixSpace">
           <h6>{user.category}</h6>
         </div>
+        <p>FOLLOWERS:</p>
         <div>
-          <p>FOLLOWERS:</p>
-          {/* <div><img src={following?.user?.avatar}/></div>
-          <div><img src={following?.user[1]?.avatar}/></div>
-          <div><img src={following?.user[3]?.avatar}/></div> */}
+          <div className="follower-avatar">
+            <a href={`/profile/${following[0]?._id}`}>
+              <img src={following[0]?.avatar} />
+            </a>
+            <a href={`/profile/${following[1]?._id}`}>
+              <img src={following[1]?.avatar} />
+            </a>
+            <a href={`/profile/${following[2]?._id}`}>
+              <img src={following[2]?.avatar} />
+            </a>
+          </div>
         </div>
       </div>
       <div className="mentor">
@@ -97,5 +97,4 @@ const ProfileHead = () => {
     </>
   );
 };
-
 export default ProfileHead;

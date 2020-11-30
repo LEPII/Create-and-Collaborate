@@ -28,7 +28,7 @@ const JobGrid = () => {
   });
 
   return (
-    <div className="jobContainer">
+    <div className="jobForm">
       <Card>
         <Card.Img
           variant="top"
