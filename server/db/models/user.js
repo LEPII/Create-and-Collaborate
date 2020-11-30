@@ -2,6 +2,7 @@ const mongoose = require('mongoose'),
   validator = require('validator'),
   bcrypt = require('bcryptjs'),
   jwt = require('jsonwebtoken');
+
 const userSchema = new mongoose.Schema(
   {
     username: {
@@ -148,14 +149,7 @@ userSchema.statics.findByCredentials = async (email, password) => {
   if (!user) throw new Error('User not found');
   const isMatch = await bcrypt.compare(password, user.password);
   if (!isMatch) throw new Error('Invalid password, try again.');
-  return {
-    ...user.toObject(),
-    jobs: user.jobs,
-    portfolios: user.portfolios,
-    events: user.events,
-    images: user.images,
-    videos: user.videos
-  };
+  return user;
 };
 //password hasher
 userSchema.pre('save', async function (next) {
