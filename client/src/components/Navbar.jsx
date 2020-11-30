@@ -34,8 +34,12 @@ const NavBar = () => {
       <Navbar.Toggle aria-controls="responsive-navbar-nav" />
       <Navbar.Collapse id="responsive-navbar-nav">
         <Nav className="mr-auto">
-          <Nav.Link href="/jobs">Gigs</Nav.Link>
-          <Nav.Link href="/events">Events</Nav.Link>
+          <Nav.Link as={Link} to="/jobs">
+            Gigs
+          </Nav.Link>
+          <Nav.Link as={Link} to="/events">
+            Events
+          </Nav.Link>
         </Nav>
         <Nav>
           <NavDropdown
@@ -43,7 +47,9 @@ const NavBar = () => {
             className="dropleft"
             id="collasible-nav-dropdown"
           >
-            <NavDropdown.Item href="/messages">Messages</NavDropdown.Item>
+            <NavDropdown.Item as={Link} to="/messages">
+              Messages
+            </NavDropdown.Item>
             <NavDropdown.Item onClick={logout}>Logout</NavDropdown.Item>
             <NavDropdown.Item href="/update-password">
               Update Password
