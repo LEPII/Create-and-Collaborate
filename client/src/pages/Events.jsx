@@ -6,7 +6,7 @@ import '../events.css';
 
 function Events() {
   return (
-    <div className="jobContainer">
+    <div className="jobForm">
       <Navbar />
       <EventsHead />
       <EventCalendar />

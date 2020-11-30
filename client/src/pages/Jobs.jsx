@@ -5,7 +5,7 @@ import Footer from '../components/Footer';
 
 const Jobs = () => {
   return (
-    <div className="jobContainer">
+    <div className="jobForm">
       <Navbar />
       <JobGrid />
       <Footer />

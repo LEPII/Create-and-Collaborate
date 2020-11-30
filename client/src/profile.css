@@ -128,21 +128,8 @@
   z-index: 100;
   width: 100%;
   height: 2.5rem;
-  background-image: linear-gradient(
-    to right top,
-    #a93ccf,
-    #9538ca,
-    #8034c4,
-    #6a31be,
-    #512eb8,
-    #403fc2,
-    #2b4dca,
-    #005ad0,
-    #0079e1,
-    #0094eb,
-    #00aeee,
-    #0dc6ee
-  );
+  background: radial-gradient(ellipse at bottom, #1b2735 0%, #090a0f 100%)
+    no-repeat center center fixed;
 }
 
 .mentor {
