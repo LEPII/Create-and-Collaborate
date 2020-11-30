@@ -1,11 +1,11 @@
 import React, { useContext } from 'react';
 import { Navbar, Nav, NavDropdown } from 'react-bootstrap';
 import { AppContext } from '../context/AppContext';
-import { useHistory } from 'react-router-dom';
+import { useHistory, Link } from 'react-router-dom';
 import axios from 'axios';
 
 const NavBar = () => {
-  const { setCurrentUser } = useContext(AppContext);
+  const { setCurrentUser, currentUser } = useContext(AppContext);
   const history = useHistory();
   const logout = async () => {
     try {
@@ -49,7 +49,9 @@ const NavBar = () => {
               Update Password
             </NavDropdown.Item>
           </NavDropdown>
-          <Nav.Link href="/home">Profile</Nav.Link>
+          <Nav.Link>
+            <Link to={`/profile/${currentUser._id}`}>Profile</Link>
+          </Nav.Link>
         </Nav>
       </Navbar.Collapse>
     </Navbar>

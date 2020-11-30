@@ -11,8 +11,8 @@ const EventsHead = () => {
       />
       <Card.ImgOverlay>
         <Card.Body>
-          <Card.Text>GIGS</Card.Text>
-          <Card.Text>find a gig, and start creating!</Card.Text>
+          <Card.Text></Card.Text>
+          <Card.Text></Card.Text>
         </Card.Body>
       </Card.ImgOverlay>
     </Card>
