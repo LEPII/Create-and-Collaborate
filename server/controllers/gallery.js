@@ -10,25 +10,11 @@ exports.uploadImage = async (req, res) => {
       req.files.image.tempFilePath
     );
     const image = new Image({
-      hostedBy: req.images._id,
+      hostedBy: req.user._id,
       image: response.secure_url
     });
     await image.save();
     res.json(image);
-  } catch (error) {
-    res.status(400).json({ error: error.message });
-  }
-};
-
-//Create a post
-exports.createImage = async (req, res) => {
-  try {
-    const post = await new Image({
-      ...req.body,
-      hostedBy: req.images._id
-    });
-    await post.save();
-    res.status(200).send(post);
   } catch (error) {
     res.status(400).json({ error: error.message });
   }
@@ -73,7 +59,7 @@ exports.uploadVideo = async (req, res) => {
       }
     );
     const video = new Video({
-      hostedBy: req.images._id,
+      hostedBy: req.user._id,
       video: response.secure_url
     });
     await video.save();
@@ -87,7 +73,7 @@ exports.createVideo = async (req, res) => {
   try {
     const post = await new Video({
       ...req.body,
-      hostedBy: req.images._id
+      hostedBy: req.user._id
     });
     await post.save();
     res.status(200).send(post);

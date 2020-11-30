@@ -3,6 +3,7 @@ import { Avatar } from '@material-ui/core';
 import FavoriteBorderOutlinedIcon from '@material-ui/icons/FavoriteBorderOutlined';
 import AssistantRoundedIcon from '@material-ui/icons/AssistantRounded';
 import ShareRoundedIcon from '@material-ui/icons/ShareRounded';
+import Messaging from '../pages/Messaging';
 import '../Feed.css';
 import { useHistory } from 'react-router-dom';
 
@@ -35,16 +36,8 @@ const Feed = ({ feed }) => {
       </div>
       <div className="feed__options">
         <div className="feed__option">
-          <FavoriteBorderOutlinedIcon />
-          <p>Love</p>
-        </div>
-        <div className="feed__option">
-          <AssistantRoundedIcon />
-          <p>Reflect</p>
-        </div>
-        <div className="feed__option">
-          <ShareRoundedIcon />
-          <p>Share</p>
+          <FavoriteBorderOutlinedIcon className="feed__icon" />
+          <p> Love</p>
         </div>
       </div>
     </div>

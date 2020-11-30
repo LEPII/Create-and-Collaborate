@@ -9,14 +9,11 @@ const JobSearch = ({ handleSearch }) => {
         <form>
           <div className="jobsearch">
             <h3>Find your next gig!</h3>
-            <div class="row">
-              <input
-                type="text"
-                placeholder="Search by Title..."
-                onChange={(e) => handleSearch(e.target.value)}
-              />
-              <button>Search</button>
-            </div>
+            <input
+              type="text"
+              placeholder="Search by Title..."
+              onChange={(e) => handleSearch(e.target.value)}
+            />
           </div>
         </form>
       </Card>

@@ -6,13 +6,12 @@ import { AppContext } from '../context/AppContext';
 import { Card } from 'react-bootstrap';
 import Mentor from '../helper/Mentor';
 import Student from '../helper/Student';
-import Follow from '../helper/Follow';
-import Unfollow from '../helper/Unfollow';
 
 const ProfileHead = () => {
-  const [user, setUser] = useState('');
+  const [user, setUser] = useState([]);
   const [following, setFollowing] = useState([]);
-  const { currentUser } = useContext(AppContext);
+  const [followColor, setFollowColor] = useState('green');
+  const { currentUser, setLoading, loading } = useContext(AppContext);
   const followButton = useRef(null);
   let { id } = useParams();
 
@@ -26,18 +25,27 @@ const ProfileHead = () => {
       .catch((error) => {
         console.log(error);
       });
-  }, [setUser]);
+  }, [loading]);
+
+  console.log(following);
 
   const follow = async () => {
+    setLoading(true);
     try {
-      await axios.put(`/users/${id}`, { withCredentials: true });
+      const { data } = await axios.put(`/users/${id}`, {
+        withCredentials: true
+      });
+      console.log('DATA: ', data);
+      setLoading(false);
     } catch (error) {
       console.log(error);
     }
     if (following.indexOf(currentUser._id) === -1) {
-      followButton.current.className = 'follow';
+      // followButton.current.className = 'follow';
+      return setFollowColor('follow');
     } else {
-      followButton.current.className = 'unfollow';
+      // followButton.current.className = 'unfollow';
+      return setFollowColor('unfollow');
     }
   };
 
@@ -54,9 +62,9 @@ const ProfileHead = () => {
         <div>
           <button
             type="button"
-            ref={followButton}
+            // ref={followButton}
             onClick={follow}
-            class="btn fixSpace"
+            class={`btn fixSpace ${followColor}`}
           >
             Connect
           </button>
@@ -74,6 +82,9 @@ const ProfileHead = () => {
         </div>
         <div>
           <p>FOLLOWERS:</p>
+          {/* <div><img src={following?.user?.avatar}/></div>
+          <div><img src={following?.user[1]?.avatar}/></div>
+          <div><img src={following?.user[3]?.avatar}/></div> */}
         </div>
       </div>
       <div className="mentor">

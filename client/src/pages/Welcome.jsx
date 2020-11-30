@@ -1,14 +1,13 @@
 import React from 'react';
 import CoverImage from '../components/CoverImage';
 import DropDownIcon from '../components/DropDownIcon';
-import Footer from '../components/Footer';
+import TestWelcomePage from '../components/TestWelcomePage';
 
 const Welcome = () => {
   return (
     <div className="jobContainer">
-      <CoverImage />
+      <TestWelcomePage /> <CoverImage />
       <DropDownIcon />
-      <Footer />
     </div>
   );
 };

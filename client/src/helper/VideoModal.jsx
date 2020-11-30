@@ -44,7 +44,7 @@ export default function ImageModal() {
       .catch((error) => {
         console.log(error);
       });
-  }, [setVideos]);
+  }, []);
 
   return (
     <div>

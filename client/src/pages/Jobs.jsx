@@ -5,11 +5,11 @@ import Footer from '../components/Footer';
 
 const Jobs = () => {
   return (
-    <>
+    <div className="jobContainer">
       <Navbar />
       <JobGrid />
       <Footer />
-    </>
+    </div>
   );
 };
 

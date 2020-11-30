@@ -38,7 +38,7 @@ const dbReset = async () => {
   });
   //Loop 10 times and create 10 new users
   const userIdArray = [];
-  for (let i = 0; i < 10; i++) {
+  for (let i = 0; i < 20; i++) {
     const me = new User({
       name: `${faker.name.firstName()} ${faker.name.lastName()}`,
       username: faker.internet.userName(),
@@ -50,13 +50,15 @@ const dbReset = async () => {
       bio: faker.lorem.paragraph(),
       location: faker.address.stateAbbr(),
       category: faker.name.jobTitle(),
-      number: faker.phone.phoneNumber()
+      number: faker.phone.phoneNumber(),
+      following: userIdArray[Math.floor(Math.random(50) * userIdArray.length)],
+      followers: userIdArray[Math.floor(Math.random(50) * userIdArray.length)]
     });
     await me.generateAuthToken();
     userIdArray.push(me._id);
   }
   //Loop 10 times and create 10 new events
-  for (let i = 0; i < 10; i++) {
+  for (let i = 0; i < 20; i++) {
     const event = new Event({
       description: faker.lorem.sentence(),
       endDate: faker.date.future(),
@@ -74,7 +76,7 @@ const dbReset = async () => {
   }
   //Loop 10 times and create 10 new jobs
   //Add the postedBy Method after we merge
-  for (let i = 0; i < 10; i++) {
+  for (let i = 0; i < 20; i++) {
     const job = new Job({
       description: faker.name.jobDescriptor(),
       posted: faker.date.recent(),
@@ -87,7 +89,7 @@ const dbReset = async () => {
     await job.save();
   }
   //Loop 10 times and create 10 new portfolios
-  for (let i = 0; i < 10; i++) {
+  for (let i = 0; i < 20; i++) {
     const portfolio = new Portfolio({
       company: faker.company.companyName(),
       position: faker.name.jobTitle(),
@@ -101,7 +103,7 @@ const dbReset = async () => {
     await portfolio.save();
   }
   //Loop 10 times and create 10 new images
-  for (let i = 0; i < 10; i++) {
+  for (let i = 0; i < 20; i++) {
     const image = new Image({
       image: faker.image.nightlife(),
       caption: faker.lorem.words(),
@@ -110,7 +112,7 @@ const dbReset = async () => {
     await image.save();
   }
   //Loop 10 times and create 10 new videos
-  for (let i = 0; i < 10; i++) {
+  for (let i = 0; i < 20; i++) {
     const video = new Video({
       hostedBy: userIdArray[Math.floor(Math.random() * userIdArray.length)],
       caption: faker.lorem.sentence()
