@@ -56,19 +56,28 @@ const Post = (props) => {
         console.log(error);
       });
   }, [loading]);
+
+  
   return (
     <div className="post__container">
       <div className="post">
         <div className="post__top">
-          <Avatar onClick={() => history.push(`/profile/${currentUser._id}`)} />
+          <Avatar
+            onClick={() => history.push(`/profile/${currentUser.user._id}`)}
+          />
           <form onSubmit={handleSubmitFile}>
             <input
-              onChange={handleChange}
               className="post__input"
-              placeholder="What masterpiece do you want to share today?"
+              placeholder="Select a file then hit the share button!"
+              disabled
             />
-            <button type="submit" style={{ position: 'absolute' }}>
-              Submit
+            <button
+              type="submit"
+              style={{ position: 'absolute' }}
+              class="glow-on-hover"
+              type="submit"
+            >
+              SHARE!
             </button>
             <div className="post__bottom">
               <div className="post__option">
