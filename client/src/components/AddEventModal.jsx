@@ -3,8 +3,6 @@ import { Modal, Button, Form } from 'react-bootstrap';
 import axios from 'axios';
 import { AppContext } from '../context/AppContext';
 import swal from 'sweetalert';
-// import CompleteButton from '../components/CompleteButton';
-// import DeleteButton from '../components/DeleteButton';
 
 const AddEventModal = (props) => {
   const { setLoading } = useContext(AppContext);

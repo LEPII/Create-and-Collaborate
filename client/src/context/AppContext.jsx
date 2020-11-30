@@ -28,9 +28,7 @@ const AppContextProvider = ({ children }) => {
     fetchCurrentUser();
   }, []);
 
-  useEffect(() => {
-    console.log('current user in congtext', currentUser);
-  }, [currentUser]);
+  useEffect(() => {}, [currentUser]);
 
   return (
     <AppContext.Provider
