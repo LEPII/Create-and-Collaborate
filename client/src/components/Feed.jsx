@@ -39,14 +39,6 @@ const Feed = ({ feed }) => {
           <FavoriteBorderOutlinedIcon className="feed__icon" />
           <p> Love</p>
         </div>
-        <div className="feed__option">
-          <AssistantRoundedIcon className="feed__icon" />
-          <p> Reflect</p>
-        </div>
-        <div className="feed__option">
-          <ShareRoundedIcon className="feed__icon" />
-          <p> Share</p>
-        </div>
       </div>
     </div>
   );

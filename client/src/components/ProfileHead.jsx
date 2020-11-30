@@ -6,13 +6,11 @@ import { AppContext } from '../context/AppContext';
 import { Card } from 'react-bootstrap';
 import Mentor from '../helper/Mentor';
 import Student from '../helper/Student';
-
 const ProfileHead = () => {
   const [user, setUser] = useState([]);
   const [following, setFollowing] = useState([]);
   const { currentUser, setLoading, loading } = useContext(AppContext);
   const { id } = useParams();
-
   const fetchUser = () => {
     axios
       .get(`/users/${id}`, { withCredentials: true })
@@ -24,11 +22,9 @@ const ProfileHead = () => {
         console.log(error);
       });
   };
-
   useEffect(() => {
     fetchUser();
   }, [loading]);
-
   const follow = async () => {
     setLoading(true);
     try {
@@ -41,15 +37,11 @@ const ProfileHead = () => {
       console.log('what happened', error.message);
     }
   };
-
   const isFollowing = (user.followers || []).some(
     (follower) => follower._id === currentUser?._id
   );
-
   const followColor = isFollowing ? 'green' : 'grey';
-
   console.log(following);
-
   return (
     <>
       <Card>
@@ -105,5 +97,4 @@ const ProfileHead = () => {
     </>
   );
 };
-
 export default ProfileHead;

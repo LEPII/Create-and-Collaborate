@@ -27,8 +27,8 @@
   background: radial-gradient(ellipse at bottom, #1b2735 0%, #090a0f 100%)
     no-repeat center center fixed;
 }
-/* 
-.button {
+
+/* .button {
   min-width: 200px;
   min-height: 60px;
   font-size: 22px;
@@ -116,16 +116,46 @@ button:focus::after {
 }
 
 /* WELCOME PAGE */
+.jobContainer {
+  background-image: linear-gradient(
+    to right top,
+    #a93ccf,
+    #9538ca,
+    #8034c4,
+    #6a31be,
+    #512eb8,
+    #403fc2,
+    #2b4dca,
+    #005ad0,
+    #0079e1,
+    #0094eb,
+    #00aeee,
+    #0dc6ee
+  );
+}
 
 .Create {
-  color: #ececed;
+  color: #f4ac33;
 }
 
 /* USER EDIT FORM */
 .UserEditForm {
-  background: radial-gradient(ellipse at bottom, #1b2735 0%, #090a0f 100%)
-    no-repeat center center fixed;
-  color: #ececed;
+  background-image: linear-gradient(
+    to right top,
+    #a93ccf,
+    #9538ca,
+    #8034c4,
+    #6a31be,
+    #512eb8,
+    #403fc2,
+    #2b4dca,
+    #005ad0,
+    #0079e1,
+    #0094eb,
+    #00aeee,
+    #0dc6ee
+  );
+  height: 100vh;
 }
 .portfolios {
   margin: 20px;

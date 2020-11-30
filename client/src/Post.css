@@ -1,9 +1,10 @@
 .change {
   position: absolute;
-  top: 30px;
+  top: -8px;
   opacity: 0;
   height: 100px;
   width: 15px;
+  cursor: pointer;
 }
 .post {
   background: radial-gradient(ellipse at bottom, #1b2735 0%, #090a0f 100%)
@@ -18,9 +19,7 @@
   width: 100%;
   color: #ececed;
 }
-.post__text {
-  cursor: pointer;
-}
+
 .post__top {
   display: flex;
   padding-bottom: 15px;
@@ -46,7 +45,7 @@
 }
 
 .post__top > form > button {
-  display: none;
+  /* display: none; */
   cursor: pointer;
 }
 
@@ -66,6 +65,7 @@
   color: #e9eaeb;
   margin-right: 25px;
   margin-top: 10px;
+  cursor: pointer;
 }
 
 .post__option > h3 {
@@ -76,9 +76,85 @@
 .post__option:hover {
   transition: 1.1s;
   transform: scale(1.1, 1.1);
-  cursor: pointer;
 }
 
-.post__option__pic {
+.glow-on-hover {
+  left: 790px;
+  margin-top: -5px;
+  width: 170px;
+  height: 50px;
+  border: none;
+  outline: none;
+  color: #e9eaeb;
+  background: radial-gradient(ellipse at bottom, #1b2735 0%, #090a0f 100%)
+    no-repeat center center fixed;
   cursor: pointer;
+  position: absolute;
+  z-index: 0;
+  border-radius: 10px;
+}
+
+.glow-on-hover:before {
+  content: '';
+  background: linear-gradient(
+    45deg,
+    #ff0000,
+    #ff7300,
+    #fffb00,
+    #48ff00,
+    #00ffd5,
+    #002bff,
+    #7a00ff,
+    #ff00c8,
+    #ff0000
+  );
+  position: absolute;
+  top: -2px;
+  left: -2px;
+  background-size: 400%;
+  z-index: -1;
+  filter: blur(5px);
+  width: calc(100% + 4px);
+  height: calc(100% + 4px);
+  animation: glowing 20s linear infinite;
+  opacity: 0;
+  transition: opacity 0.3s ease-in-out;
+  border-radius: 10px;
+}
+
+.glow-on-hover:active {
+  color: #000;
+}
+
+.glow-on-hover:active:after {
+  background: transparent;
+}
+
+.glow-on-hover:hover:before {
+  opacity: 1;
+}
+
+.glow-on-hover:after {
+  z-index: -1;
+  content: '';
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: radial-gradient(ellipse at bottom, #1b2735 0%, #090a0f 100%)
+    no-repeat center center fixed;
+  left: 0;
+  top: 0;
+  border-radius: 10px;
+}
+
+@keyframes glowing {
+  0% {
+    background-position: 0 0;
+  }
+  50% {
+    background-position: 400% 0;
+  }
+  100% {
+    background-position: 0 0;
+  }
 }
