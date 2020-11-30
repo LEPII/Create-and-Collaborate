@@ -2,7 +2,7 @@
   padding: 25px;
   width: 25vw;
   min-width: 25vw;
-  height: 70vh;
+  height: 75vh;
   border-radius: 20px;
   border: black 1px solid;
   display: flex;
@@ -150,10 +150,10 @@
   background-color: white;
   position: absolute;
   border-radius: 20px;
-  height: 25vh;
-  min-height: 25vh;
-  min-width: 22vw;
-  width: 26vw;
+  max-height: 25%;
+  min-height: 25%;
+  min-width: 26%;
+  max-width: 26%;
   right: 560px;
   top: 500px;
 }
@@ -213,14 +213,14 @@
   top: 0.55px;
 }
 
-.follow {
+#follow-button {
   height: 50px;
-  background-color: skyblue;
+  background-color: tomato;
 }
 
-.unfollow {
-  height: 200px;
-  background-color: gray;
+#unfollow-button {
+  height: 50px;
+  background-color: mediumseagreen;
 }
 
 .message {
@@ -236,4 +236,18 @@
   height: 15vh;
   background-color: gray;
   border-radius: 20px;
+}
+
+.follower-avatar img {
+  height: 100px;
+  width: 100px;
+  border-radius: 100%;
+  margin: 5px;
+}
+
+@media only screen and (max-width: 768px) {
+  * {
+    position: relative;
+    width: 100%;
+  }
 }

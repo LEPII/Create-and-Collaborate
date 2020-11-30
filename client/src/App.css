@@ -27,7 +27,7 @@
   background: radial-gradient(ellipse at bottom, #1b2735 0%, #090a0f 100%)
     no-repeat center center fixed;
 }
-
+/* 
 .button {
   min-width: 200px;
   min-height: 60px;
@@ -109,7 +109,7 @@ button:focus::after {
     height: 300px;
     opacity: 0;
   }
-}
+} */
 
 .messageButton {
   margin: 200px;

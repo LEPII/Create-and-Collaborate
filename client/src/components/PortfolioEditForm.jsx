@@ -22,7 +22,7 @@ const PortfolioEditForm = () => {
       });
       setCurrentUser(response.data);
       sessionStorage.setItem('user', JSON.stringify(response.data));
-      history.push(`/profile/${currentUser.user._id}`);
+      history.push(`/profile/${currentUser._id}`);
     } catch (error) {
       swal(`Oops!`, 'Something went wrong.');
     }

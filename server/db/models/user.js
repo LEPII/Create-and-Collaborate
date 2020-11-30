@@ -135,13 +135,27 @@ userSchema.methods.generateAuthToken = async function () {
   await user.save();
   return token;
 };
+
 //secure login for existing user
 userSchema.statics.findByCredentials = async (email, password) => {
-  const user = await User.findOne({ email });
+  const user = await User.findOne({ email })
+    .populate('jobs')
+    .populate('portfolios')
+    .populate('events')
+    .populate('images')
+    .populate('videos')
+    .populate('followers');
   if (!user) throw new Error('User not found');
   const isMatch = await bcrypt.compare(password, user.password);
   if (!isMatch) throw new Error('Invalid password, try again.');
-  return user;
+  return {
+    ...user.toObject(),
+    jobs: user.jobs,
+    portfolios: user.portfolios,
+    events: user.events,
+    images: user.images,
+    videos: user.videos
+  };
 };
 //password hasher
 userSchema.pre('save', async function (next) {
