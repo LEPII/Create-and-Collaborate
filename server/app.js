@@ -2,7 +2,7 @@ require('./db/config');
 const express = require('express'),
   cookieParser = require('cookie-parser'),
   bodyParser = require('body-parser'),
-  pino = require('express-pino-logger'),
+  // pino = require('express-pino-logger'),
   path = require('path'),
   openRoutes = require('./routes/open'),
   userRouter = require('./routes/secure/users'),
@@ -57,7 +57,7 @@ app.use('/message', messageRoutes);
 
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
-app.use(pino);
+// app.use(pino);
 
 app.get('/api/greeting', (req, res) => {
   const name = req.query.name || 'World';
