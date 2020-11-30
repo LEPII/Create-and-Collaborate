@@ -26,7 +26,7 @@ const EventsForm = () => {
   return (
     <div className="jobForm">
       <Navbar />
-      <Form style={{ padding: '10rem' }} onSubmit={handleSubmit}>
+      <Form style={{ padding: '12rem' }} onSubmit={handleSubmit}>
         <Form.Row>
           <Form.Group as={Col} md="4" controlId="validationFormik01">
             <Form.Label className="font">Title</Form.Label>
