@@ -2,10 +2,9 @@
   display: flex;
   align-items: center;
   margin: 15px;
-  padding: 10px;
+  padding: 5rem;
   height: 10vh;
   width: 75vw;
-  border-radius: 1%;
   max-height: 8vh;
   min-width: 400px;
 }
@@ -28,9 +27,11 @@
   min-width: 3vw;
   min-height: 3vw;
   max-height: 4vh;
+  color: #ececed;
 }
 
 .jobsearchfix {
+  border: none;
   display: flex;
   justify-content: center;
   min-width: 400px;
@@ -70,4 +71,8 @@
   border-radius: 100%;
   margin-top: 8px;
   margin-left: 6px;
+}
+
+.jobForm {
+  border: none;
 }
