@@ -6,18 +6,18 @@ import { useHistory } from 'react-router-dom';
 
 const Feed = ({ feed }) => {
   const history = useHistory();
-
+  console.log(feed?.user);
   return (
     <div className="feed">
       <div className="feed__top">
         <Avatar
           src={feed?.user[0]?.avatar}
-          onClick={() => history.push(`/profile/${feed.user[0]._id}`)}
+          onClick={() => history.push(`/profile/${feed?.user[0]?._id}`)}
           className="feed__avatar"
         />
         <div className="feed__topInfo">
           <h3
-            onClick={() => history.push(`/profile/${feed.user[0]._id}`)}
+            onClick={() => history.push(`/profile/${feed?.user[0]?._id}`)}
             className="feed__username"
           >
             {feed?.user[0]?.username}

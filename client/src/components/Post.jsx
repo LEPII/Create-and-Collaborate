@@ -14,6 +14,7 @@ import { useHistory } from 'react-router-dom';
 const Post = () => {
   const [userData, setUserData] = useState([]);
   const { setLoading, currentUser, loading } = useContext(AppContext);
+  console.log(currentUser);
   const history = useHistory();
   const [video, setVideo] = useState('');
   const [image, setImage] = useState(null);
@@ -63,6 +64,7 @@ const Post = () => {
           <div className="post__top">
             <Avatar
               onClick={() => history.push(`/profile/${currentUser.user._id}`)}
+              src={currentUser?.avatar}
             />
             <form onSubmit={handleSubmitFile}>
               <input
